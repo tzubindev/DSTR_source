@@ -41,3 +41,11 @@ public:
 
 	}
 };
+
+class AdminMenu : Menu {
+
+	// Implementation
+public:
+
+
+};
