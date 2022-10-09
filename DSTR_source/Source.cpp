@@ -1,29 +1,13 @@
 #include <iostream>
+#include "doublyLinkedList.h"
+#include <string>
 
 using namespace std;
 
-// array
+
+int main() {
 
 
-// linked list
 
-
-// queue
-
-
-// stack
-template <class T>
-
-class Stack {
-	T* list;
-	int stackTop;
-	int maxStackSize;
-
-public:
-	Stack(int MaxSize);
-	~Stack();
-	void push(T elem);
-	T pop();
-	T top();
-	bool isEmpty();
-};
+	return 0;
+}
