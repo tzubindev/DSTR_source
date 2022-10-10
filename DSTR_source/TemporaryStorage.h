@@ -6,7 +6,7 @@ using namespace std;
 
 class TemporaryStorage {
 
-	// Ticket Purchase Data Structure
+	// Ticket Purchase Record Data Structure
 
 
 
@@ -145,7 +145,7 @@ public:
 
 
 	// Output Data Object: Ticket Purchasing
-	DoublyLinkedList<DoublyLinkedList<string>> getTicketPurchase () {
+	DoublyLinkedList<DoublyLinkedList<string>> getTicketPurchaseRecord () {
 	}
 
 
