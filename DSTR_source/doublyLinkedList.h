@@ -6,8 +6,8 @@ class DoublyNode
 {
 public:
     T data;
-    DoublyNode<T>* prev;
-    DoublyNode<T>* next;
+    DoublyNode<T>* prev = nullptr;
+    DoublyNode<T>* next = nullptr;
 };
 
 template<class T>
@@ -112,6 +112,10 @@ public:
 
     void deleteItemAt(int index) {
 
+    }
+
+    void clear() {
+        
     }
 
     void showForward()
