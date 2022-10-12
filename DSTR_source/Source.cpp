@@ -7,8 +7,6 @@ using namespace std;
 
 int main() {
 
-//Testing GitHub
 
-    cout << "Value of a is " << a;
 	return 0;
 }

@@ -115,7 +115,9 @@ public:
     }
 
     void clear() {
-        
+        while (head != NULL) deleteLast();
+
+        cout << "The Doubly Linked List is cleared.\n ";
     }
 
     void showForward()
