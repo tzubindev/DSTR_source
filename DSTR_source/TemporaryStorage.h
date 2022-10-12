@@ -141,8 +141,7 @@ public:
 
 	// Output Data Object: Subway Stations
 	DoublyLinkedList<DoublyLinkedList<string>> getSubwayStations () {
-
-
+		return SubwayStations;
 	}
 
 

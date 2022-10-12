@@ -107,7 +107,15 @@ public:
     }
 
     void deleteLast() {
+        DoublyNode* toDeleteNode = tail;
 
+        if (toDeleteNode->prev != nullptr) {
+            toDeleteNode->prev->next = nullptr;
+            tail = tail->prev;
+        }
+        
+        del toDeleteNode;
+        
     }
 
     void deleteItemAt(int index) {
