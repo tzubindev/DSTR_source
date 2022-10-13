@@ -103,7 +103,7 @@ public:
     }
 
     void deleteFirst() {
-    
+        // Need help
     }
 
     void deleteLast() {
@@ -119,7 +119,7 @@ public:
     }
 
     void deleteItemAt(int index) {
-
+        // Need help
     }
 
     void clear() {
@@ -138,7 +138,7 @@ public:
             curr = curr->next;
 
         }
-    }
+    } // ignore
 
     void showBackward()
     {
@@ -149,7 +149,7 @@ public:
             cout << curr->data << " ";
             curr = curr->prev;
         }
-    }
+    } // ignore
 
     void sort()
     {
@@ -159,6 +159,8 @@ public:
         while (curr->next != NULL) {
 
             // if next node value > cur node value, swap
+
+
         }
 
         // check

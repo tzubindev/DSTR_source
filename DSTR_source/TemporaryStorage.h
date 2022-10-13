@@ -8,9 +8,22 @@ class TemporaryStorage {
 
 	// Ticket Purchase Record Data Structure
 
+private:
+	// create 
+	DoublyLinkedList<Transaction> TransactionList;
+
+public:
+	
+	void AddTransaction() {
+
+		// Create Transaction object here
 
 
+	}
 
+	void sortTransaction() {
+
+	}
 
 
 	// Subway Station Data Structure
@@ -49,8 +62,7 @@ private:
 			""
 		};
 		
-
-
+		// TimeObject trainArriveTime[40] = { ... }
 
 
 public:
