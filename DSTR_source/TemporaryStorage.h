@@ -7,6 +7,8 @@ using namespace std;
 class TemporaryStorage {
 
 	// Ticket Purchase Record Data Structure
+private:
+    // Data members
 
 private:
 	// create 
