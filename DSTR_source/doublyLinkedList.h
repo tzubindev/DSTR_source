@@ -104,7 +104,7 @@ public:
 
     void deleteFirst() {
 
-       if (head != Null){
+       if (head != NULL){
            DoublyNode* toDeleteNode = head;
 
            head = head->next;
@@ -123,26 +123,25 @@ public:
             tail = tail->prev;
         }
         
-        del toDeleteNode;
+        delete toDeleteNode;
         
     }
 
-    void deleteItemAt(struct DoublyNode** head_ref,int index) {
+    void deleteItemAt(DoublyNode** head_ref,int index) {
         if (*head_ref == NULL || index <= 0)
             return;
 
-        struct DoublyNode* curr = *head_ref;
+        DoublyNode* curr = *head_ref;
 
         int i;
 
-        for (int i = 1; current != NULL && i < index; i++) {
-            curr = curr -> next
-        }
+        for (int i = 1; curr != NULL && i < index; i++) 
+            curr = curr->next;
 
         if(curr == NULL)
             return;
 
-        del head_ref, curr;
+        delete head_ref, curr; 
     }
 
     void clear() {
