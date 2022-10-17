@@ -161,5 +161,20 @@ public:
 	DoublyLinkedList<DoublyLinkedList<string>> getTicketPurchaseRecord () {
 	}
 
+private: 
+	int currentTransactionId = 0;
+	int currentCustomerId = 0;
+
+public:
+
+	int getCurrentTransactionId() {
+		currentTransactionId++;
+		return currentTransactionId;
+	}
+
+	int getCurrentCustomerId() {
+		currentCustomerId++;
+		return currentCustomerId;
+	}
 
 };

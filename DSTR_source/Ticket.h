@@ -36,7 +36,7 @@ private:
 
 public:
 
-	Ticket();
+	Ticket() {}
 
 	Ticket(string Source, string Destination, int amount, Customer customer, TemporaryStorage storage) {
 		sourceStation = Source;

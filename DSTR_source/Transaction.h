@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Ticket.h"
-#include "GlobalAttribute.h"
 
 using namespace std;
 
@@ -11,8 +10,8 @@ private:
 	Ticket TicketObject;
 
 public:
-	Transaction(GlobalAttribute globalAttribute, Ticket ticket) {
-		TransactionID = globalAttribute.getCurrentTransactionId();
+	Transaction(TemporaryStorage storage, Ticket ticket) {
+		TransactionID = storage.getCurrentTransactionId();
 		TicketObject = ticket;
 	}
 
