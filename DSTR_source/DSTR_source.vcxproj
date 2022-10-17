@@ -136,6 +136,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="TemporaryStorage.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
