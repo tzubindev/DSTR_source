@@ -127,21 +127,35 @@ public:
         
     }
 
-    void deleteItemAt(DoublyNode** head_ref,int index) {
-        if (*head_ref == NULL || index <= 0)
-            return;
-
-        DoublyNode* curr = *head_ref;
-
-        int i;
-
-        for (int i = 1; curr != NULL && i < index; i++) 
-            curr = curr->next;
-
-        if(curr == NULL)
-            return;
-
-        delete head_ref, curr; 
+    void deleteItemAt(int index) {
+        if (index < 0) {
+            cout << "\nindex should be >= 0.";
+        }
+        else if (index == 0 && head != NULL) {
+            DoublyNode* nodeToDelete = head;
+            head = head->next;
+            free(nodeToDelete);
+            if (head != NULL)
+                head->prev = NULL;
+        }
+        else {
+            DoublyNode* temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                if (temp != NULL) {
+                    temp = temp->next;
+                }
+            }
+            if (temp != NULL && temp->next != NULL) {
+                DoublyNode* nodeToDelete = temp->next;
+                temp->next = temp->next->next;
+                if (temp->next->next != NULL)
+                    temp->next->next->prev = temp->next;
+                free(nodeToDelete);
+            }
+            else {
+                cout << "\nThe node is already null.";
+            }
+        }
     }
 
     void clear() {
