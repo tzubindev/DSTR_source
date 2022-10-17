@@ -1,18 +1,13 @@
 #include <iostream>
 #include "doublyLinkedList.h"
 #include <string>
+#include "Test.h"
 
 using namespace std;
 
 
 int main() {
 
-	// Testing doubly linked list delete from last and clear operation
-
-
-    // hi
-
-
-	// byng
+	Test();
 	return 0;
 }
