@@ -103,7 +103,16 @@ public:
     }
 
     void deleteFirst() {
-        // Need help
+
+       if (head != Null){
+           DoublyNode* toDeleteNode = head;
+
+           head = head->next;
+           free(toDeleteNode);
+
+           if(head != NULL)
+               head->prev = NULL;
+       }
     }
 
     void deleteLast() {
@@ -118,8 +127,22 @@ public:
         
     }
 
-    void deleteItemAt(int index) {
-        // Need help
+    void deleteItemAt(struct DoublyNode** head_ref,int index) {
+        if (*head_ref == NULL || index <= 0)
+            return;
+
+        struct DoublyNode* curr = *head_ref;
+
+        int i;
+
+        for (int i = 1; current != NULL && i < index; i++) {
+            curr = curr -> next
+        }
+
+        if(curr == NULL)
+            return;
+
+        del head_ref, curr;
     }
 
     void clear() {
