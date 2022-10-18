@@ -11,9 +11,7 @@ int Test()
 	lst.insertAtbeginning(22);
 	lst.insertAtbeginning(33);
 	lst.insertAtbeginning(44);
-	lst.deleteItemAt(1);
-	lst.deleteFirst();
-	lst.getSize();
+	lst.deleteItemAt(0);
 	lst.showForward();
 	return 1;
 }
