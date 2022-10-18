@@ -105,7 +105,7 @@ public:
     void deleteFirst() {
 
        if (head != NULL){
-           DoublyNode* toDeleteNode = head;
+           DoublyNode<T>* toDeleteNode = head;
 
            head = head->next;
            free(toDeleteNode);
@@ -116,7 +116,7 @@ public:
     }
 
     void deleteLast() {
-        DoublyNode* toDeleteNode = tail;
+        DoublyNode<T>* toDeleteNode = tail;
 
         if (toDeleteNode->prev != nullptr) {
             toDeleteNode->prev->next = nullptr;
@@ -132,21 +132,21 @@ public:
             cout << "\nindex should be >= 0.";
         }
         else if (index == 0 && head != NULL) {
-            DoublyNode* nodeToDelete = head;
+            DoublyNode<T>* nodeToDelete = head;
             head = head->next;
             free(nodeToDelete);
             if (head != NULL)
                 head->prev = NULL;
         }
         else {
-            DoublyNode* temp = head;
+            DoublyNode<T>* temp = head;
             for (int i = 0; i < index - 1; i++) {
                 if (temp != NULL) {
                     temp = temp->next;
                 }
             }
             if (temp != NULL && temp->next != NULL) {
-                DoublyNode* nodeToDelete = temp->next;
+                DoublyNode<T>* nodeToDelete = temp->next;
                 temp->next = temp->next->next;
                 if (temp->next->next != NULL)
                     temp->next->next->prev = temp->next;
