@@ -9,7 +9,7 @@ struct Color {
 	const int PINK = 13;
 	const int YELLOW = 14;
 	const int WHITE = 14;
-};
+} Color;
 
 
 class ConsoleColor {
@@ -19,15 +19,9 @@ private:
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 public:
-	static const int GREEN = 10;
-	static const int LIGHT_BLUE = 11;
-	static const int RED = 12;
-	static const int PINK = 13;
-	static const int YELLOW = 14;
-	static const int WHITE = 14;
 
 	ConsoleColor() {
-		SetConsoleTextAttribute(hConsole, WHITE);
+		SetConsoleTextAttribute(hConsole, Color.WHITE);
 	}
 
 	void setColor(int color) {
