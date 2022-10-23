@@ -8,7 +8,7 @@ struct Color {
 	const int RED = 12;
 	const int PINK = 13;
 	const int YELLOW = 14;
-	const int WHITE = 14;
+	const int WHITE = 15;
 } Color;
 
 

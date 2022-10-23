@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
+#include "ConsoleColor.h"
 
 using namespace std;
 
@@ -32,8 +33,11 @@ public:
 			// Intro
 			drawLine('=', MAX_WIDTH);
 			giveTab(3);
-			SetConsoleTextAttribute(hConsole, k);
+
+			// Set Colour
+			ConsoleColor().setColor(Color.YELLOW);
 			cout << intro[0];
+			ConsoleColor().setColor(Color.WHITE);
 
 			drawLine('=', MAX_WIDTH);
 			cout << '\n';
@@ -43,7 +47,6 @@ public:
 
 			setMenuType();
 
-			cout << isAdminType;
 		}
 
 
@@ -69,12 +72,15 @@ private:
 
 		// show menu options
 		cout << "\n";
-		makeTitleBlock("MENU", 4);
+		makeTitleBlock("MENU", 6);
 		cout << "\n";
-		drawLine('-', 20, 0);
-		cout << "\nA - Ticket Purchase.\n";
+		drawLine('-', MAX_WIDTH, 0);
+		cout << '\n';
+		giveTab(5);
+		cout << "A - Ticket Purchase\n\n";
+		giveTab(5);
 		cout << "B - Login (Admin)\n\n";
-		drawLine('-', 20, 0);
+		drawLine('-', MAX_WIDTH, 0);
 		cout << "\n";
 
 		// split the input
@@ -93,9 +99,9 @@ private:
 
 	string getInput() {
 		if (isAdminType)
-			cout << "| STPS | ADM >";
+			cout << "ADMIN > ";
 		else
-			cout << "| STPS | ANO >";
+			cout << "ANONYMOUS > ";
 		string input;
 		cin >> input;
 		cout << '\n';
