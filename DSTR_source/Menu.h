@@ -138,10 +138,19 @@ private:
 	}
 
 
-	// Passenger functionalities
 public:
 	void afunction();
 	string bfunction();
+
+
+	// Passanger Functionalitites
+	void DisplayTravelRoute();
+	void chooseAndDisplayTravelRoute();
+	void searchStationDetails();
+	void viewDetailsBetweenTwoCities();
+	bool purchaseSubwayTicket();
+	void viewPurchaseTransactionHistory();
+	bool deletePurchaseTransaction();
 
 
 	// Admin Functionalitites
@@ -170,17 +179,33 @@ public:
 	
 	}
 
-	void DisplayAndChooseTravelRoute() {
+	void chooseAndDisplayTravelRoute() {
 		DisplayTravelRoute();
 
 		// Choose Route
 		// input
+	}
+
+	void searchStationDetails() {
 
 	}
 
-	string bfunction() {
+	void viewDetailsBetweenTwoCities() {
 
 	}
+
+	bool purchaseSubwayTicket() {
+
+	}
+
+	void viewPurchaseTransactionHistory() {
+
+	}
+
+	bool deletePurchaseTransaction() {
+
+	}
+
 };
 
 class AdminMenu : Menu {

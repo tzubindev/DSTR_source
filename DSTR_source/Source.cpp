@@ -21,4 +21,5 @@ int main() {
 
 bool initialCheck() {
 	// Progressbar: https://www.geeksforgeeks.org/how-to-create-a-command-line-progress-bar-in-c-c/
+	return true;
 }
