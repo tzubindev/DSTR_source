@@ -33,6 +33,7 @@ public:
 			giveTab(3);
 			cout << intro[0];
 			drawLine('=', MAX_WIDTH);
+			cout << '\n';
 			giveTab(2);
 			cout << intro[1];
 			drawLine('-', MAX_WIDTH);
