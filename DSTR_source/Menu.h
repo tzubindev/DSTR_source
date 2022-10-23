@@ -32,7 +32,7 @@ public:
 
 			// Intro
 			drawLine('=', MAX_WIDTH);
-			giveTab(3);
+			setTab(3);
 
 			// Set Colour
 			ConsoleColor().setColor(Color.YELLOW);
@@ -41,7 +41,7 @@ public:
 
 			drawLine('=', MAX_WIDTH);
 			cout << '\n';
-			giveTab(2);
+			setTab(2);
 			cout << intro[1];
 			drawLine('-', MAX_WIDTH);
 
@@ -59,12 +59,12 @@ private:
 	//TempStorage getData(); // TempStorage is an object of a class
 
 	void drawLine(char target, int N, int tabNum = 0) {
-		giveTab(tabNum);
+		setTab(tabNum);
 		for (int i = 1; i <= N; i++) cout << target;
 		cout << '\n';
 	}
 
-	void giveTab(int tabNum) {
+	void setTab(int tabNum) {
 		for (int i = 0; i < tabNum; i++) cout << '\t';
 	}
 
@@ -76,42 +76,63 @@ private:
 		cout << "\n";
 		drawLine('-', MAX_WIDTH, 0);
 		cout << '\n';
-		giveTab(5);
+		setTab(5);
+		ConsoleColor().setColor(Color.GREEN);
 		cout << "A - Ticket Purchase\n\n";
-		giveTab(5);
+		setTab(5);
 		cout << "B - Login (Admin)\n\n";
+		ConsoleColor().setColor(Color.WHITE);
 		drawLine('-', MAX_WIDTH, 0);
 		cout << "\n";
 
 		// split the input
 		string input = getInput();
 
-		if (input == "A") {
+		if (input == "a") {
 			isAdminType = false;
 		}
-		else if (input == "B"){
+		else if (input == "b"){
 			isAdminType = true;
 		}
 		else if (input == "exit_manual") {
 			isExited = true;
 		}
+		else {
+			drawLine('-', MAX_WIDTH);
+			cout << '\n';
+			ConsoleColor().setColor(Color.RED);
+			setTab(6);
+			cout << "Error\n";
+			setTab(5);
+			cout << "Invalid Input! Your input: " + input + "\n\n";
+			ConsoleColor().setColor(Color.WHITE);
+			drawLine('-', MAX_WIDTH);
+
+		}
 	}
 
+	// all returned value will be lowercase
 	string getInput() {
+		ConsoleColor().setColor(Color.LIGHT_BLUE);
 		if (isAdminType)
 			cout << "ADMIN > ";
 		else
 			cout << "ANONYMOUS > ";
-		string input;
+		string input, final = "";
 		cin >> input;
 		cout << '\n';
-		
-		return input;
+		ConsoleColor().setColor(Color.WHITE);
+
+		// lowercase
+		for (char ch : input)
+			final += tolower(ch);
+
+		return final;
 	}
 
 	void makeTitleBlock(string Title, int tabNumber) {
 		drawLine('-', Title.length()+2, tabNumber);
-		giveTab(tabNumber);
+		setTab(tabNumber);
 		cout << "|" << Title << "|\n";
 		drawLine('-', Title.length() + 2, tabNumber);
 	}
@@ -124,7 +145,13 @@ public:
 
 
 	// Admin Functionalitites
-
+	bool addSubwayStation();
+	bool editSubwayInformation();
+	void viewPurchaseTransactions();
+	void sortPurchaseTransactions();
+	void searchTicketInformation();
+	bool editTicketInformation();
+	bool deleteTicket();
 
 
 
@@ -165,6 +192,32 @@ public:
 
 	}
 
+	bool addSubwayStation() {
 
+	}
+
+	bool editSubwayInformation() {
+
+	}
+
+	void viewPurchaseTransactions() {
+
+	}
+
+	void sortPurchaseTransactions() {
+
+	}
+
+	void searchTicketInformation() {
+
+	}
+
+	bool editTicketInformation() {
+
+	}
+
+	bool deleteTicket() {
+
+	}
 
 };

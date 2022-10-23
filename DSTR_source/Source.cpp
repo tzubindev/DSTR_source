@@ -5,6 +5,7 @@
 
 using namespace std;
 
+bool initialCheck();
 
 int main() {
 
@@ -16,4 +17,8 @@ int main() {
 
 	Test();
 	return 0;
+}
+
+bool initialCheck() {
+	// Progressbar: https://www.geeksforgeeks.org/how-to-create-a-command-line-progress-bar-in-c-c/
 }
