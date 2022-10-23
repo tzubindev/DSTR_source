@@ -7,9 +7,14 @@ using namespace std;
 
 int Test()
 {
-	
-	Menu mainMenu = Menu();
+	DoublyLinkedList<int> lst;
 
-
+	lst.insertAtbeginning(22);
+	lst.insertAtbeginning(33);
+	lst.insertAtbeginning(44);
+	lst.deleteItemAt(1);
+	lst.deleteFirst();
+	lst.getSize();
+	lst.showForward();
 	return 1;
 }

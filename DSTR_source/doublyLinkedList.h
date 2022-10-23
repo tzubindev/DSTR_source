@@ -134,9 +134,15 @@ public:
         else if (index == 0 && head != NULL) {
             DoublyNode<T>* nodeToDelete = head;
             head = head->next;
-            free(nodeToDelete);
+            delete nodeToDelete;
             if (head != NULL)
                 head->prev = NULL;
+        }
+        else if (index == size-1) {
+            DoublyNode<T> * nodeToDelete = tail;
+            tail = tail->prev;
+            tail->next = nullptr;
+            delete nodeToDelete;
         }
         else {
             DoublyNode<T>* temp = head;
@@ -150,7 +156,7 @@ public:
                 temp->next = temp->next->next;
                 if (temp->next->next != NULL)
                     temp->next->next->prev = temp->next;
-                free(nodeToDelete);
+                delete nodeToDelete;
             }
             else {
                 cout << "\nThe node is already null.";
