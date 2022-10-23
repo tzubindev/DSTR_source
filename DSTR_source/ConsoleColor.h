@@ -30,10 +30,7 @@ public:
 		SetConsoleTextAttribute(hConsole, WHITE);
 	}
 
-	static void setColor(int color) {
-		privateSetColor(color);
+	void setColor(int color) {
+		SetConsoleTextAttribute(hConsole, color);
 	}
-
-private:
-	static int color = ConsoleColor.WHITE;
 };
