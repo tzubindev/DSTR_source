@@ -9,8 +9,6 @@ class AdminMenu;
 class PassengerMenu;
 
 const int MAX_WIDTH = 96;
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
 
 class Menu {
 
