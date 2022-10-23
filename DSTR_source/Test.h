@@ -1,20 +1,10 @@
-#pragma once
 #include <iostream>
-#include "doublyLinkedList.h"
 #include "Menu.h"
 
 using namespace std;
 
-int Test()
+void Test()
 {
-	DoublyLinkedList<int> lst;
-
-	lst.insertAtbeginning(22);
-	lst.insertAtbeginning(33);
-	lst.insertAtbeginning(44);
-	lst.deleteItemAt(1);
-	lst.deleteFirst();
-	lst.getSize();
-	lst.showForward();
-	return 1;
+	
+	Menu mainMenu = Menu();
 }
