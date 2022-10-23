@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <windows.h>
 
 using namespace std;
 
@@ -8,6 +9,8 @@ class AdminMenu;
 class PassengerMenu;
 
 const int MAX_WIDTH = 96;
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
 class Menu {
 
@@ -31,7 +34,9 @@ public:
 			// Intro
 			drawLine('=', MAX_WIDTH);
 			giveTab(3);
+			SetConsoleTextAttribute(hConsole, k);
 			cout << intro[0];
+
 			drawLine('=', MAX_WIDTH);
 			cout << '\n';
 			giveTab(2);
