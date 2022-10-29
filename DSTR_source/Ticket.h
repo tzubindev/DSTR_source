@@ -6,9 +6,9 @@ using namespace std;
 class Ticket {
 
 private:
-	int id = NULL;
-	string sourceStation = NULL;
-	string destinationStation = NULL;
+	string TicketID = "TKID_";
+	string sourceStation = "";
+	string destinationStation = "";
 	// dateTimeObject dateTime = NULL;
 	int ticketAmount = NULL;
 	double price = NULL;
@@ -39,7 +39,7 @@ public:
 	Ticket() {}
 
 	Ticket(int ID, string Source, string Destination, int amount, Customer customer) {
-		id = ID;
+		TicketID += ID;
 		sourceStation = Source;
 		destinationStation = Destination;
 		ticketAmount = amount;

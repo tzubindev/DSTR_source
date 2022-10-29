@@ -13,7 +13,7 @@ public:
 
 	Customer() {}
 
-	Customer(int customerId, string name, string number, bool local) {
+	void setInfo(int customerId, string name, string number, bool local) {
 		CustomerID += customerId;
 		CustomerName = name;
 		if (local) IdentityNo += number;

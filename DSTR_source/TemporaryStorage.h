@@ -162,12 +162,9 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		//Customer newCustomerObj = Customer(
-		//	getCurrentCustomerId, 
-		//	"sample CUStomer Name",
-		//	"010203040506",
-		//	true
-		//);
+		Customer newCustomerObj = Customer();
+		newCustomerObj.setInfo(getCurrentCustomerId(), "Sample Name", "010203040506", true);
+
 		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
 		
 		updateTicketId(ticketAmount);
@@ -217,7 +214,7 @@ public:
 		return currentTicketId;
 	}
 
-	int updateTicketId(int incrementNum) {
+	void updateTicketId(int incrementNum) {
 		currentTicketId++;
 	}
 
