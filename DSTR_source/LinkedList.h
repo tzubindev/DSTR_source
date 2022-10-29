@@ -5,7 +5,8 @@ template<class T>
 class Node
 {
 public:
-    T data;
+    T username;
+    T password;
     Node<T>* next;
 };
 
@@ -46,7 +47,8 @@ public:
         size++;
     }
 
-    void insertAtEnd(T elem)
+    // update this
+    void insertAtEnd(T username, T password)
     {
         cout << "Inserting = " << elem << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
@@ -63,6 +65,7 @@ public:
         size++;
     }
 
+    // update this 
     void insertItemAt(T elem, int index)
     {
         if (index >= size)
@@ -96,10 +99,13 @@ public:
         return size;
     }
 
+
+    // Need this
     T getItem(int index) {
 
     }
 
+    
     void deleteFirst() {
 
     }
@@ -109,32 +115,6 @@ public:
     }
 
     void deleteItemAt(int index) {
-
-    }
-
-    void show()
-    {
-        DoublyNode<T>* curr = head;
-        cout << "\n--- DISPLAY LINKED LIST [FORWARD] = " << size << " elements ---" << endl;
-        while (curr != nullptr)
-        {
-            cout << curr->data << " " << curr << " " << curr->next << '\n';
-            curr = curr->next;
-
-        }
-    }
-
-    void sort()
-    {
-        DoublyNode<T>* curr = head;
-        DoublyNode<T>* temp = nullptr;
-
-        while (curr->next != NULL) {
-
-            // if next node value > cur node value, swap
-        }
-
-        // check
 
     }
 };
