@@ -159,6 +159,7 @@ public:
 
 		// Initialise Admin accounts
 		AdminAccounts.insertAtEnd("admin1;123456");
+		AdminAccounts.insertAtEnd("admin2;aab3456");
 
 
 	}

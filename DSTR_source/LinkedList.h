@@ -47,7 +47,7 @@ public:
     }
 
     // update this
-    void insertAtEnd(T data)
+    void insertAtEnd(T elem)
     {
         cout << "Inserting = " << elem << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
@@ -65,7 +65,7 @@ public:
     }
 
     
-    void insertItemAt(T username, T password, int index)
+    void insertItemAt(T elem, int index)
     {
         if (index >= size)
         {
@@ -99,7 +99,7 @@ public:
     }
 
 
-    // Need this
+    // Ghassan
     T getItem(int index) {
         
     }

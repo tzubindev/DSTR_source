@@ -15,8 +15,6 @@ void Test()
 
 			AdminMenu* adminMenu = new AdminMenu(storage);
 			adminMenu->viewPurchaseTransactions();
-
-
 		}
 		else {
 
