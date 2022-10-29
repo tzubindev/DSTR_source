@@ -165,7 +165,7 @@ public:
 		Customer newCustomerObj = Customer();
 		newCustomerObj.setInfo(getCurrentCustomerId(), "Sample Name", "010203040506", true);
 
-		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
+		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, "12:00:00", newCustomerObj);
 		
 		updateTicketId(ticketAmount);
 		Transaction newTransactionObj = Transaction(newTicketObj);
