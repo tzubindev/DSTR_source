@@ -25,7 +25,5 @@ public:
 		if (isLocal) IdentityCardNo = Number;
 		else PassportNo = Number;
 	}
-	
-	Customer() {}
 
 };

@@ -163,6 +163,7 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
+		//(int ID, string customerName, string Number, bool local)
 		Customer newCustomerObj = Customer(getCurrentCustomerId, "sample Name", "010203040506", true);
 		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
 		
