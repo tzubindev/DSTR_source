@@ -13,6 +13,6 @@ void Test()
 	}
 	else {
 		delete mainMenu;
-		AdminMenu adminMenu = AdminMenu();
+		cout << 'P';
 	}
 }

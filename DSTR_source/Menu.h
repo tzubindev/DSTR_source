@@ -14,6 +14,7 @@ private:
 	// Data members
 	bool isExited = false;
 	bool isAdminType = false;
+	bool isSelected = false;
 	string intro[2] = {"Welcome to Subway Ticket Purchase System (STPS)\n", "This is Kuala Lumpur Light Rail Transit (LRT) ticket purchase system.\n\n"};
 
 	// Common functionalities
@@ -22,7 +23,7 @@ public:
 	// Constructor -> used to receive input
 	Menu() {
 
-		while (!isExited) {
+		while (!isExited && !isSelected) {
 
 			string input;
 
@@ -41,9 +42,20 @@ public:
 			cout << intro[1];
 			drawLine('-', MAX_WIDTH);
 
-			if(setMenuType()) {
+			switch(setMenuType()) {
+			case 1:
+				isSelected = true;
+				isAdminType = false;
+				break;
+			case 2:
+				isSelected = true;
+				isAdminType = true;
+				break;
+			case 3:
+				isExited = true;
 				break;
 			}
+
 		}
 	}
 
@@ -52,20 +64,10 @@ public:
 			return 'A';
 		else 
 			return 'P';
-	}
-	
-	bool getExitStatus() {
-		if(isExited)
-			printExitMessage();
-		return isExited;
-	}
-	
+	}	
 
 private:
 
-	void printExitMessage() {
-
-	}
 
 	void drawLine(char target, int N, int tabNum = 0) {
 		setTab(tabNum);
@@ -77,7 +79,7 @@ private:
 		for (int i = 0; i < tabNum; i++) cout << '\t';
 	}
 
-	bool setMenuType() {
+	int setMenuType() {
 
 		// show menu options
 		cout << "\n";
@@ -97,33 +99,28 @@ private:
 		// split the input
 		string input = getInput();
 
-		if (input == "a" || input == "b") {
-			if (input == "a") isAdminType = false;
-			else isAdminType = true;
+		if (input == "a") { return 1; }
+		if (input == "b") { return 2; }
+		if (input == "exit") { return 3; }
 
-			return true;
-		}
-		else if (input == "exit_manual") {
-			isExited = true;
-			return false;
-		}
-		else {
-			drawLine('-', MAX_WIDTH);
-			cout << '\n';
-			ConsoleColor().setColor(Color.RED);
-			setTab(6);
-			cout << "Error\n";
-			setTab(5);
-			cout << "Invalid Input! Your input: " + input + "\n\n";
-			ConsoleColor().setColor(Color.WHITE);
-			drawLine('-', MAX_WIDTH);
-			return false;
 
-		}
+		// Error Displaying
+		drawLine('-', MAX_WIDTH);
+		cout << '\n';
+		ConsoleColor().setColor(Color.RED);
+		setTab(6);
+		cout << "Error\n";
+		setTab(5);
+		cout << "Invalid Input! Your input: " + input + "\n\n";
+		ConsoleColor().setColor(Color.WHITE);
+		drawLine('-', MAX_WIDTH);
+		return -1;
 	}
 
 	// all returned value will be lowercase
 	string getInput() {
+
+		bool isTrimmedLeft = false;
 		ConsoleColor().setColor(Color.LIGHT_BLUE);
 		if (isAdminType)
 			cout << "ADMIN > ";
@@ -135,9 +132,11 @@ private:
 		ConsoleColor().setColor(Color.WHITE);
 
 		// lowercase
-		for (char ch : input)
-			final += tolower(ch);
-
+		for (char ch : input) {
+			if (ch != ' ') isTrimmedLeft = true;
+			if(isTrimmedLeft)
+				final += tolower(ch);
+		}
 		return final;
 	}
 
