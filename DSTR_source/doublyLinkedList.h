@@ -8,7 +8,7 @@ public:
     T data;
     DoublyNode<T>* prev = nullptr;
     DoublyNode<T>* next = nullptr;
-    DoublyNode<T>* down = nullptr;
+    DoublyNode<T>* down = NULL;
 };
 
 template<class T>
@@ -88,6 +88,7 @@ public:
 
     }
 
+    // Dont change
     void insertVerticallyAt(T elem, int index) {
         if (index >= size)
         {
@@ -102,20 +103,25 @@ public:
 
         newNode->data = elem;
 
-        while (cur->next != NULL) {
+        while (cur != NULL) {
             if (index == cnt) {
-                cnt = 0;
-                while (cur->down != NULL) {
-                    cur = cur->down;
-                    cnt++;
-                }
-                cur->down = newNode;
-                return;
+                break;
             }
-
-            cur = cur->next;
-            cnt++;
+            else {
+                cur = cur->next;
+                cnt++;
+            }
         }
+        while (cur != NULL) {
+            if (cur->down == NULL) {
+                cur->down = newNode;
+                break;
+            }
+            else {
+                cur = cur->down;
+            }
+        }
+
     }
 
     int getSize()
@@ -131,34 +137,36 @@ public:
         return height;
     }
 
-    T getItem(int index, int Vindex) {
+    // Dont change
+    T getItem(int x, int y) {
         DoublyNode<T>* curNode = head;
-        int count = 0;
+        int cnt = 0;
 
-        if (index >= size) {
+        if (x >= size || y >= height) {
             cout << "Out of range in get item\n";
         }
 
         while (curNode != NULL) {
-            if (count == index) {
-                count = 0;
-                while (curNode->down != NULL) {
-
-                    if (count == Vindex) {
-                        return curNode->data;
-                    }
-                    curNode = curNode->down;
-                }
-
-                // Exception
-                cout << "Not found in get item.\n";
+            if (cnt == x) {
                 break;
             }
             else {
                 curNode = curNode->next;
-                count++;
+                cnt++;
             }
         }
+
+        cnt = 0;
+        while (curNode != NULL) {
+            if (cnt == y) {
+                return curNode->data;
+            }
+            else {
+                curNode = curNode->down;
+                cnt++;
+            }
+        }
+
     }
 
 

@@ -7,6 +7,7 @@
 using namespace std;
 
 const int MAX_WIDTH = 96;
+const double CURRENT_VERSION = 1.2;
 
 class Menu {
 
@@ -29,6 +30,7 @@ public:
 			string input;
 
 			// Intro
+			cout << "Current Version: " << CURRENT_VERSION << '\n';
 			drawLine('=', MAX_WIDTH);
 			setTab(3);
 

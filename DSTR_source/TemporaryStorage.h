@@ -82,7 +82,6 @@ public:
 			
 			// Cur Station Name
 			SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i], i);
-
 			
 			// Data related to "prev"
 			if (i != 0) {
