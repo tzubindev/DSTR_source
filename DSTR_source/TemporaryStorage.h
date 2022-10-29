@@ -167,7 +167,7 @@ public:
 		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
 		
 		updateTicketId(ticketAmount);
-		Transaction newTransactionObj = Transaction();
+		Transaction newTransactionObj = Transaction(newTicketObj);
 
 
 		ticketAmount = 4;

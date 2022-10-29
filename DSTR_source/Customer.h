@@ -6,7 +6,7 @@ class Customer {
 
 
 private:
-	int CustomerID = NULL;
+	string CustomerID = NULL;
 	string CustomerName = NULL;
 	string IdentityCardNo = "";
 	string PassportNo = "";
@@ -15,16 +15,17 @@ private:
 
 
 public:
-	Customer();
-
+	
 	Customer(int ID, string customerName, string Number, bool local) {
 
-		CustomerID = ID;
+		CustomerID = "CID_"+ID;
 		CustomerName = customerName;
 		isLocal = local;
 		
 		if (isLocal) IdentityCardNo = Number;
 		else PassportNo = Number;
 	}
+	
+	Customer() {}
 
 };
