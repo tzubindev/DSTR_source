@@ -139,9 +139,6 @@ private:
 
 
 public:
-	void afunction();
-	string bfunction();
-
 
 	// Passanger Functionalitites
 	void DisplayTravelRoute();
@@ -154,7 +151,7 @@ public:
 
 
 	// Admin Functionalitites
-	bool addSubwayStation();
+	virtual bool addSubwayStation();
 	bool editSubwayInformation();
 	void viewPurchaseTransactions();
 	void sortPurchaseTransactions();
