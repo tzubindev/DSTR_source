@@ -5,10 +5,6 @@
 
 using namespace std;
 
-class Menu;
-class AdminMenu;
-class PassengerMenu;
-
 const int MAX_WIDTH = 96;
 
 class Menu {
@@ -45,15 +41,31 @@ public:
 			cout << intro[1];
 			drawLine('-', MAX_WIDTH);
 
-			setMenuType();
-
+			if(setMenuType()) {
+				break;
+			}
 		}
+	}
 
-
+	char getUserType() {
+		if(isAdminType)
+			return 'A';
+		else 
+			return 'P';
+	}
+	
+	bool getExitStatus() {
+		if(isExited)
+			printExitMessage();
+		return isExited;
 	}
 	
 
 private:
+
+	void printExitMessage() {
+
+	}
 
 	void drawLine(char target, int N, int tabNum = 0) {
 		setTab(tabNum);
@@ -65,7 +77,7 @@ private:
 		for (int i = 0; i < tabNum; i++) cout << '\t';
 	}
 
-	void setMenuType() {
+	bool setMenuType() {
 
 		// show menu options
 		cout << "\n";
@@ -85,15 +97,15 @@ private:
 		// split the input
 		string input = getInput();
 
-		if (input == "a") {
-			isAdminType = false;
-		}
-		else if (input == "b"){
-			isAdminType = true;
-			AdminMenu am = AdminMenu();
+		if (input == "a" || input == "b") {
+			if (input == "a") isAdminType = false;
+			else isAdminType = true;
+
+			return true;
 		}
 		else if (input == "exit_manual") {
 			isExited = true;
+			return false;
 		}
 		else {
 			drawLine('-', MAX_WIDTH);
@@ -105,6 +117,7 @@ private:
 			cout << "Invalid Input! Your input: " + input + "\n\n";
 			ConsoleColor().setColor(Color.WHITE);
 			drawLine('-', MAX_WIDTH);
+			return false;
 
 		}
 	}
@@ -149,7 +162,7 @@ public:
 
 
 	// Admin Functionalitites
-	virtual bool addSubwayStation();
+	bool addSubwayStation();
 	bool editSubwayInformation();
 	void viewPurchaseTransactions();
 	void sortPurchaseTransactions();
@@ -211,17 +224,15 @@ public:
 	AdminMenu() {
 
 		// identity check
-		while (true) {
-
-		}
+			cout << "A";
 	}
 
 	bool addSubwayStation() {
-
+		return true;
 	}
 
 	bool editSubwayInformation() {
-
+		return true;
 	}
 
 	void viewPurchaseTransactions() {
@@ -237,11 +248,11 @@ public:
 	}
 
 	bool editTicketInformation() {
-
+		return true;
 	}
 
 	bool deleteTicket() {
-
+		return true;
 	}
 
 };
