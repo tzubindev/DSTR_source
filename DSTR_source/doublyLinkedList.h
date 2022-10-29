@@ -50,15 +50,13 @@ public:
     {
         DoublyNode<T>* newNode = new DoublyNode<T>;
         newNode->data = elem;
-        newNode->next = nullptr;
+        newNode->next = NULL;
         newNode->prev = tail;
         tail = newNode;
-        if (head == nullptr) {
+        if (head == NULL)
             head = newNode;
-        }
-        else {
+        else
             newNode->prev->next = newNode;
-        }
         size++;
     }
 
@@ -94,7 +92,18 @@ public:
     }
 
     T getItem(int index) {
+        DoublyNode<T>* curNode = head;
+        int count = 0;
 
+        while (curNode != NULL) {
+            if (count == index) {
+                return curNode->data;
+            }
+            else {
+                curNode = curNode->next;
+                count++;
+            }
+        }
     }
 
     void deleteFirst() {

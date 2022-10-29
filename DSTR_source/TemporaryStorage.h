@@ -99,8 +99,9 @@ public:
 				Station.insertAtEnd(to_string(Time[i - 1]));
 
 			}
-			else	Station.insertAtEnd("NULL");
-
+			else {
+				for(int i = 0;i<4;i++) Station.insertAtEnd("NULL");
+			}
 			
 			if (i != StationNumber - 1) {
 
@@ -117,7 +118,9 @@ public:
 				Station.insertAtEnd(to_string(Time[i + 1]));
 
 			}
-			else	Station.insertAtEnd("NULL");
+			else { 
+				for(int i = 0;i<4;i++) Station.insertAtEnd("NULL"); 
+			}
 
 			Station.insertAtEnd(NearbySightseeingSpots[i]);
 
@@ -150,6 +153,10 @@ public:
 			Detail of Ticket Puchase:
 
 		*/
+
+
+		// Initialise Ticket Pruchasing records
+
 
 	}
 
