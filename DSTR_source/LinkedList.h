@@ -5,8 +5,7 @@ template<class T>
 class Node
 {
 public:
-    T username;
-    T password;
+    T data;
     Node<T>* next;
 };
 
@@ -48,7 +47,7 @@ public:
     }
 
     // update this
-    void insertAtEnd(T username, T password)
+    void insertAtEnd(T data)
     {
         cout << "Inserting = " << elem << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
