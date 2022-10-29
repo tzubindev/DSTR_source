@@ -55,9 +55,6 @@ public:
 
 private:
 
-	bool identityCheck();
-	//TempStorage getData(); // TempStorage is an object of a class
-
 	void drawLine(char target, int N, int tabNum = 0) {
 		setTab(tabNum);
 		for (int i = 1; i <= N; i++) cout << target;
@@ -93,6 +90,7 @@ private:
 		}
 		else if (input == "b"){
 			isAdminType = true;
+			AdminMenu am = AdminMenu();
 		}
 		else if (input == "exit_manual") {
 			isExited = true;
@@ -212,6 +210,10 @@ public:
 
 	AdminMenu() {
 
+		// identity check
+		while (true) {
+
+		}
 	}
 
 	bool addSubwayStation() {
