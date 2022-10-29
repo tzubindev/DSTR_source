@@ -48,11 +48,11 @@ private:
 
 	bool login() {
 		drawLine('=', MAX_WIDTH);
-		setTab(3);
+		setTab(5);
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
-		cout << "Admin Login";
+		cout << "Admin Login\n";
 		ConsoleColor().setColor(Color.WHITE);
 
 		drawLine('=', MAX_WIDTH);
@@ -60,6 +60,8 @@ private:
 		setTab(2);
 		cout << "";
 		drawLine('-', MAX_WIDTH);
+
+		return true;
 	}
 
 };
