@@ -8,13 +8,6 @@ using namespace std;
 
 class TemporaryStorage {
 
-	// Ticket Purchase Record Data Structure
-private:
-    // Data members
-
-private:
-	// create 
-	DoublyLinkedList<Transaction> TransactionList;
 
 public:
 	
@@ -33,7 +26,8 @@ public:
 	// Subway Station Data Structure
 private:
 	// Data members
-	DoublyLinkedList<string> SubwayStations;
+	DoublyLinkedList<string> SubwayStations; 
+	DoublyLinkedList<string> PurchaseRecord; 
 	int StationNumber = 8;
 
 	//// INITIALISATION SUPPORT ARRAYS
@@ -67,7 +61,7 @@ private:
 		
 		// TimeObject trainArriveTime[40] = { ... }
 
-		LinkedList<string> AdminAccounts;
+		// LinkedList<string> AdminAccounts;
 
 public:
 	
@@ -149,17 +143,39 @@ public:
 
 
 			Detail of Ticket Puchase:
+			+---------+
+			| SUMMARY |
+			+---------+
+			1) Transaction ID
+			2) Ticket ID
+			3) Prev Station Name
+			4) Name of the Source Station
+			5) Name of the Target Station
+			6) Total Ticket Amount
+			7) Transaction Date and Time
+			8) Departure Time
+			9) Customer ID
+			10) Customer Name
+			11) Customer Identity Card / Passport Details
 
 		*/
 
 
 		// Initialise Ticket Pruchasing records
+		int ticketAmount = 1;
+		Customer newCustomerObj = Customer(getCurrentCustomerId, "sample Name", "010203040506", true);
+		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
+		
+		updateTicketId(ticketAmount);
+		Transaction newTransactionObj = Transaction();
 
+
+		ticketAmount = 4;
 
 
 		// Initialise Admin accounts
-		AdminAccounts.insertAtEnd("admin1;123456");
-		AdminAccounts.insertAtEnd("admin2;aab3456");
+		//AdminAccounts.insertAtEnd("admin1;123456");
+		//AdminAccounts.insertAtEnd("admin2;aab3456");
 
 
 	}
@@ -172,12 +188,14 @@ public:
 
 
 	// Output Data Object: Ticket Purchasing
-	DoublyLinkedList<DoublyLinkedList<string>> getTicketPurchaseRecord () {
+	DoublyLinkedList<string> getTicketPurchaseRecord () {
+		return PurchaseRecord;
 	}
 
 private: 
 	int currentTransactionId = 0;
 	int currentCustomerId = 0;
+	int currentTicketId = 1;
 
 public:
 
@@ -189,6 +207,14 @@ public:
 	int getCurrentCustomerId() {
 		currentCustomerId++;
 		return currentCustomerId;
+	}
+
+	int getCurrentTicketId() {
+		return currentTicketId;
+	}
+
+	int updateTicketId(int incrementNum) {
+		currentTicketId++;
 	}
 
 };
