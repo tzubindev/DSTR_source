@@ -15,7 +15,10 @@ int main() {
 	GetWindowRect(console, &r); //stores the console's current dimensions
 	MoveWindow(console, r.left, r.top, 800, 600, TRUE); // 600 width, 600 height
 
+	// Implement testing
 	Test();
+
+
 	return 0;
 }
 
