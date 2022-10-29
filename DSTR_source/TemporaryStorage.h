@@ -2,6 +2,7 @@
 #include "doublyLinkedList.h"
 #include <string>
 #include "Transaction.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -65,6 +66,8 @@ private:
 		};
 		
 		// TimeObject trainArriveTime[40] = { ... }
+
+		LinkedList<string> AdminAccounts;
 
 public:
 	
