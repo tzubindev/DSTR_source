@@ -23,7 +23,7 @@ public:
 	// Constructor -> used to receive input
 	Menu() {
 
-		while (!isExited && !isSelected) {
+		while (true) {
 
 			string input;
 
@@ -56,7 +56,8 @@ public:
 				break;
 			}
 
-		}
+			if (isSelected || isExited) break;
+		} 
 	}
 
 	char getUserType() {
@@ -66,8 +67,9 @@ public:
 			return 'P';
 	}	
 
-private:
+	bool getExitStatus() { return isExited; }
 
+protected:
 
 	void drawLine(char target, int N, int tabNum = 0) {
 		setTab(tabNum);
@@ -215,43 +217,3 @@ public:
 
 };
 
-class AdminMenu : Menu {
-
-	// Implementation
-public:
-
-	AdminMenu() {
-
-		// identity check
-			cout << "A";
-	}
-
-	bool addSubwayStation() {
-		return true;
-	}
-
-	bool editSubwayInformation() {
-		return true;
-	}
-
-	void viewPurchaseTransactions() {
-
-	}
-
-	void sortPurchaseTransactions() {
-
-	}
-
-	void searchTicketInformation() {
-
-	}
-
-	bool editTicketInformation() {
-		return true;
-	}
-
-	bool deleteTicket() {
-		return true;
-	}
-
-};
