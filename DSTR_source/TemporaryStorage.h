@@ -156,6 +156,11 @@ public:
 		// Initialise Ticket Pruchasing records
 
 
+
+		// Initialise Admin accounts
+		AdminAccounts.insertAtEnd();
+
+
 	}
 
 

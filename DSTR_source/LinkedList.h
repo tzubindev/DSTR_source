@@ -65,8 +65,8 @@ public:
         size++;
     }
 
-    // update this 
-    void insertItemAt(T elem, int index)
+    
+    void insertItemAt(T username, T password, int index)
     {
         if (index >= size)
         {
@@ -102,7 +102,7 @@ public:
 
     // Need this
     T getItem(int index) {
-
+        
     }
 
     
