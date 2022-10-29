@@ -4,26 +4,21 @@ using namespace std;
 
 class Customer {
 
-
-private:
-	string CustomerID = NULL;
-	string CustomerName = NULL;
-	string IdentityCardNo = "";
-	string PassportNo = "";
-	bool isLocal; // true -> local ; false -> foreigner
-
-
-
 public:
-	
-	Customer(int ID, string customerName, string Number, bool local) {
+	string CustomerID = "CID_";
+	string CustomerName = "";
+	string IdentityNo = "";
+	string PassportNo = "";
+	bool isLocal = (IdentityNo != "") ? true: false;
 
-		CustomerID = "CID_"+ID;
-		CustomerName = customerName;
-		isLocal = local;
-		
-		if (isLocal) IdentityCardNo = Number;
-		else PassportNo = Number;
+	Customer() {}
+
+	Customer(int customerId, string name, string number, bool local) {
+		CustomerID += customerId;
+		CustomerName = name;
+		if (local) IdentityNo += number;
+		else PassportNo += number;
 	}
+
 
 };

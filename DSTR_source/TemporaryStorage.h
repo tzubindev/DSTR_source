@@ -2,7 +2,6 @@
 #include "doublyLinkedList.h"
 #include <string>
 #include "Transaction.h"
-#include "LinkedList.h"
 
 using namespace std;
 
@@ -163,8 +162,12 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		//(int ID, string customerName, string Number, bool local)
-		Customer newCustomerObj = Customer(getCurrentCustomerId, "sample Name", "010203040506", true);
+		//Customer newCustomerObj = Customer(
+		//	getCurrentCustomerId, 
+		//	"sample CUStomer Name",
+		//	"010203040506",
+		//	true
+		//);
 		Ticket newTicketObj = Ticket(currentTicketId, "Titiwangsa", "PWTC", ticketAmount, newCustomerObj);
 		
 		updateTicketId(ticketAmount);
