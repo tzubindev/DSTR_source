@@ -10,8 +10,7 @@ private:
 	Ticket TicketObject;
 
 public:
-	Transaction(TemporaryStorage storage, Ticket ticket) {
-		TransactionID = storage.getCurrentTransactionId();
+	Transaction(Ticket ticket) {
 		TicketObject = ticket;
 	}
 

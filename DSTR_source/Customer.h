@@ -1,5 +1,4 @@
 #include <iostream>
-#include "GlobalAttribute.h"
 
 using namespace std;
 
@@ -18,16 +17,13 @@ private:
 public:
 	Customer();
 
-	Customer(string customerName, string ID_CardNo, GlobalAttribute global) {
-		CustomerID = global.getCurrentCustomerId();
-		CustomerName = customerName;
-		IdentityCardNo = ID_CardNo;
-	}
+	Customer(int ID, string customerName, string Number, bool isLocal = true) {
 
-	Customer(string customerName, string passportNo, GlobalAttribute global) {
-		CustomerID = global.getCurrentCustomerId();
+		CustomerID = ID;
 		CustomerName = customerName;
-		PassportNo = passportNo;
+		
+		if (isLocal) IdentityCardNo = Number;
+		else PassportNo = Number;
 	}
 
 };

@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Customer.h"
-#include "TemporaryStorage.h"
 
 using namespace std;
 
 class Ticket {
 
 private:
+	int id = NULL;
 	string sourceStation = NULL;
 	string destinationStation = NULL;
 	// dateTimeObject dateTime = NULL;
@@ -18,7 +18,7 @@ private:
 private:
 
 	// Define datetime and depatureTime
-	void autofill(TemporaryStorage storage) {
+	void autofill() {
 		
 		// Set current date time
 
@@ -38,13 +38,14 @@ public:
 
 	Ticket() {}
 
-	Ticket(string Source, string Destination, int amount, Customer customer, TemporaryStorage storage) {
+	Ticket(int ID, string Source, string Destination, int amount, Customer customer) {
+		id = ID;
 		sourceStation = Source;
 		destinationStation = Destination;
 		ticketAmount = amount;
 		customerObj = customer;
 
-		autofill(storage);
+		autofill();
 	}
 
 

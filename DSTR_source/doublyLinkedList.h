@@ -50,7 +50,7 @@ public:
 
     void insertAtEnd(T elem)
     {
-        cout << "Inserting = " << elem << endl;
+        cout << "Inserting" << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
         newNode->data = elem;
         newNode->next = nullptr;
@@ -118,9 +118,16 @@ public:
     void deleteLast() {
         DoublyNode<T>* toDeleteNode = tail;
 
-        if (toDeleteNode->prev != nullptr) {
-            toDeleteNode->prev->next = nullptr;
+        if (head == NULL) {
+            abort();
+        }
+        else if (head->next == NULL) {
+            head = NULL;
+            free(head);
+        }else {
+            toDeleteNode = tail;
             tail = tail->prev;
+            toDeleteNode->prev->next = NULL;
         }
         
         delete toDeleteNode;

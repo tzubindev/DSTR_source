@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <windows.h>
 #include "Menu.h"
@@ -9,9 +8,14 @@ using namespace std;
 
 class AdminMenu : Menu {
 
+private:
+	TemporaryStorage* storage = nullptr;
+
 	// Implementation
 public:
-	AdminMenu() {
+	AdminMenu(TemporaryStorage* storage) {
+		this->storage = storage;
+
 		for (int i = 0; i < 100; i++) cout << '\n';
 		login();
 	}

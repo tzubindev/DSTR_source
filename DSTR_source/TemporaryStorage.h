@@ -1,6 +1,7 @@
 #include <iostream>
 #include "doublyLinkedList.h"
 #include <string>
+#include "Transaction.h"
 
 using namespace std;
 

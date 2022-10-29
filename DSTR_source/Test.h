@@ -6,13 +6,20 @@ using namespace std;
 void Test()
 {
 	
+	// Build Storage
+	TemporaryStorage* storage = new TemporaryStorage();
 	Menu *mainMenu = new Menu();
-	if (mainMenu->getUserType() == 'A') {
-		delete mainMenu;
-		AdminMenu adminMenu = AdminMenu();
-	}
-	else {
-		delete mainMenu;
-		cout << 'P';
+
+	while (!mainMenu->getExitStatus()) {
+		if (mainMenu->getUserType() == 'A') {
+
+			AdminMenu* adminMenu = new AdminMenu(storage);
+
+
+		}
+		else {
+
+			cout << 'P';
+		}
 	}
 }

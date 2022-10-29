@@ -2,6 +2,7 @@
 #include <string>
 #include <windows.h>
 #include "ConsoleColor.h"
+#include "TemporaryStorage.h"
 
 using namespace std;
 
