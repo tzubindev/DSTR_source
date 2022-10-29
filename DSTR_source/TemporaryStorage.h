@@ -66,11 +66,13 @@ private:
 		
 		// TimeObject trainArriveTime[40] = { ... }
 
-
 public:
 	
 	// Constructor for initialisation.
 	TemporaryStorage () {
+
+		// Initial subway stations height
+		SubwayStations.setHeight(11);
 
 		// Initialise Subway station
 		for (int i = 0; i < StationNumber; i++) {
@@ -99,7 +101,7 @@ public:
 
 			}
 			else {
-				for(int i = 3;i<7;i++) SubwayStations.insertVerticallyAt("NULL", i);
+				for(int j = 3;j<7;j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 			
 			if (i != StationNumber - 1) {
@@ -118,7 +120,7 @@ public:
 
 			}
 			else { 
-				for(int i = 7;i<11;i++) SubwayStations.insertVerticallyAt("NULL", i);
+				for(int j = 7;j < 11; j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 
 			SubwayStations.insertVerticallyAt(NearbySightseeingSpots[i], i);

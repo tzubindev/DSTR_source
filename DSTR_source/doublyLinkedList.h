@@ -60,7 +60,6 @@ public:
         else
             newNode->prev->next = newNode;
         size++;
-        if (height == 0) height = 1;
     }
 
     void insertItemAt(T elem, int index)
@@ -92,7 +91,8 @@ public:
     void insertVerticallyAt(T elem, int index) {
         if (index >= size)
         {
-            cout << index << ">=" << size << endl;
+            cout << "Out of range\n";
+            abort();
             
         }
 
@@ -110,8 +110,7 @@ public:
                     cnt++;
                 }
                 cur->down = newNode;
-                height = max(height, cnt);
-
+                return;
             }
 
             cur = cur->next;
@@ -124,6 +123,10 @@ public:
         return size;
     }
 
+    void setHeight(int i) {
+        height = i;
+    }
+
     int getHeight() {
         return height;
     }
@@ -133,8 +136,7 @@ public:
         int count = 0;
 
         if (index >= size) {
-            cout << "Out of range\n";
-            abort();
+            cout << "Out of range in get item\n";
         }
 
         while (curNode != NULL) {
@@ -149,8 +151,8 @@ public:
                 }
 
                 // Exception
-                cout << "Not found\n";
-                abort();
+                cout << "Not found in get item.\n";
+                break;
             }
             else {
                 curNode = curNode->next;
