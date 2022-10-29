@@ -21,7 +21,6 @@ public:
 
     DoublyLinkedList()
     {
-        cout << "--- Constructing the Doubly LinkedList object ---" << endl;
         this->size = 0;
         this->head = nullptr;
         this->tail = nullptr;
@@ -29,7 +28,6 @@ public:
 
     void insertAtbeginning(T elem)
     {
-        cout << "Inserting = " << elem << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
         newNode->prev = nullptr;
         newNode->data = elem;
@@ -50,7 +48,6 @@ public:
 
     void insertAtEnd(T elem)
     {
-        cout << "Inserting" << endl;
         DoublyNode<T>* newNode = new DoublyNode<T>;
         newNode->data = elem;
         newNode->next = nullptr;
@@ -72,8 +69,6 @@ public:
             cout << "Out of Range\n";
             abort();
         }
-
-        cout << "Inserting = " << elem << endl;
 
         DoublyNode<T>* newNode = new DoublyNode<T>;
         DoublyNode<T>* cur = this->head;
@@ -173,31 +168,16 @@ public:
 
     void clear() {
         while (head != NULL) deleteLast();
-
-        cout << "The Doubly Linked List is cleared.\n ";
     }
 
     void showForward()
     {
-        DoublyNode<T>* curr = head;
-        cout << "\n--- DISPLAY LINKED LIST [FORWARD] = " << size << " elements ---" << endl;
-        while (curr != nullptr)
-        {
-            cout << curr->data << " " << curr << " " << curr->next << '\n';
-            curr = curr->next;
 
-        }
     } // ignore
 
     void showBackward()
     {
-        DoublyNode<T>* curr = tail;
-        cout << "\n--- DISPLAY LINKED LIST [BACKWARD] = " << size << " elements ---" << endl;
-        while (curr != nullptr)
-        {
-            cout << curr->data << " ";
-            curr = curr->prev;
-        }
+
     } // ignore
 
     void sort()
