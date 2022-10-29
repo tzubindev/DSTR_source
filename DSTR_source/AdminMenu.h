@@ -76,6 +76,10 @@ private:
 		string username = getInput("USERNAME");
 		string password = getInput("PASSWORD");
 
+		// Verification here
+
+
+
 		return true;
 	}
 
