@@ -8,6 +8,7 @@ public:
     T data;
     DoublyNode<T>* prev = nullptr;
     DoublyNode<T>* next = nullptr;
+    DoublyNode<T>* down = nullptr;
 };
 
 template<class T>
@@ -17,11 +18,12 @@ public:
 
     DoublyNode<T>* head;
     DoublyNode<T>* tail;
-    int size;
+    int size, height;
 
     DoublyLinkedList()
     {
         this->size = 0;
+        this->height = 0;
         this->head = nullptr;
         this->tail = nullptr;
     }
@@ -58,6 +60,7 @@ public:
         else
             newNode->prev->next = newNode;
         size++;
+        if (height == 0) height = 1;
     }
 
     void insertItemAt(T elem, int index)
@@ -86,18 +89,68 @@ public:
 
     }
 
+    void insertVerticallyAt(T elem, int index) {
+        if (index >= size)
+        {
+            cout << index << ">=" << size << endl;
+            
+        }
+
+        DoublyNode<T>* newNode = new DoublyNode<T>;
+        DoublyNode<T>* cur = this->head;
+        int cnt = 0;
+
+        newNode->data = elem;
+
+        while (cur->next != NULL) {
+            if (index == cnt) {
+                cnt = 0;
+                while (cur->down != NULL) {
+                    cur = cur->down;
+                    cnt++;
+                }
+                cur->down = newNode;
+                height = max(height, cnt);
+
+            }
+
+            cur = cur->next;
+            cnt++;
+        }
+    }
+
     int getSize()
     {
         return size;
     }
 
-    T getItem(int index) {
+    int getHeight() {
+        return height;
+    }
+
+    T getItem(int index, int Vindex) {
         DoublyNode<T>* curNode = head;
         int count = 0;
 
+        if (index >= size) {
+            cout << "Out of range\n";
+            abort();
+        }
+
         while (curNode != NULL) {
             if (count == index) {
-                return curNode->data;
+                count = 0;
+                while (curNode->down != NULL) {
+
+                    if (count == Vindex) {
+                        return curNode->data;
+                    }
+                    curNode = curNode->down;
+                }
+
+                // Exception
+                cout << "Not found\n";
+                abort();
             }
             else {
                 curNode = curNode->next;
@@ -105,6 +158,7 @@ public:
             }
         }
     }
+
 
     void deleteFirst() {
 

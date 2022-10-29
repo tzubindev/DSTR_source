@@ -32,8 +32,7 @@ public:
 	// Subway Station Data Structure
 private:
 	// Data members
-	DoublyLinkedList<DoublyLinkedList<string>> SubwayStations;
-	DoublyLinkedList<string> Station;
+	DoublyLinkedList<string> SubwayStations;
 	int StationNumber = 8;
 
 	//// INITIALISATION SUPPORT ARRAYS
@@ -55,14 +54,14 @@ private:
 		
 		//Nearby Sightseeing Spots.
 		string NearbySightseeingSpots[8] = {
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			""
+			"a",
+			"b",
+			"c",
+			"d",
+			"e",
+			"f",
+			"g",
+			"h"
 		};
 		
 		// TimeObject trainArriveTime[40] = { ... }
@@ -72,65 +71,59 @@ public:
 	
 	// Constructor for initialisation.
 	TemporaryStorage () {
-		
+
 		// Initialise Subway station
 		for (int i = 0; i < StationNumber; i++) {
 
 			// Subway ID
-			Station.insertAtEnd("SID_" + to_string(i));
-
+			SubwayStations.insertAtEnd("SID_" + to_string(i));
+			
 			// Cur Station Name
-			Station.insertAtEnd(CurrentSubwayStationName[i]);
+			SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i], i);
 
 			
 			// Data related to "prev"
 			if (i != 0) {
 				
 				// Prev Station Name
-				Station.insertAtEnd(CurrentSubwayStationName[i - 1]);
+				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i], i);
 
 				// Travel Distance Between Previous Station
-				Station.insertAtEnd(to_string(TravelDistance[i - 1]));
+				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i]), i);
 
 				// Travel Fare Between Previous Station
-				Station.insertAtEnd(to_string(Fare[i - 1]));
+				SubwayStations.insertVerticallyAt(to_string(Fare[i]), i);
 
 				// Travel Time Between Previous Station
-				Station.insertAtEnd(to_string(Time[i - 1]));
+				SubwayStations.insertVerticallyAt(to_string(Time[i]), i);
 
 			}
 			else {
-				for(int i = 0;i<4;i++) Station.insertAtEnd("NULL");
+				for(int i = 3;i<7;i++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 			
 			if (i != StationNumber - 1) {
 
 				// Next Station Name
-				Station.insertAtEnd(CurrentSubwayStationName[i + 1]);
+				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i + 1], i);
 
 				// Travel Distance Between Next Station
-				Station.insertAtEnd(to_string(TravelDistance[i + 1]));
+				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i + 1]), i);
 
 				// Travel Fare Between Next Station
-				Station.insertAtEnd(to_string(Fare[i + 1]));
+				SubwayStations.insertVerticallyAt(to_string(Fare[i + 1]), i);
 
 				// Travel Time Between Next Station
-				Station.insertAtEnd(to_string(Time[i + 1]));
+				SubwayStations.insertVerticallyAt(to_string(Time[i + 1]), i);
 
 			}
 			else { 
-				for(int i = 0;i<4;i++) Station.insertAtEnd("NULL"); 
+				for(int i = 7;i<11;i++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 
-			Station.insertAtEnd(NearbySightseeingSpots[i]);
+			SubwayStations.insertVerticallyAt(NearbySightseeingSpots[i], i);
 
 			// Finish Inserting Data into Station linked list
-			// Insert the Station liked list into SubwayStations linked list
-
-			SubwayStations.insertAtEnd(Station);
-			
-			// Clear the Station linked list
-			Station.clear();
 		}
 
 		/* 
@@ -148,6 +141,7 @@ public:
 			8) Travel Distance Between Next Station
 			9) Travel Fare Between Next Station
 			10) Travel Time Between Next Station
+			11) Nearby Sightseeing Spots
 
 
 			Detail of Ticket Puchase:
@@ -162,7 +156,7 @@ public:
 
 
 	// Output Data Object: Subway Stations
-	DoublyLinkedList<DoublyLinkedList<string>> getSubwayStations () {
+	DoublyLinkedList<string> getSubwayStations() {
 		return SubwayStations;
 	}
 

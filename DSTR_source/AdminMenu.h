@@ -29,14 +29,15 @@ public:
 	}
 
 	void viewPurchaseTransactions() {
-		DoublyLinkedList<DoublyLinkedList<string>> purchaseRecord = storage->getSubwayStations();
+		DoublyLinkedList<string> purchaseRecord = storage->getSubwayStations();
+
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			for (int j = 0; j < purchaseRecord.getItem(0).getSize(); j++) {
+			for (int j = 0; j < purchaseRecord.getHeight(); j++) {
 				
-				cout << i << ' ' << j << endl;
-				//cout << purchaseRecord.getItem(i).getItem(j) << endl;
+				cout << purchaseRecord.getItem(i, j) << ' ';
 			}
+			cout << endl;
 		}
 
 	}
