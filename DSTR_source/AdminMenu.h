@@ -57,11 +57,56 @@ private:
 
 		drawLine('=', MAX_WIDTH);
 		cout << '\n';
-		setTab(2);
-		cout << "";
+		setTab(3);
+		cout << "Please fill in your username and password.\n\n";
 		drawLine('-', MAX_WIDTH);
 
+		cout << "\n\n";
+		string username = getInput("USERNAME");
+		string password = getInput("PASSWORD");
+
+
+
+
+
 		return true;
+	}
+
+	string getInput() {
+
+		bool isTrimmedLeft = false;
+		ConsoleColor().setColor(Color.LIGHT_BLUE);
+		cout << "ADMIN > ";
+		string input, final = "";
+		cin >> input;
+		ConsoleColor().setColor(Color.WHITE);
+
+		// lowercase
+		for (char ch : input) {
+			if (ch != ' ') isTrimmedLeft = true;
+			if (isTrimmedLeft)
+				final += tolower(ch);
+		}
+		return final;
+	}
+
+	string getInput(string type) {
+
+		bool isTrimmedLeft = false;
+		ConsoleColor().setColor(Color.LIGHT_BLUE);
+		cout << type + " > ";
+
+		string input, final = "";
+		cin >> input;
+		ConsoleColor().setColor(Color.WHITE);
+
+		// lowercase
+		for (char ch : input) {
+			if (ch != ' ') isTrimmedLeft = true;
+			if (isTrimmedLeft)
+				final += tolower(ch);
+		}
+		return final;
 	}
 
 };
