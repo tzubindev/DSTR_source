@@ -43,6 +43,8 @@ private:
 		}
 		datetime[curPos] = finalresult;
 
+
+		// Transform it to 
 	
 	}
 
