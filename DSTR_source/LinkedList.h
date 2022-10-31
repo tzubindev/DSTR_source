@@ -19,52 +19,47 @@ public:
 
     LinkedList()
     {
-        cout << "--- Constructing the Doubly LinkedList object ---" << endl;
+        cout << "--- Constructing the LinkedList object ---" << endl;
         this->size = 0;
         this->head = nullptr;
-        this->tail = nullptr;
     }
 
     void insertAtbeginning(T elem)
     {
-        cout << "Inserting = " << elem << endl;
-        DoublyNode<T>* newNode = new DoublyNode<T>;
-        newNode->prev = nullptr;
+
+        Node<T>* newNode = new Node<T>;
         newNode->data = elem;
-
         if (head == NULL) {
-            newNode->next = nullptr;
-            this->head = newNode;
-            this->tail = newNode;
+            head = newNode;
+            cout << "Inserting = " << elem << endl;
+            return;
         }
-        else {
-            newNode->next = head;
-            head->prev = newNode;
-            this->head = newNode;
-        }
+        newNode->next = head;
+        head = newNode;
+        cout << "Inserting = " << elem << endl;
 
-        size++;
     }
 
     // update this
     void insertAtEnd(T elem)
     {
         cout << "Inserting = " << elem << endl;
-        DoublyNode<T>* newNode = new DoublyNode<T>;
+        Node<T>* newNode = new Node<T>;
         newNode->data = elem;
         newNode->next = nullptr;
-        newNode->prev = tail;
-        tail = newNode;
         if (head == nullptr) {
             head = newNode;
         }
         else {
-            newNode->prev->next = newNode;
+            Node<T>* last = head;
+            while (last->next != nullptr)
+                last = last->next;
+            last->next = newNode;
         }
         size++;
     }
 
-    
+
     void insertItemAt(T elem, int index)
     {
         if (index >= size)
@@ -101,10 +96,21 @@ public:
 
     // Ghassan
     T getItem(int index) {
-        
+
+        Node<T>* cur = head;
+
+        int count = 0;
+
+        while (cur != NULL) {
+            if (count == index)
+                return (cur->data);
+            count++;
+            cur = cur->next;
+        }
+        return -1;
     }
 
-    
+
     void deleteFirst() {
 
     }
@@ -117,4 +123,3 @@ public:
 
     }
 };
-
