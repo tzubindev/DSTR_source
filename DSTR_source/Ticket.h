@@ -1,45 +1,48 @@
 #include <iostream>
 #include "Customer.h"
-#include <ctime>
+#include "DateTime.h"
+
 
 using namespace std;
 
 class Ticket {
 
-private:
+public:
 	string TicketID = "TKID_";
-	string sourceStation = "";
-	string destinationStation = "";
+	string sourceStationId = "";
+	string destinationStationId = "";
 	string currentDateTime = "";
 	int ticketAmount = NULL;
 	double price = NULL;
 	string depatureTime = "";
-	Customer customerObj;
+	Customer customerObj;	
 
+private:
 
-	time_t rawtime;
-	struct tm* timeinfo;
-	char buffer[80];
+	// initialise datetime
+	string datetime[5];
 
-
-
-
-	// Define datetime and depatureTime
 	void autofill() {
 		
 		// Set current date time
-		time(&rawtime);
-		timeinfo = localtime(&rawtime);
+		DateTime* dt = new DateTime;
+		string dateTime = dt->getDateTime();
+		free(dt);
 
-		strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
-		std::string str(buffer);
-		currentDateTime = str;
+		string finalresult;
+		int curPos = 0;
 
+		finalresult = "";
+		for (char ch : dateTime) {
+			if (ch == ' ') {
+				datetime[curPos] = finalresult;
+				finalresult = "";
+				curPos++;
+			}
+			else finalresult += ch;
+		}
+		datetime[curPos] = finalresult;
 
-		// accumulate travel time between two stations 
-
-
-		// train arrive time + accumulated travel time
 	
 	}
 
@@ -48,13 +51,15 @@ public:
 
 	Ticket() {}
 
-	Ticket(int ID, string Source, string Destination, int Amount, string DepatureTime, Customer customer) {
+	Ticket(int ID, string Source, string Destination, int Amount, double Price, string DepatureTime, Customer customer) {
 		TicketID += ID;
-		sourceStation = Source;
-		destinationStation = Destination;
+		sourceStationId = Source;
+		destinationStationId = Destination;
 		ticketAmount = Amount;
 		depatureTime = DepatureTime;
 		customerObj = customer;
+		price = Price;
+
 
 		autofill();
 	}
