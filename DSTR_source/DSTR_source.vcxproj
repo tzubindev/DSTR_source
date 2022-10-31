@@ -130,10 +130,11 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminMenu.h" />
+    <ClInclude Include="ConsoleColor.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="doublyLinkedList.h" />
-    <ClInclude Include="GlobalAttribute.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="TemporaryStorage.h" />

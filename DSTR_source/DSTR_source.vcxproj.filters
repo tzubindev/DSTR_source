@@ -38,9 +38,6 @@
     <ClInclude Include="Ticket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalAttribute.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Customer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DateTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
