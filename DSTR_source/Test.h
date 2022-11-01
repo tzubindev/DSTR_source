@@ -15,7 +15,7 @@ void Test()
 		if (mainMenu->getUserType() == 'A') {
 
 			AdminMenu* adminMenu = new AdminMenu(storage);
-			//adminMenu->viewPurchaseTransactions();
+			adminMenu->viewPurchaseTransactions();
 		}
 		else {
 

@@ -5,19 +5,32 @@ using namespace std;
 class Customer {
 
 public:
-	string CustomerID = "CID_";
+	string CustomerID = "";
 	string CustomerName = "";
 	string IdentityNo = "";
 	string PassportNo = "";
-	bool isLocal = (IdentityNo != "") ? true: false;
-
+	
 	Customer() {}
 
-	void setInfo(int customerId, string name, string number, bool local) {
-		CustomerID += customerId;
+	Customer(int customerId, string name, string number, bool isLocal) {
+		CustomerID = "CID_" + to_string(customerId);
 		CustomerName = name;
-		if (local) IdentityNo += number;
-		else PassportNo += number;
+		if (isLocal) {
+			IdentityNo += number;
+			PassportNo = "NULL";
+		}
+		else {
+			IdentityNo = "NULL";
+			PassportNo += number;
+		}
+	}
+
+	string toString() {
+		return
+			CustomerID + ";" +
+			CustomerName + ";" +
+			IdentityNo + ";" +
+			PassportNo + ";";
 	}
 
 

@@ -26,7 +26,7 @@ public:
 private:
 	// Data members
 	DoublyLinkedList<string> SubwayStations; 
-	DoublyLinkedList<string> PurchaseRecord; 
+	DoublyLinkedList<Transaction> PurchaseRecord; 
 	int StationNumber = 8;
 
 	//// INITIALISATION SUPPORT ARRAYS
@@ -162,14 +162,11 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		Customer newCustomerObj = Customer();
-		newCustomerObj.setInfo(getCurrentCustomerId(), "Sample Name", "010203040506", true);
-
-		Ticket newTicketObj = Ticket(currentTicketId, "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
-		
-		updateTicketId(ticketAmount);
-		Transaction newTransactionObj = Transaction(newTicketObj);
-
+		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506", true);
+		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
+		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
+		PurchaseRecord.insertAtEnd(newTransactionObj);
+		cout << newTransactionObj.toString() << endl;
 
 		ticketAmount = 4;
 
@@ -189,14 +186,14 @@ public:
 
 
 	// Output Data Object: Ticket Purchasing
-	DoublyLinkedList<string> getTicketPurchaseRecord () {
+	DoublyLinkedList<Transaction> getTicketPurchaseRecord () {
 		return PurchaseRecord;
 	}
 
 private: 
 	int currentTransactionId = 0;
 	int currentCustomerId = 0;
-	int currentTicketId = 1;
+	int currentTicketId = 0;
 
 public:
 
@@ -211,11 +208,8 @@ public:
 	}
 
 	int getCurrentTicketId() {
-		return currentTicketId;
-	}
-
-	void updateTicketId(int incrementNum) {
 		currentTicketId++;
+		return currentTicketId;
 	}
 
 };

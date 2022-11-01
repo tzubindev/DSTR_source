@@ -8,7 +8,7 @@ using namespace std;
 class Ticket {
 
 public:
-	string TicketID = "TKID_";
+	string TicketID = "";
 	string sourceStationId = "";
 	string destinationStationId = "";
 	string currentDateTime = "";
@@ -87,7 +87,7 @@ public:
 	Ticket() {}
 
 	Ticket(int ID, string Source, string Destination, int Amount, double Price, string DepatureTime, Customer customer) {
-		TicketID += ID;
+		TicketID = "TKID_" + to_string(ID);
 		sourceStationId = Source;
 		destinationStationId = Destination;
 		ticketAmount = Amount;
@@ -99,7 +99,17 @@ public:
 		autofill();
 	}
 
-
+	string toString() {
+		return 
+			TicketID				+ ";" +
+			sourceStationId			+ ";" +
+			destinationStationId	+ ";" +
+			currentDateTime			+ ";" +
+			to_string(ticketAmount) + ";" +
+			to_string(price)		+ ";" +
+			depatureTime			+ ";" +
+			customerObj.toString();
+	}
 
 
 };

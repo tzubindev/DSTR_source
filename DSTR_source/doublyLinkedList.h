@@ -6,9 +6,15 @@ class DoublyNode
 {
 public:
     T data;
-    DoublyNode<T>* prev = nullptr;
-    DoublyNode<T>* next = nullptr;
-    DoublyNode<T>* down = NULL;
+    DoublyNode<T>* prev;
+    DoublyNode<T>* next;
+    DoublyNode<T>* down;
+
+    DoublyNode() {
+        prev = nullptr;
+        next = nullptr;
+        down = NULL;
+    }
 };
 
 template<class T>
@@ -50,7 +56,7 @@ public:
 
     void insertAtEnd(T elem)
     {
-        DoublyNode<T>* newNode = new DoublyNode<T>;
+        DoublyNode<T>* newNode = new DoublyNode<T>();
         newNode->data = elem;
         newNode->next = NULL;
         newNode->prev = tail;
@@ -138,6 +144,25 @@ public:
     }
 
     // Dont change
+    T getItem(int x) {
+        DoublyNode<T>* curNode = head;
+        int cnt = 0;
+
+        if (x >= size) {
+            cout << "Out of range: get item\n";
+        }
+
+        while (curNode != NULL) {
+            if (cnt == x) {
+                return curNode->data;
+            }
+            else {
+                curNode = curNode->next;
+                cnt++;
+            }
+        }
+    }
+
     T getItem(int x, int y) {
         DoublyNode<T>* curNode = head;
         int cnt = 0;

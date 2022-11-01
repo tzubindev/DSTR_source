@@ -6,15 +6,18 @@ using namespace std;
 class Transaction {
 
 private:
-	int TransactionID = -1;
+	string TransactionID = "";
 	Ticket TicketObject;
 
 public:
-	Transaction(Ticket ticket) {
+	Transaction() {}
+
+	Transaction(int transactionId, Ticket ticket) {
+		TransactionID = "T_" + to_string(transactionId);
 		TicketObject = ticket;
 	}
 
-	int getTransactionId() {
+	string getTransactionId() {
 		return TransactionID;
 	}
 
@@ -22,7 +25,11 @@ public:
 		return TicketObject;
 	}
 
-
+	string toString() {
+		return 
+			TransactionID + ";"
+			+ TicketObject.toString();
+	}
 
 
 };
