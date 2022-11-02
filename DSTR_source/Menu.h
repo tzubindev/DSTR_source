@@ -7,7 +7,6 @@
 using namespace std;
 
 const int MAX_WIDTH = 96;
-const double CURRENT_VERSION = 1.2;
 
 class Menu {
 
@@ -17,6 +16,7 @@ private:
 	bool isExited = false;
 	bool isAdminType = false;
 	bool isSelected = false;
+	bool isError = false;
 	string intro[2] = {"Welcome to Subway Ticket Purchase System (STPS)\n", "This is Kuala Lumpur Light Rail Transit (LRT) ticket purchase system.\n\n"};
 
 	// Common functionalities
@@ -25,66 +25,23 @@ public:
 	// Constructor -> used to receive input
 	Menu() {
 
-		while (true) {
+		string input;
 
-			string input;
+		// Intro
+		drawLine('=', MAX_WIDTH);
+		setTab(3);
 
-			// Intro
-			cout << "Current Version: " << CURRENT_VERSION << '\n';
-			drawLine('=', MAX_WIDTH);
-			setTab(3);
+		// Set Colour
+		ConsoleColor().setColor(Color.YELLOW);
+		cout << intro[0];
+		ConsoleColor().setColor(Color.WHITE);
 
-			// Set Colour
-			ConsoleColor().setColor(Color.YELLOW);
-			cout << intro[0];
-			ConsoleColor().setColor(Color.WHITE);
-
-			drawLine('=', MAX_WIDTH);
-			cout << '\n';
-			setTab(2);
-			cout << intro[1];
-			drawLine('-', MAX_WIDTH);
-
-			switch(setMenuType()) {
-			case 1:
-				isSelected = true;
-				isAdminType = false;
-				break;
-			case 2:
-				isSelected = true;
-				isAdminType = true;
-				break;
-			case 3:
-				isExited = true;
-				break;
-			}
-
-			if (isSelected || isExited) break;
-		} 
-	}
-
-	char getUserType() {
-		if(isAdminType)
-			return 'A';
-		else 
-			return 'P';
-	}	
-
-	bool getExitStatus() { return isExited; }
-
-protected:
-
-	void drawLine(char target, int N, int tabNum = 0) {
-		setTab(tabNum);
-		for (int i = 1; i <= N; i++) cout << target;
+		drawLine('=', MAX_WIDTH);
 		cout << '\n';
-	}
-
-	void setTab(int tabNum) {
-		for (int i = 0; i < tabNum; i++) cout << '\t';
-	}
-
-	int setMenuType() {
+		setTab(2);
+		cout << intro[1];
+		drawLine('-', MAX_WIDTH);
+		//-------------------------------------------------------------------------
 
 		// show menu options
 		cout << "\n";
@@ -100,41 +57,84 @@ protected:
 		ConsoleColor().setColor(Color.WHITE);
 		drawLine('-', MAX_WIDTH, 0);
 		cout << "\n";
+		//-------------------------------------------------------------------------
 
 		// split the input
-		string input = getInput();
-
-		if (input == "a") { return 1; }
-		if (input == "b") { return 2; }
-		if (input == "exit") { return 3; }
-
-
-		// Error Displaying
-		drawLine('-', MAX_WIDTH);
-		cout << '\n';
-		ConsoleColor().setColor(Color.RED);
-		setTab(6);
-		cout << "Error\n";
-		setTab(5);
-		cout << "Invalid Input! Your input: " + input + "\n\n";
-		ConsoleColor().setColor(Color.WHITE);
-		drawLine('-', MAX_WIDTH);
-		return -1;
-	}
-
-	// all returned value will be lowercase
-	string getInput() {
-
-		bool isTrimmedLeft = false;
 		ConsoleColor().setColor(Color.LIGHT_BLUE);
 		if (isAdminType)
 			cout << "ADMIN > ";
 		else
 			cout << "ANONYMOUS > ";
-		string input, final = "";
 		cin >> input;
-		cout << '\n';
+
+		input = getInput(input);
 		ConsoleColor().setColor(Color.WHITE);
+
+		int returnInput = 0;
+		if (input == "a") { returnInput = 1; }
+		else if (input == "b") { returnInput = 2; }
+		else if (input == "exit") { returnInput = 3; }
+		else {
+			// Error Displaying
+			drawLine('-', MAX_WIDTH);
+			cout << '\n';
+			ConsoleColor().setColor(Color.RED);
+			setTab(6);
+			cout << "Error\n";
+			setTab(5);
+			cout << "Invalid Input! Your input: " + input + "\n\n";
+			ConsoleColor().setColor(Color.WHITE);
+			drawLine('-', MAX_WIDTH);
+			returnInput = -1;
+		}
+
+		switch(returnInput) {
+		case 1:
+			isSelected = true;
+			isAdminType = false;
+			break;
+		case 2:
+			isSelected = true;
+			isAdminType = true;
+			break;
+		case 3:
+			isExited = true;
+			break;
+		default:
+			isError = true;
+			break;
+		}
+	}
+
+	Menu(bool para) {}
+
+	bool getErrorStatus() {
+		return isError;
+	}
+
+	char getUserType() {
+		if(isAdminType)
+			return 'A';
+		else 
+			return 'P';
+	}	
+
+	bool getExitStatus() { return isExited; }
+
+	void drawLine(char target, int N, int tabNum = 0) {
+		setTab(tabNum);
+		for (int i = 1; i <= N; i++) cout << target;
+		cout << '\n';
+	}
+
+	void setTab(int tabNum) {
+		for (int i = 0; i < tabNum; i++) cout << '\t';
+	}
+
+	// all returned value will be lowercase
+	string getInput(string input) {
+		bool isTrimmedLeft = false;
+		string final = "";
 
 		// lowercase
 		for (char ch : input) {
@@ -152,71 +152,4 @@ protected:
 		drawLine('-', Title.length() + 2, tabNumber);
 	}
 
-
-public:
-
-	// Passenger Functionalitites
-	void DisplayTravelRoute();
-	void chooseAndDisplayTravelRoute();
-	void searchStationDetails();
-	void viewDetailsBetweenTwoCities();
-	bool purchaseSubwayTicket();
-	void viewPurchaseTransactionHistory();
-	bool deletePurchaseTransaction();
-
-
-	// Admin Functionalitites
-	bool addSubwayStation();
-	bool editSubwayInformation();
-	void viewPurchaseTransactions();
-	void sortPurchaseTransactions();
-	void searchTicketInformation();
-	bool editTicketInformation();
-	bool deleteTicket();
-
-
-
 };
-
-class PassengerMenu : Menu {
-
-	// Implementation
-public:
-
-	PassengerMenu() {
-
-	}
-
-	void DisplayTravelRoute() {
-	
-	}
-
-	void chooseAndDisplayTravelRoute() {
-		DisplayTravelRoute();
-
-		// Choose Route
-		// input
-	}
-
-	void searchStationDetails() {
-
-	}
-
-	void viewDetailsBetweenTwoCities() {
-
-	}
-
-	bool purchaseSubwayTicket() {
-
-	}
-
-	void viewPurchaseTransactionHistory() {
-
-	}
-
-	bool deletePurchaseTransaction() {
-
-	}
-
-};
-

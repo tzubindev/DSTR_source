@@ -1,5 +1,6 @@
 #include <iostream>
 #include "AdminMenu.h"
+#include "PassengerMenu.h"
 
 
 using namespace std;
@@ -8,20 +9,27 @@ void Test()
 {
 
 	// Build Storage
-	TemporaryStorage storage;
-	Menu *mainMenu = new Menu();
-
-	while (!mainMenu->getExitStatus()) {
-		if (mainMenu->getUserType() == 'A') {
-
-			AdminMenu* adminMenu = new AdminMenu(storage);
-			//adminMenu->viewPurchaseTransactions();
+	TemporaryStorage* storage = new TemporaryStorage();
+	Menu * mainMenu = new Menu();
+	while (true) {
+		while (mainMenu->getErrorStatus()) {
+			mainMenu = new Menu();
 		}
-		else {
 
-			cout << 'P';
-			break;
+		if (!mainMenu->getExitStatus()) {
+			if (mainMenu->getUserType() == 'A') {
+
+				AdminMenu* adminMenu = new AdminMenu(storage);
+				//adminMenu->viewPurchaseTransactions();
+			}
+			else {
+				PassengerMenu* passengerMenu = new PassengerMenu(storage);
+				passengerMenu->DisplayTravelRoute();
+			}
 		}
+		else break;
+
+		mainMenu = new Menu();
 	}
 
 	//LinkedList<int> lst;

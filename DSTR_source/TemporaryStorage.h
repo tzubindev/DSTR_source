@@ -96,7 +96,7 @@ public:
 
 			}
 			else {
-				for(int j = 3;j<7;j++) SubwayStations.insertVerticallyAt("NULL", i);
+				for(int j = 0;j<4;j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 			
 			if (i != StationNumber - 1) {
@@ -115,7 +115,7 @@ public:
 
 			}
 			else { 
-				for(int j = 7;j < 11; j++) SubwayStations.insertVerticallyAt("NULL", i);
+				for(int j = 0;j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 
 			SubwayStations.insertVerticallyAt(NearbySightseeingSpots[i], i);
@@ -166,7 +166,6 @@ public:
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
-		cout << newTransactionObj.toString() << endl;
 
 		ticketAmount = 4;
 

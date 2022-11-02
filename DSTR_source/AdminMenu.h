@@ -6,15 +6,15 @@ using namespace std;
 
 
 
-class AdminMenu : Menu {
+class AdminMenu {
 
 private:
-	TemporaryStorage storage;
+	TemporaryStorage* storage;
 
 	// Implementation
 public:
-	AdminMenu(TemporaryStorage &TempStorage) {
-		this->storage = TempStorage;
+	AdminMenu(TemporaryStorage *TempStorage) {
+		storage = TempStorage;
 
 		for (int i = 0; i < 100; i++) cout << '\n';
 		login();
@@ -29,7 +29,7 @@ public:
 	}
 
 	void viewPurchaseTransactions() {
-		DoublyLinkedList<Transaction> purchaseRecord = storage.getTicketPurchaseRecord();
+		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
 
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
@@ -56,19 +56,20 @@ public:
 private:
 
 	bool login() {
-		drawLine('=', MAX_WIDTH);
-		setTab(5);
+		Menu *tempMenuObj = new Menu(true);
+		tempMenuObj->drawLine('=', MAX_WIDTH);
+		tempMenuObj->setTab(5);
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
 		cout << "Admin Login\n";
 		ConsoleColor().setColor(Color.WHITE);
 
-		drawLine('=', MAX_WIDTH);
+		tempMenuObj->drawLine('=', MAX_WIDTH);
 		cout << '\n';
-		setTab(3);
+		tempMenuObj->setTab(3);
 		cout << "Please fill in your username and password.\n\n";
-		drawLine('-', MAX_WIDTH);
+		tempMenuObj->drawLine('-', MAX_WIDTH);
 
 		cout << "\n\n";
 		string username = getInput("USERNAME");
@@ -77,7 +78,7 @@ private:
 		// Verification here [Ghassan]
 
 
-
+		free(tempMenuObj);
 		return true;
 	}
 
