@@ -9,12 +9,12 @@ using namespace std;
 class AdminMenu : Menu {
 
 private:
-	TemporaryStorage* storage = nullptr;
+	TemporaryStorage storage;
 
 	// Implementation
 public:
-	AdminMenu(TemporaryStorage* storage) {
-		this->storage = storage;
+	AdminMenu(TemporaryStorage &TempStorage) {
+		this->storage = TempStorage;
 
 		for (int i = 0; i < 100; i++) cout << '\n';
 		login();
@@ -29,7 +29,7 @@ public:
 	}
 
 	void viewPurchaseTransactions() {
-		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+		DoublyLinkedList<Transaction> purchaseRecord = storage.getTicketPurchaseRecord();
 
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {

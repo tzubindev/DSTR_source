@@ -8,14 +8,14 @@ void Test()
 {
 
 	// Build Storage
-	TemporaryStorage* storage = new TemporaryStorage();
+	TemporaryStorage storage;
 	Menu *mainMenu = new Menu();
 
 	while (!mainMenu->getExitStatus()) {
 		if (mainMenu->getUserType() == 'A') {
 
 			AdminMenu* adminMenu = new AdminMenu(storage);
-			adminMenu->viewPurchaseTransactions();
+			//adminMenu->viewPurchaseTransactions();
 		}
 		else {
 

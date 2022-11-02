@@ -155,7 +155,7 @@ protected:
 
 public:
 
-	// Passanger Functionalitites
+	// Passenger Functionalitites
 	void DisplayTravelRoute();
 	void chooseAndDisplayTravelRoute();
 	void searchStationDetails();
