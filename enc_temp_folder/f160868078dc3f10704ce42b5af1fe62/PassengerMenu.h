@@ -21,23 +21,8 @@ public:
 	// Display Type
 	/*
 	************************************************************************
-		Station ID: SID			{2}||{2}		Station Name: Name
+		Station ID: SID		||		Station Name:
 
-		Previous
-		Station Name: Name
-		Distance	: 0				{need 1 tab}
-		Price		: RM 0.4		{need 2 tabs}
-		Time		: 3 mins		{need 2 tabs}
-
-		Next
-		Station Name: Name
-		Distance	: 0				{need 1 tab}
-		Price		: RM 0.4		{need 2 tabs}
-		Time		: 3 mins		{need 2 tabs}
-
-		NearbySightseeingSpots
-		1) a
-		2) b
 	************************************************************************
 	*/
 

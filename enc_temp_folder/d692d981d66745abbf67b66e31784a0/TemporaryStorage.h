@@ -48,7 +48,7 @@ private:
 		
 		//Nearby Sightseeing Spots.
 		string NearbySightseeingSpots[8] = {
-			"a;b",
+			"a",
 			"b",
 			"c",
 			"d",
