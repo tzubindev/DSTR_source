@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int MAX_WIDTH = 96;
+const int MAX_WIDTH = 121;
 
 class Menu {
 
@@ -29,7 +29,7 @@ public:
 
 		// Intro
 		drawLine('=', MAX_WIDTH);
-		setTab(3);
+		setTab(4);
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
@@ -38,21 +38,21 @@ public:
 
 		drawLine('=', MAX_WIDTH);
 		cout << '\n';
-		setTab(2);
+		setTab(3);
 		cout << intro[1];
 		drawLine('-', MAX_WIDTH);
 		//-------------------------------------------------------------------------
 
 		// show menu options
 		cout << "\n";
-		makeTitleBlock("MENU", 6);
+		makeTitleBlock("MENU", 7);
 		cout << "\n";
 		drawLine('-', MAX_WIDTH, 0);
 		cout << '\n';
-		setTab(5);
+		setTab(6);
 		ConsoleColor().setColor(Color.GREEN);
 		cout << "A - Ticket Purchase\n\n";
-		setTab(5);
+		setTab(6);
 		cout << "B - Login (Admin)\n\n";
 		ConsoleColor().setColor(Color.WHITE);
 		drawLine('-', MAX_WIDTH, 0);
@@ -79,9 +79,9 @@ public:
 			drawLine('-', MAX_WIDTH);
 			cout << '\n';
 			ConsoleColor().setColor(Color.RED);
-			setTab(6);
+			setTab(7);
 			cout << "Error\n";
-			setTab(5);
+			setTab(6);
 			cout << "Invalid Input! Your input: " + input + "\n\n";
 			ConsoleColor().setColor(Color.WHITE);
 			drawLine('-', MAX_WIDTH);
@@ -106,6 +106,7 @@ public:
 		}
 	}
 
+	// both true or false will be fine
 	Menu(bool para) {}
 
 	bool getErrorStatus() {
@@ -151,5 +152,7 @@ public:
 		cout << "|" << Title << "|\n";
 		drawLine('-', Title.length() + 2, tabNumber);
 	}
+
+
 
 };

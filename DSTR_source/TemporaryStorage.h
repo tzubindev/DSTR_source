@@ -83,16 +83,16 @@ public:
 			if (i != 0) {
 				
 				// Prev Station Name
-				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i], i);
+				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i-1], i);
 
 				// Travel Distance Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i]), i);
+				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i-1]), i);
 
 				// Travel Fare Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(Fare[i]), i);
+				SubwayStations.insertVerticallyAt(to_string(Fare[i-1]), i);
 
 				// Travel Time Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(Time[i]), i);
+				SubwayStations.insertVerticallyAt(to_string(Time[i-1]), i);
 
 			}
 			else {

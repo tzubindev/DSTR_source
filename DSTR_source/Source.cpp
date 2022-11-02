@@ -28,5 +28,5 @@ void setSize() {
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r); //stores the console's current dimensions
-	MoveWindow(console, r.left, r.top, 800, 600, TRUE); // 600 width, 600 height
+	MoveWindow(console, r.left, r.top, 1000, 600, TRUE); // 1000 width, 600 height
 }
