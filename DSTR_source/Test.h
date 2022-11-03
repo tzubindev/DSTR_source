@@ -42,12 +42,14 @@ void Test()
 
 
 
-	//Queue<string> q(5);
-	//q.enqueue("d");
-	//q.enqueue("s");
-	//cout<< q.peek() << "\n";
-	//q.dequeue();
-	//q.show();
+	//	mainMenu = new Menu();
+	//}
+	Queue<string> q(5);
+	q.enqueue("d");
+	q.enqueue("s");
+	cout<< q.peek() << "\n";
+	q.dequeue();
+	q.show();
 
 	//lst.insertAtbeginning(1);
 	//lst.insertAtbeginning(2);

@@ -7,6 +7,7 @@ template <class T>
 class Queue 
 {
     T* arr;
+    T Data;
 
 
 public:
@@ -44,9 +45,11 @@ public:
             if (front == -1 && rear == -1) {
                 front++;
                 arr[++rear] = elem;
+                count++;
             }
             else {
                 arr[++rear] = elem;
+                count++;
             }
         }
         else {
@@ -77,11 +80,20 @@ public:
     void show() {
         if (front != -1 && rear != -1 && front <= rear) {
             for (int i = front; i <= rear; i++) {
-                cout << arr[i] << "t" << endl;
+                cout << arr[i] << "\t" << endl;
             }
         }
         else {
             cout << "Queue is empty!" << endl;
         }
+    }
+
+    int first()
+    {
+        return (!isEmpty()) ? arr[front] : -1;
+    }
+    int last()
+    {
+        return (!isEmpty()) ? arr[rear] : -1;
     }
 };
