@@ -1,6 +1,7 @@
 #include <iostream>
 #include "AdminMenu.h"
 #include "PassengerMenu.h"
+#include "Queue.h"
 
 
 using namespace std;
@@ -31,8 +32,11 @@ void Test()
 
 		mainMenu = new Menu();
 	}
-
-	//LinkedList<int> lst;
+	/*Queue<string> q(5);
+	q.enqueue("d");
+	q.enqueue("s");
+	cout<< q.peek() << "\n";
+	q.dequeue();*/
 
 	//lst.insertAtbeginning(1);
 	//lst.insertAtbeginning(2);
@@ -44,3 +48,6 @@ void Test()
 	//cout << lst.getItem(3);
 
 }
+
+
+
