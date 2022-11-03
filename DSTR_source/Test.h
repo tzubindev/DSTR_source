@@ -36,6 +36,8 @@ void Test()
 	q.enqueue(1);
 	q.enqueue(2);
 	cout<< q.peek() << "\n";
+	cout<< q.first();
+	cout<< q.last();
 	q.dequeue();
 	q.show();
 

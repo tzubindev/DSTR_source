@@ -45,9 +45,11 @@ public:
             if (front == -1 && rear == -1) {
                 front++;
                 arr[++rear] = elem;
+                count++;
             }
             else {
                 arr[++rear] = elem;
+                count++;
             }
         }
         else {
@@ -84,5 +86,14 @@ public:
         else {
             cout << "Queue is empty!" << endl;
         }
+    }
+
+    int first()
+    {
+        return (!isEmpty()) ? arr[front] : -1;
+    }
+    int last()
+    {
+        return (!isEmpty()) ? arr[rear] : -1;
     }
 };
