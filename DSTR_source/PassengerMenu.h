@@ -87,22 +87,22 @@ public:
 			}
 
 			//Queue here
-			Queue<string>* q = new Queue<string>(cnt);
+			Queue<string> q(cnt);
 
 			//push item to queue
+			cout << temp << endl;
 			for (char ch : temp) {
 				if (ch == ';') {
-					q->enqueue(temp2);
+					q.enqueue(temp2);
 					temp2 = "";
 				}
 				else temp2 += ch;
 			}
 
-			for (int j = 1; j <= q->size(); j++) {
-				cout << "\t\t" <<  j << ") " << q->peek() << endl;
-				q->dequeue();
+			for (int j = 1; j <= q.size(); j++) {
+				cout << "\t" << j << ") " << q.peek() << endl;
+				q.dequeue();
 			}
-			delete q;
 
 			cout << endl;
 			tempMenuObj->drawLine('*', MAX_WIDTH);
