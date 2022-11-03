@@ -49,14 +49,14 @@ private:
 		
 		//Nearby Sightseeing Spots.
 		string NearbySightseeingSpots[8] = {
-			"a;b",
-			"b",
-			"c",
-			"d",
-			"e",
-			"f",
-			"g",
-			"h"
+			"a;b;",
+			"c;",
+			"d;",
+			"e;",
+			"f;",
+			"g;",
+			"h;",
+			"i;"
 		};
 		
 		// TimeObject trainArriveTime[40] = { ... }

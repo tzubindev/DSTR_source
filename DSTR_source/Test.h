@@ -1,7 +1,6 @@
 #include <iostream>
 #include "AdminMenu.h"
 #include "PassengerMenu.h"
-#include "Queue.h"
 
 
 using namespace std;
@@ -10,34 +9,45 @@ void Test()
 {
 
 	// Build Storage
-	//TemporaryStorage* storage = new TemporaryStorage();
-	//Menu * mainMenu = new Menu();
-	//while (true) {
-	//	while (mainMenu->getErrorStatus()) {
-	//		mainMenu = new Menu();
-	//	}
+	TemporaryStorage* storage = new TemporaryStorage();
+	Menu * mainMenu = new Menu();
+	while (true) {
+		while (mainMenu->getErrorStatus()) {
+			mainMenu = new Menu();
+		}
 
-	//	if (!mainMenu->getExitStatus()) {
-	//		if (mainMenu->getUserType() == 'A') {
+		if (!mainMenu->getExitStatus()) {
+			if (mainMenu->getUserType() == 'A') {
 
-	//			AdminMenu* adminMenu = new AdminMenu(storage);
-	//			//adminMenu->viewPurchaseTransactions();
-	//		}
-	//		else {
-	//			PassengerMenu* passengerMenu = new PassengerMenu(storage);
-	//			passengerMenu->DisplayTravelRoute();
-	//		}
-	//	}
-	//	else break;
+				AdminMenu* adminMenu = new AdminMenu(storage);
+				//adminMenu->viewPurchaseTransactions();
+			}
+			else {
+				PassengerMenu* passengerMenu = new PassengerMenu(storage);
+				passengerMenu->DisplayTravelRoute();
+			}
+		}
+		else break;
 
-	//	mainMenu = new Menu();
-	//}
-	Queue<string> q(5);
-	q.enqueue("d");
-	q.enqueue("s");
-	cout<< q.peek() << "\n";
-	q.dequeue();
-	q.show();
+		mainMenu = new Menu();
+	}
+
+
+
+
+
+
+
+
+
+
+
+	//Queue<string> q(5);
+	//q.enqueue("d");
+	//q.enqueue("s");
+	//cout<< q.peek() << "\n";
+	//q.dequeue();
+	//q.show();
 
 	//lst.insertAtbeginning(1);
 	//lst.insertAtbeginning(2);

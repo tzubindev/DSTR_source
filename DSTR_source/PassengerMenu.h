@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "Queue.h"
 
 using namespace std;
 
@@ -57,14 +58,19 @@ public:
 			cout << "\tPrevious\n";
 			cout << "\tStation Name: " << Stations.getItem(i, 2) << endl;
 			cout << "\tDistance\t: " << Stations.getItem(i, 3) << " KM" << endl;
-			cout << "\tPrice\t\t: " << " RM " << Stations.getItem(i, 4) << endl;
+			string foo = Stations.getItem(i, 4);
+			foo = foo.substr(0, 4);
+
+			cout << "\tPrice\t\t: " << "RM " << foo << endl;
 			cout << "\tTime\t\t: " << Stations.getItem(i, 5) << " mins" << endl;
 			cout << endl;
 
 			cout << "\tNext\n";
 			cout << "\tStation Name: " << Stations.getItem(i, 6) << endl;
 			cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
-			cout << "\tPrice\t\t: " << " RM " << Stations.getItem(i, 8) << endl;
+			foo = Stations.getItem(i, 8);
+			foo = foo.substr(0, 4);
+			cout << "\tPrice\t\t: " << "RM " << foo << endl;
 			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
 			cout << endl;
 
@@ -72,19 +78,31 @@ public:
 			temp = Stations.getItem(i, 10);
 			int cnt = 0;
 
-			//Queue here
-			
 			// count
 			for (char ch : temp) {
 				if (ch == ';') {
 					cnt++;
-
 				}
 				else temp2 += ch;
 			}
-			for (int j = 1; j <= cnt; j++) {
 
+			//Queue here
+			Queue<string>* q = new Queue<string>(cnt);
+
+			//push item to queue
+			for (char ch : temp) {
+				if (ch == ';') {
+					q->enqueue(temp2);
+					temp2 = "";
+				}
+				else temp2 += ch;
 			}
+
+			for (int j = 1; j <= q->size(); j++) {
+				cout << "\t\t" <<  j << ") " << q->peek() << endl;
+				q->dequeue();
+			}
+			delete q;
 
 			cout << endl;
 			tempMenuObj->drawLine('*', MAX_WIDTH);

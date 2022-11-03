@@ -40,7 +40,7 @@ public:
 
     void enqueue (T elem) {
         if (rear != capacity-1) {
-            cout << "Inserting " << elem << endl;
+           // cout << "Inserting " << elem << endl;
             if (front == -1 && rear == -1) {
                 front++;
                 arr[++rear] = elem;
@@ -56,7 +56,7 @@ public:
 
     void dequeue() {
         if (front != -1 && rear != -1 && front <= rear) {
-            cout << "Removing " << arr[front] << endl;
+            //cout << "Removing " << returnObj << endl;
             front = (front + 1) % capacity;
             count--;
         }
