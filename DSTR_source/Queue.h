@@ -7,6 +7,7 @@ template <class T>
 class Queue 
 {
     T* arr;
+    T Data;
 
 
 public:
@@ -77,7 +78,7 @@ public:
     void show() {
         if (front != -1 && rear != -1 && front <= rear) {
             for (int i = front; i <= rear; i++) {
-                cout << arr[i] << "t" << endl;
+                cout << arr[i] << "\t" << endl;
             }
         }
         else {

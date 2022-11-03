@@ -32,9 +32,9 @@ void Test()
 
 	//	mainMenu = new Menu();
 	//}
-	Queue<string> q(5);
-	q.enqueue("d");
-	q.enqueue("s");
+	Queue<int> q(5);
+	q.enqueue(1);
+	q.enqueue(2);
 	cout<< q.peek() << "\n";
 	q.dequeue();
 	q.show();
