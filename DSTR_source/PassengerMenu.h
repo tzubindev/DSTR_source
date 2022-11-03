@@ -49,7 +49,14 @@ public:
 
 		cout << endl;
 		tempMenuObj->drawLine('-', MAX_WIDTH);
+		cout << endl;
+
+		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("Display Travel Route", 6);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
 
 		for (int i = 0; i < Stations.getSize(); i++) {			
 			cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
@@ -83,7 +90,6 @@ public:
 				if (ch == ';') {
 					cnt++;
 				}
-				else temp2 += ch;
 			}
 
 			//Queue here
@@ -99,14 +105,18 @@ public:
 				else temp2 += ch;
 			}
 
-			for (int j = 1; j <= q.size(); j++) {
+			int size = q.size();
+			for (int j = 1; j <= size; j++) {
 				cout << "\t" << j << ") " << q.dequeue() << endl;
 			}
 
 			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
 			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
 		}
 
+		cout << endl;
 	}
 
 	void chooseAndDisplayTravelRoute();
