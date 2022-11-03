@@ -2,6 +2,7 @@
 #include "doublyLinkedList.h"
 #include <string>
 #include "Transaction.h"
+#include "LinkedList.h"
 
 using namespace std;
 
@@ -60,7 +61,7 @@ private:
 		
 		// TimeObject trainArriveTime[40] = { ... }
 
-		// LinkedList<string> AdminAccounts;
+		 LinkedList<string> AdminAccounts;
 
 public:
 	
@@ -171,12 +172,16 @@ public:
 
 
 		// Initialise Admin accounts
-		//AdminAccounts.insertAtEnd("admin1;123456");
-		//AdminAccounts.insertAtEnd("admin2;aab3456");
+		AdminAccounts.insertAtEnd("admin1;123456;");
+		AdminAccounts.insertAtEnd("admin2;aab3456;");
 
 
 	}
 
+	LinkedList<string> getAdminDetails() {
+		return AdminAccounts;
+
+	}
 
 	// Output Data Object: Subway Stations
 	DoublyLinkedList<string> getSubwayStations() {

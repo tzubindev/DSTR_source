@@ -96,18 +96,22 @@ public:
 
     // Ghassan
     T getItem(int index) {
-
         Node<T>* cur = head;
+        int cnt = 0;
 
-        int count = 0;
+        if (index >= size) {
+            cout << "Out of range: get item\n";
+        }
 
         while (cur != NULL) {
-            if (count == index)
-                return (cur->data);
-            count++;
-            cur = cur->next;
+            if (cnt == index) {
+                return cur->data;
+            }
+            else {
+                cur = cur->next;
+                cnt++;
+            }
         }
-        return -1;
     }
 
 

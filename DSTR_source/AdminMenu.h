@@ -17,7 +17,7 @@ public:
 		storage = TempStorage;
 
 		for (int i = 0; i < 100; i++) cout << '\n';
-		login();
+		cout << login() << endl;
 	}
 
 	bool addSubwayStation() {
@@ -76,10 +76,35 @@ private:
 		string password = getInput("PASSWORD");
 
 		// Verification here [Ghassan]
-
-
+		LinkedList<string> Details = storage->getAdminDetails();
+		string temp = "";
+		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
+		for (int i = 0; i < Details.getSize(); i++) {
+			/*cout << Details.getItem(i) << endl;*/
+			usernameChecked = false;
+			UNcorrect = false;
+			PWcorrect = false;
+			for (char ch : Details.getItem(i)) {
+				if (ch != ';') {
+					temp += ch;
+				}
+				else {
+					if (usernameChecked) {
+						if (password == temp) PWcorrect = true;
+						isEnd = true;
+					}
+					else {
+						if (username == temp) UNcorrect = true;
+						usernameChecked = true;
+					}
+					temp = "";
+				}
+				if (isEnd) break;
+			}
+			if (PWcorrect && UNcorrect) return true;
+		}
 		free(tempMenuObj);
-		return true;
+		return false;
 	}
 
 	string getInput() {
