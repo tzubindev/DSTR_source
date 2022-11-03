@@ -1,8 +1,6 @@
 # include <iostream>
 using namespace std;
 
-#define SIZE 100
-
 template <class T>
 class Queue 
 {
@@ -16,11 +14,16 @@ public:
     int capacity, front, rear, count;
  
 
-    Queue(int size)
+    Queue(int size = 100)
     {
+        if (size <= 0) {
+            cout << "Queue size should be positive number.\n";
+            abort();
+        }
         arr = new T[size];
         capacity = size;
-        front = rear = -1;
+        front = 0;
+        rear = -1;
         count = 0;
     }
 
@@ -40,36 +43,30 @@ public:
     }
 
     void enqueue (T elem) {
-        if (rear != capacity-1) {
+        if (count < capacity) {
            // cout << "Inserting " << elem << endl;
-            if (front == -1 && rear == -1) {
-                front++;
-                arr[++rear] = elem;
-                count++;
-            }
-            else {
-                arr[++rear] = elem;
-                count++;
-            }
+            rear = (rear + 1) % capacity;
+            arr[rear] = elem;
+            count++; 
         }
         else {
             cout << "Queue is full!" << endl;
         }
     }
 
-    void dequeue() {
-        if (front != -1 && rear != -1 && front <= rear) {
-            //cout << "Removing " << returnObj << endl;
-            front = (front + 1) % capacity;
-            count--;
-        }
-        else {
+    T dequeue() {
+        if (isEmpty()) {
             cout << "Queue is empty!" << endl;
+            abort();
         }
+        int frontIndex = front;
+        front = (front + 1) % capacity;
+        count--;
+        return arr[frontIndex];
     }
 
     T peek() {
-        if (front != -1 && rear != -1 && front <= rear) {
+        if (!isEmpty()) {
             return arr[front];
         }
         else {
@@ -78,7 +75,7 @@ public:
     }
 
     void show() {
-        if (front != -1 && rear != -1 && front <= rear) {
+        if (!isEmpty()) {
             for (int i = front; i <= rear; i++) {
                 cout << arr[i] << "\t" << endl;
             }

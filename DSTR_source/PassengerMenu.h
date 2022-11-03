@@ -90,7 +90,7 @@ public:
 			Queue<string> q(cnt);
 
 			//push item to queue
-			cout << temp << endl;
+
 			for (char ch : temp) {
 				if (ch == ';') {
 					q.enqueue(temp2);
@@ -100,8 +100,7 @@ public:
 			}
 
 			for (int j = 1; j <= q.size(); j++) {
-				cout << "\t" << j << ") " << q.peek() << endl;
-				q.dequeue();
+				cout << "\t" << j << ") " << q.dequeue() << endl;
 			}
 
 			cout << endl;
