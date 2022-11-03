@@ -99,19 +99,20 @@ public:
 				for(int j = 0;j<4;j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 			
+			// Except 7
 			if (i != StationNumber - 1) {
 
 				// Next Station Name
 				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i + 1], i);
 
 				// Travel Distance Between Next Station
-				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i + 1]), i);
+				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i]), i);
 
 				// Travel Fare Between Next Station
-				SubwayStations.insertVerticallyAt(to_string(Fare[i + 1]), i);
+				SubwayStations.insertVerticallyAt(to_string(Fare[i]), i);
 
 				// Travel Time Between Next Station
-				SubwayStations.insertVerticallyAt(to_string(Time[i + 1]), i);
+				SubwayStations.insertVerticallyAt(to_string(Time[i]), i);
 
 			}
 			else { 

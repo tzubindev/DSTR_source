@@ -51,21 +51,21 @@ public:
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 
 		for (int i = 0; i < Stations.getSize(); i++) {			
-			cout << "Station ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
+			cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
 			cout << endl << endl;
 
 			cout << "\tPrevious\n";
 			cout << "\tStation Name: " << Stations.getItem(i, 2) << endl;
-			cout << "\tDistance\t: " << Stations.getItem(i, 3) << endl;
-			cout << "\tPrice\t\t: " << Stations.getItem(i, 4) << endl;
-			cout << "\tTime\t\t: " << Stations.getItem(i, 5) << endl;
+			cout << "\tDistance\t: " << Stations.getItem(i, 3) << " KM" << endl;
+			cout << "\tPrice\t\t: " << " RM " << Stations.getItem(i, 4) << endl;
+			cout << "\tTime\t\t: " << Stations.getItem(i, 5) << " mins" << endl;
 			cout << endl;
 
 			cout << "\tNext\n";
 			cout << "\tStation Name: " << Stations.getItem(i, 6) << endl;
-			cout << "\tDistance\t: " << Stations.getItem(i, 7) << endl;
-			cout << "\tPrice\t\t: " << Stations.getItem(i, 8) << endl;
-			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << endl;
+			cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
+			cout << "\tPrice\t\t: " << " RM " << Stations.getItem(i, 8) << endl;
+			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
 			cout << endl;
 
 			cout << "\tNearby Sightseeing Spots\n";

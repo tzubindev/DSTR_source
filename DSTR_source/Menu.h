@@ -59,7 +59,7 @@ public:
 		cout << "\n";
 		//-------------------------------------------------------------------------
 
-		// split the input
+		// get the input
 		ConsoleColor().setColor(Color.LIGHT_BLUE);
 		if (isAdminType)
 			cout << "ADMIN > ";
