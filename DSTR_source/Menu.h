@@ -65,9 +65,8 @@ public:
 			cout << "ADMIN > ";
 		else
 			cout << "ANONYMOUS > ";
-		cin >> input;
 
-		input = getInput(input);
+		input = getInput("");
 		ConsoleColor().setColor(Color.WHITE);
 
 		int returnInput = 0;
@@ -133,7 +132,13 @@ public:
 	}
 
 	// all returned value will be lowercase
-	string getInput(string input) {
+	string getInput(string str) {
+		if (str != "") {
+			cout << str << " > ";
+		}
+		string input;
+		cin >> input;
+
 		bool isTrimmedLeft = false;
 		string final = "";
 

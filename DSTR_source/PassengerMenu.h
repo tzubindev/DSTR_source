@@ -21,7 +21,7 @@ public:
 	// Display Type
 	/*
 	************************************************************************
-		Station ID: SID			{2}||{2}		Station Name: Name
+		Station ID: SID			{2}||		Station Name: Name
 
 		Previous
 		Station Name: Name
@@ -44,14 +44,50 @@ public:
 	void DisplayTravelRoute() {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
-		
-		tempMenuObj->drawLine('-', MAX_WIDTH);
+		string temp = "", temp2 = "";
 
-		for (int i = 0; i < Stations.getSize(); i++) {
-			for (int j = 0; j < Stations.getHeight(); j++) {
-				cout << Stations.getItem(i,j) << "\t";
-			}
+		cout << endl;
+		tempMenuObj->drawLine('-', MAX_WIDTH);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+
+		for (int i = 0; i < Stations.getSize(); i++) {			
+			cout << "Station ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
 			cout << endl << endl;
+
+			cout << "\tPrevious\n";
+			cout << "\tStation Name: " << Stations.getItem(i, 2) << endl;
+			cout << "\tDistance\t: " << Stations.getItem(i, 3) << endl;
+			cout << "\tPrice\t\t: " << Stations.getItem(i, 4) << endl;
+			cout << "\tTime\t\t: " << Stations.getItem(i, 5) << endl;
+			cout << endl;
+
+			cout << "\tNext\n";
+			cout << "\tStation Name: " << Stations.getItem(i, 6) << endl;
+			cout << "\tDistance\t: " << Stations.getItem(i, 7) << endl;
+			cout << "\tPrice\t\t: " << Stations.getItem(i, 8) << endl;
+			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << endl;
+			cout << endl;
+
+			cout << "\tNearby Sightseeing Spots\n";
+			temp = Stations.getItem(i, 10);
+			int cnt = 0;
+
+			//Queue here
+			
+			// count
+			for (char ch : temp) {
+				if (ch == ';') {
+					cnt++;
+
+				}
+				else temp2 += ch;
+			}
+			for (int j = 1; j <= cnt; j++) {
+
+			}
+
+			cout << endl;
+			tempMenuObj->drawLine('*', MAX_WIDTH);
 		}
 
 	}
