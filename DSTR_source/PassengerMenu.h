@@ -8,6 +8,7 @@ class PassengerMenu {
 
 private:
 	TemporaryStorage* storage;
+	string customerID = "";
 
 public:
 
@@ -189,6 +190,8 @@ public:
 		// pick two cities
 	}
 	bool purchaseSubwayTicket();
+
+	// Ghassan
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
 
@@ -223,7 +226,6 @@ private:
 		string icOrPassportNo = getInput("PASSPORT NO // IC");
 		string password = getInput("PASSWORD");
 
-		// Verification here [Ghassan]
 		LinkedList<Customer> Details = storage->getPassangerDetails();
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
@@ -233,6 +235,7 @@ private:
 			for (auto detail : Details.getItem(i).toString()) {
 				if (usernameChecked) {
 					if (password == Details.getItem(i).Password) PWcorrect = true;
+					customerID = Details.getItem(i).CustomerID;
 					isEnd = true;
 				}
 				else {
