@@ -28,6 +28,8 @@ private:
 	// Data members
 	DoublyLinkedList<string> SubwayStations; 
 	DoublyLinkedList<Transaction> PurchaseRecord; 
+	LinkedList<string> AdminAccounts;
+	LinkedList<Customer> PassangerAccounts;
 	int StationNumber = 8;
 
 	//// INITIALISATION SUPPORT ARRAYS
@@ -60,9 +62,6 @@ private:
 		};
 		
 		// TimeObject trainArriveTime[40] = { ... }
-
-		 LinkedList<string> AdminAccounts;
-		 LinkedList<string> PassangerAccounts;
 
 public:
 	
@@ -165,7 +164,7 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506", true);
+		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "010203040506","123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
@@ -173,11 +172,13 @@ public:
 		ticketAmount = 4;
 
 
-		// Initialise Admin accounts
+		// Initialise Admin accounts 
 		AdminAccounts.insertAtEnd("admin1;123456;");
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
-		PassangerAccounts.insertAtEnd("passanger1;123456;");
-		PassangerAccounts.insertAtEnd("passanger2;1234567;");
+
+		// Initialise Passanger accounts 
+		Customer newCustomerObj1 = Customer(getCurrentCustomerId(), "passanger1", "010203040506", "123456", true);
+		PassangerAccounts.insertAtEnd(newCustomerObj1);
 
 
 	}
@@ -187,7 +188,7 @@ public:
 
 	}
 
-	LinkedList<string> getPassangerDetails() {
+	LinkedList<Customer> getPassangerDetails() {
 		return PassangerAccounts;
 
 	}

@@ -125,7 +125,16 @@ public:
 	void searchStationDetails();
 	void viewDetailsBetweenTwoCities();
 	bool purchaseSubwayTicket();
-	void viewPurchaseTransactionHistory();
+	void viewPurchaseTransactionHistory() {
+		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+
+
+		for (int i = 0; i < purchaseRecord.getSize(); i++) {
+			if (i>1) {
+				cout << purchaseRecord.getItem(i).toString() << endl;
+			}
+		}
+	}
 	bool deletePurchaseTransaction();
 
 private:
@@ -150,32 +159,12 @@ private:
 		string password = getInput("PASSWORD");
 
 		// Verification here [Ghassan]
-		LinkedList<string> Details = storage->getPassangerDetails();
+		LinkedList<Customer> Details = storage->getPassangerDetails();
 		string temp = "";
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
-			/*cout << Details.getItem(i) << endl;*/
-			usernameChecked = false;
-			UNcorrect = false;
-			PWcorrect = false;
-			for (char ch : Details.getItem(i)) {
-				if (ch != ';') {
-					temp += ch;
-				}
-				else {
-					if (usernameChecked) {
-						if (password == temp) PWcorrect = true;
-						isEnd = true;
-					}
-					else {
-						if (username == temp) UNcorrect = true;
-						usernameChecked = true;
-					}
-					temp = "";
-				}
-				if (isEnd) break;
-			}
-			if (PWcorrect && UNcorrect) return true;
+			cout << Details.getItem(i).toString() << endl;
+			
 		}
 		free(tempMenuObj);
 		return false;

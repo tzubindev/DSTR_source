@@ -9,12 +9,14 @@ public:
 	string CustomerName = "";
 	string IdentityNo = "";
 	string PassportNo = "";
+	string Password = "";
 	
 	Customer() {}
 
-	Customer(int customerId, string name, string number, bool isLocal) {
+	Customer(int customerId, string name, string number, string pass, bool isLocal) {
 		CustomerID = "CID_" + to_string(customerId);
 		CustomerName = name;
+		Password = pass;
 		if (isLocal) {
 			IdentityNo += number;
 			PassportNo = "NULL";
@@ -25,10 +27,12 @@ public:
 		}
 	}
 
+
 	string toString() {
 		return
 			CustomerID + ";" +
 			CustomerName + ";" +
+			Password + ";" +
 			IdentityNo + ";" +
 			PassportNo + ";";
 	}
