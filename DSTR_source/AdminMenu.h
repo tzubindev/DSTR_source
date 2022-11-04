@@ -85,7 +85,7 @@ private:
 			UNcorrect = false;
 			PWcorrect = false;
 			for (char ch : Details.getItem(i)) {
-				if (ch != ';') {
+				if (ch != ',') {
 					temp += ch;
 				}
 				else {

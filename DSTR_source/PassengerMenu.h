@@ -160,11 +160,23 @@ private:
 
 		// Verification here [Ghassan]
 		LinkedList<Customer> Details = storage->getPassangerDetails();
-		string temp = "";
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
-			cout << Details.getItem(i).toString() << endl;
-			
+			usernameChecked = false;
+			UNcorrect = false;
+			PWcorrect = false;
+			for (auto detail : Details.getItem(i).toString()) {
+				if (usernameChecked) {
+					if (password == Details.getItem(i).Password) PWcorrect = true;
+					isEnd = true;
+				}
+				else {
+					if (username == Details.getItem(i).PhoneNumber || username == Details.getItem(i).PassportNo || username == Details.getItem(i).IdentityNo) UNcorrect = true;
+					usernameChecked = true;
+				}
+				if (isEnd) break;
+			}
+			if (PWcorrect && UNcorrect) return true;
 		}
 		free(tempMenuObj);
 		return false;
