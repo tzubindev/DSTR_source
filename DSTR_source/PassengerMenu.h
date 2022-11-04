@@ -195,14 +195,17 @@ public:
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
 
-
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			if (i>1) {
+			if (customerID == purchaseRecord.getItem(i).getTicket().getCustomerID()) {
 				cout << purchaseRecord.getItem(i).toString() << endl;
 			}
-
+			else
+			{
+				cout << "Nothing to show";
+			}
 		}
 	}
+
 	bool deletePurchaseTransaction();
 
 private:

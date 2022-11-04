@@ -20,11 +20,11 @@ void Test()
 			if (mainMenu->getUserType() == 'A') {
 
 				AdminMenu* adminMenu = new AdminMenu(storage);
-				//adminMenu->viewPurchaseTransactions();
+				/*adminMenu->viewPurchaseTransactions();*/
 			}
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu(storage);
-				passengerMenu->chooseAndDisplayTravelRoute();
+				passengerMenu->viewPurchaseTransactionHistory();
 			}
 		}
 		else break;

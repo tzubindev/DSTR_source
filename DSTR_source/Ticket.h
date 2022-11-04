@@ -99,6 +99,10 @@ public:
 		autofill();
 	}
 
+	string getCustomerID() {
+		return customerObj.CustomerID;
+	}
+
 	string toString() {
 		return 
 			TicketID				+ ";" +
