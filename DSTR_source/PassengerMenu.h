@@ -44,7 +44,7 @@ public:
 	************************************************************************
 	*/
 
-	void DisplayTravelRoute() {
+	void DisplayTravelRoute(bool AscOrder) {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
 		string temp = "", temp2 = "";
@@ -59,82 +59,133 @@ public:
 		cout << endl;
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
+		if (AscOrder) {
+			for (int i = 0; i < Stations.getSize(); i++) {
+				cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
+				cout << endl << endl;
 
-		for (int i = 0; i < Stations.getSize(); i++) {			
-			cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
-			cout << endl << endl;
+				cout << "\tNext\n";
+				cout << "\tStation Name: " << Stations.getItem(i, 6) << endl;
+				cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
+				string foo = Stations.getItem(i, 8);
+				foo = foo.substr(0, 4);
+				cout << "\tPrice\t\t: " << "RM " << foo << endl;
+				cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
+				cout << endl;
 
-			cout << "\tPrevious\n";
-			cout << "\tStation Name: " << Stations.getItem(i, 2) << endl;
-			cout << "\tDistance\t: " << Stations.getItem(i, 3) << " KM" << endl;
-			string foo = Stations.getItem(i, 4);
-			foo = foo.substr(0, 4);
+				cout << "\tNearby Sightseeing Spots\n";
+				temp = Stations.getItem(i, 10);
+				int cnt = 0;
 
-			cout << "\tPrice\t\t: " << "RM " << foo << endl;
-			cout << "\tTime\t\t: " << Stations.getItem(i, 5) << " mins" << endl;
-			cout << endl;
-
-			cout << "\tNext\n";
-			cout << "\tStation Name: " << Stations.getItem(i, 6) << endl;
-			cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
-			foo = Stations.getItem(i, 8);
-			foo = foo.substr(0, 4);
-			cout << "\tPrice\t\t: " << "RM " << foo << endl;
-			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
-			cout << endl;
-
-			cout << "\tNearby Sightseeing Spots\n";
-			temp = Stations.getItem(i, 10);
-			int cnt = 0;
-
-			// count
-			for (char ch : temp) {
-				if (ch == ';') {
-					cnt++;
+				// count
+				for (char ch : temp) {
+					if (ch == ';') {
+						cnt++;
+					}
 				}
-			}
 
-			//Queue here
-			Queue<string> q(cnt);
+				//Queue here
+				Queue<string> q(cnt);
 
-			//push item to queue
+				//push item to queue
 
-			for (char ch : temp) {
-				if (ch == ';') {
-					q.enqueue(temp2);
-					temp2 = "";
+				for (char ch : temp) {
+					if (ch == ';') {
+						q.enqueue(temp2);
+						temp2 = "";
+					}
+					else temp2 += ch;
 				}
-				else temp2 += ch;
-			}
 
-			int size = q.size();
-			for (int j = 1; j <= size; j++) {
-				cout << "\t" << j << ") " << q.dequeue() << endl;
-			}
+				int size = q.size();
+				for (int j = 1; j <= size; j++) {
+					cout << "\t" << j << ") " << q.dequeue() << endl;
+				}
 
-			cout << endl;
-			ConsoleColor().setColor(Color.YELLOW);
-			tempMenuObj->drawLine('*', MAX_WIDTH);
-			ConsoleColor();
+				cout << endl;
+				ConsoleColor().setColor(Color.YELLOW);
+				tempMenuObj->drawLine('*', MAX_WIDTH);
+				ConsoleColor();
+			}
 		}
+		else {
+			for (int i = Stations.getSize() -1 ; i >= 0; i--) {
+				cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
+				cout << endl << endl;
 
+				cout << "\tNext\n";
+				cout << "\tStation Name: " << Stations.getItem(i, 2) << endl;
+				cout << "\tDistance\t: " << Stations.getItem(i, 3) << " KM" << endl;
+				string foo = Stations.getItem(i, 4);
+				foo = foo.substr(0, 4);
+
+				cout << "\tPrice\t\t: " << "RM " << foo << endl;
+				cout << "\tTime\t\t: " << Stations.getItem(i, 5) << " mins" << endl;
+				cout << endl;
+
+				cout << "\tNearby Sightseeing Spots\n";
+				temp = Stations.getItem(i, 10);
+				int cnt = 0;
+
+				// count
+				for (char ch : temp) {
+					if (ch == ';') {
+						cnt++;
+					}
+				}
+
+				//Queue here
+				Queue<string> q(cnt);
+
+				//push item to queue
+
+				for (char ch : temp) {
+					if (ch == ';') {
+						q.enqueue(temp2);
+						temp2 = "";
+					}
+					else temp2 += ch;
+				}
+
+				int size = q.size();
+				for (int j = 1; j <= size; j++) {
+					cout << "\t" << j << ") " << q.dequeue() << endl;
+				}
+
+				cout << endl;
+				ConsoleColor().setColor(Color.YELLOW);
+				tempMenuObj->drawLine('*', MAX_WIDTH);
+				ConsoleColor();
+			}
+		}
 		cout << endl;
 	}
 
-	void chooseAndDisplayTravelRoute();
-	void searchStationDetails();
-	void viewDetailsBetweenTwoCities();
-	bool purchaseSubwayTicket();
-	void viewPurchaseTransactionHistory() {
-		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
-
-
-		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			if (i>1) {
-				cout << purchaseRecord.getItem(i).toString() << endl;
-			}
+	void chooseAndDisplayTravelRoute() {
+		string input;
+		cout << "1- Titiwangsa --> Chan Sow Lin" << "\n" <<
+			"OR" << "\n" <<
+			"2- Chan Sow Lin --> Titiwangsa"<< "\n" <<
+			"Please Select the Travel Route:";
+		cin >> input;
+		if (input == "1") {
+			DisplayTravelRoute(true);
+		}
+		else if (input == "2") {
+			DisplayTravelRoute(false);
+		}
+		else {
+			cout << "Please select the correct travel route:";
 		}
 	}
+
+
+	void searchStationDetails() {
+		
+	}
+	void viewDetailsBetweenTwoCities();
+	bool purchaseSubwayTicket();
+	void viewPurchaseTransactionHistory();
 	bool deletePurchaseTransaction();
 
 private:
@@ -155,7 +206,7 @@ private:
 		tempMenuObj->drawLine('-', MAX_WIDTH);
 
 		cout << "\n\n";
-		string username = getInput("USERNAME");
+		string icOrPassportNo = getInput("PASSPORT NO // IC");
 		string password = getInput("PASSWORD");
 
 		// Verification here [Ghassan]
@@ -171,7 +222,7 @@ private:
 					isEnd = true;
 				}
 				else {
-					if (username == Details.getItem(i).PassportNo || username == Details.getItem(i).IdentityNo) UNcorrect = true;
+					if (icOrPassportNo == Details.getItem(i).PassportNo || icOrPassportNo == Details.getItem(i).IdentityNo) UNcorrect = true;
 					usernameChecked = true;
 				}
 				if (isEnd) break;

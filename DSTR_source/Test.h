@@ -24,7 +24,7 @@ void Test()
 			}
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu(storage);
-				passengerMenu->DisplayTravelRoute();
+				passengerMenu->chooseAndDisplayTravelRoute();
 			}
 		}
 		else break;
