@@ -171,7 +171,7 @@ private:
 					isEnd = true;
 				}
 				else {
-					if (username == Details.getItem(i).PhoneNumber || username == Details.getItem(i).PassportNo || username == Details.getItem(i).IdentityNo) UNcorrect = true;
+					if (username == Details.getItem(i).PassportNo || username == Details.getItem(i).IdentityNo) UNcorrect = true;
 					usernameChecked = true;
 				}
 				if (isEnd) break;

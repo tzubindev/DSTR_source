@@ -164,7 +164,7 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "0171112222", "010203040506","123456", true);
+		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "010203040506","123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
@@ -177,7 +177,7 @@ public:
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
 
 		// Initialise Passanger accounts 
-		Customer newCustomerObj1 = Customer(getCurrentCustomerId(), "passanger1", "0171112222", "010203040506", "123456", true);
+		Customer newCustomerObj1 = Customer(getCurrentCustomerId(), "passanger1", "010203040506", "123456", true);
 		PassangerAccounts.insertAtEnd(newCustomerObj1);
 
 
