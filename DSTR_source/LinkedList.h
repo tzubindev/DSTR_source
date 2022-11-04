@@ -31,19 +31,19 @@ public:
         newNode->data = elem;
         if (head == NULL) {
             head = newNode;
-            cout << "Inserting = " << elem << endl;
+            /*cout << "Inserting = " << elem << endl;*/
             return;
         }
         newNode->next = head;
         head = newNode;
-        cout << "Inserting = " << elem << endl;
+        /*cout << "Inserting = " << elem << endl;*/
 
     }
 
     // update this
     void insertAtEnd(T elem)
     {
-        cout << "Inserting = " << elem << endl;
+        /*cout << "Inserting = " << elem << endl;*/
         Node<T>* newNode = new Node<T>;
         newNode->data = elem;
         newNode->next = nullptr;
@@ -68,7 +68,7 @@ public:
             abort();
         }
 
-        cout << "Inserting = " << elem << endl;
+       /* cout << "Inserting = " << elem << endl;*/
 
         DoublyNode<T>* newNode = new DoublyNode<T>;
         DoublyNode<T>* cur = this->head;

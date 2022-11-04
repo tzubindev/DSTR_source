@@ -62,6 +62,7 @@ private:
 		// TimeObject trainArriveTime[40] = { ... }
 
 		 LinkedList<string> AdminAccounts;
+		 LinkedList<string> PassangerAccounts;
 
 public:
 	
@@ -175,12 +176,19 @@ public:
 		// Initialise Admin accounts
 		AdminAccounts.insertAtEnd("admin1;123456;");
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
+		PassangerAccounts.insertAtEnd("passanger1;123456;");
+		PassangerAccounts.insertAtEnd("passanger2;1234567;");
 
 
 	}
 
 	LinkedList<string> getAdminDetails() {
 		return AdminAccounts;
+
+	}
+
+	LinkedList<string> getPassangerDetails() {
+		return PassangerAccounts;
 
 	}
 
