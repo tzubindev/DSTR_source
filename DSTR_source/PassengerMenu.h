@@ -21,7 +21,7 @@ public:
 
 
 
-	// Display Type
+	// Display Travel Route Format
 	/*
 	************************************************************************
 		Station ID: SID			{2}||		Station Name: Name
@@ -44,6 +44,7 @@ public:
 	************************************************************************
 	*/
 
+	// Done
 	void DisplayTravelRoute() {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
@@ -121,9 +122,12 @@ public:
 		cout << endl;
 	}
 
+
 	void chooseAndDisplayTravelRoute();
 	void searchStationDetails();
-	void viewDetailsBetweenTwoCities();
+	void viewDetailsBetweenTwoCities() {
+		// pick two cities
+	}
 	bool purchaseSubwayTicket();
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
