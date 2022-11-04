@@ -24,7 +24,8 @@ void Test()
 			}
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu(storage);
-				passengerMenu->viewPurchaseTransactionHistory();
+				//passengerMenu->viewPurchaseTransactionHistory();
+				passengerMenu->viewDetailsBetweenTwoCities();
 			}
 		}
 		else break;

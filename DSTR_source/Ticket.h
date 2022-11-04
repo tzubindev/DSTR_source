@@ -99,8 +99,8 @@ public:
 		autofill();
 	}
 
-	string getCustomerID() {
-		return customerObj.CustomerID;
+	Customer getCustomer() {
+		return customerObj;
 	}
 
 	string toString() {

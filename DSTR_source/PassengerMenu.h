@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Queue.h"
+#include "Error.h"
 
 using namespace std;
 
@@ -16,8 +17,7 @@ public:
 
 	PassengerMenu(TemporaryStorage *TempStorage) {
 		storage = TempStorage;
-		for (int i = 0; i < 100; i++) cout << '\n';
-		cout << login() << endl;
+		for (int i = 0; i < 10; i++) cout << '\n';
 	}
 
 
@@ -186,17 +186,105 @@ public:
 
 	
 	void searchStationDetails();
+
 	void viewDetailsBetweenTwoCities() {
-		// pick two cities
+		// display only station name
+		DoublyLinkedList<string> Stations = storage->getSubwayStations();
+		Menu* tempMenuObj = new Menu(true);
+		string temp = "", stationA = "", stationB = "";
+
+		cout << endl;
+		tempMenuObj->drawLine('-', MAX_WIDTH);
+		cout << endl;
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("View Detail Between Two Cities", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		cout << endl;
+		tempMenuObj->setTab(4);
+		for (int i = 0; i < Stations.getSize(); i++) {
+			cout << "(" << i << ") "<<Stations.getItem(i, 1);
+			if (i % 3 != 2) {
+				cout << "\t";
+				if (Stations.getItem(i, 1).length() <= 10)
+					cout << "\t";
+			}
+			else {
+				cout << "\n\n";
+				tempMenuObj->setTab(4);
+			}
+		}
+		for (int i = 0; i < 4; i++) cout << endl;
+
+
+		stationA = tempMenuObj->getInput("CITY A(ENTER NUMBER)");
+		stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
+		for (int i = 0; i < 2; i++) cout << endl;
+
+		// Validate data
+		bool isDigit = true;
+		for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
+		if (isDigit) {
+			for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
+			if (isDigit) {
+				if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
+					0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
+				{
+					// get two stations ID
+
+
+
+
+
+
+				}
+				else printError(Error().WRONG_INPUT);
+			}
+			else printError(Error().WRONG_INPUT);
+		}
+		else printError(Error().WRONG_INPUT);
+
+		cout << endl;
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+
 	}
+
+	void printError(int errorType) {
+		string ErrorStr = "";
+		Menu* tempMenu = new Menu(true);
+
+		switch (errorType) {
+		case Error().WRONG_INPUT:
+			ErrorStr = "Wrong input is given!";
+			break;
+		}
+
+		// Error Displaying
+		tempMenu->drawLine('-', MAX_WIDTH);
+		cout << '\n';
+		ConsoleColor().setColor(Color.RED);
+		tempMenu->setTab(6);
+		cout <<  ErrorStr <<"\n\n";
+		ConsoleColor().setColor(Color.WHITE);
+		tempMenu->drawLine('-', MAX_WIDTH);
+	}
+
 	bool purchaseSubwayTicket();
 
-	// Ghassan
+	// Ghassan 
+	//Not done yet, please format the output beatifully
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			if (customerID == purchaseRecord.getItem(i).getTicket().getCustomerID()) {
+			if (customerID == purchaseRecord.getItem(i).getTicket().getCustomer().getCustomerID()) {
 				cout << purchaseRecord.getItem(i).toString() << endl;
 			}
 			else

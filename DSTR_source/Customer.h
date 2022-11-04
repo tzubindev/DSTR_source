@@ -37,5 +37,8 @@ public:
 			PassportNo + ";";
 	}
 
+	string getCustomerID() {
+		return CustomerID;
+	}
 
 };
