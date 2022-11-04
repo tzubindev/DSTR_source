@@ -21,7 +21,7 @@ public:
 
 
 
-	// Display Type
+	// Display Travel Route Format
 	/*
 	************************************************************************
 		Station ID: SID			{2}||		Station Name: Name
