@@ -44,7 +44,9 @@ public:
 	************************************************************************
 	*/
 
+
 	void DisplayTravelRoute(bool AscOrder) {
+
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
 		string temp = "", temp2 = "";
@@ -161,11 +163,12 @@ public:
 		cout << endl;
 	}
 
+
 	void chooseAndDisplayTravelRoute() {
 		string input;
 		cout << "1- Titiwangsa --> Chan Sow Lin" << "\n" <<
 			"OR" << "\n" <<
-			"2- Chan Sow Lin --> Titiwangsa"<< "\n" <<
+			"2- Chan Sow Lin --> Titiwangsa" << "\n" <<
 			"Please Select the Travel Route:";
 		cin >> input;
 		if (input == "1") {
@@ -180,12 +183,23 @@ public:
 	}
 
 
-	void searchStationDetails() {
-		
+	
+	void searchStationDetails();
+	void viewDetailsBetweenTwoCities() {
+		// pick two cities
 	}
-	void viewDetailsBetweenTwoCities();
 	bool purchaseSubwayTicket();
-	void viewPurchaseTransactionHistory();
+	void viewPurchaseTransactionHistory() {
+		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+
+
+		for (int i = 0; i < purchaseRecord.getSize(); i++) {
+			if (i>1) {
+				cout << purchaseRecord.getItem(i).toString() << endl;
+			}
+
+		}
+	}
 	bool deletePurchaseTransaction();
 
 private:
