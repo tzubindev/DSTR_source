@@ -177,8 +177,7 @@ public:
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
 
 		// Initialise Passanger accounts 
-		Customer newCustomerObj1 = Customer(getCurrentCustomerId(), "passanger1", "010203040506", "123456", true);
-		PassangerAccounts.insertAtEnd(newCustomerObj1);
+		PassangerAccounts.insertAtEnd(newCustomerObj);
 
 
 	}
