@@ -237,11 +237,12 @@ public:
 					// get two stations ID
 					bool AisFound = false;
 					bool BisFound = false;
-					int foundIndex = -1;
 					bool splitID = false;
+					int distance = 0, time = 0;
+					double fare = 0;
 					string temp = "";
 
-					// Step 1 get ID
+					// Step 1 get ID and collect data
 					for (int i = 0; i < Stations.getSize(); i++) {
 						string id = Stations.getItem(i);
 						temp = "";
@@ -275,9 +276,16 @@ public:
 						// A is found or B is Found
 						// Start collecting data
 						else {
-
+							distance	+= stoi(Stations.getItem(i, 7));
+							fare		+= stod(Stations.getItem(i, 8));
+							time		+= stoi(Stations.getItem(i, 9));
 						}
 					}
+
+					// Step 2 get station name and display added data
+					tempMenuObj->setTab(3);
+					cout << Stations.getItem(stoi(stationA), 1) << " -> " << Stations.getItem(stoi(stationB), 1) << endl;
+
 
 
 
@@ -294,8 +302,6 @@ public:
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
-
-
 	}
 
 	void printError(int errorType) {
