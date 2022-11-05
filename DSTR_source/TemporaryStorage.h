@@ -393,35 +393,7 @@ public:
 	int AddTransaction(Customer currentCustomerObj) {
 
 		Menu* tempMenuObj = new Menu(true);
-		//// Create Transaction object here
-		//string local = tempMenuObj->getInput("LOCAL? (y/n)");
-		//if (local == "y" || local == "n") {
-
-		//	// Create customer Object
-		//	string name = tempMenuObj->getInput("NAME (at least 3 characters)");
-		//	string number = "";
-		//	if (local == "y") number = tempMenuObj->getInput("IC");
-		//	else number = tempMenuObj->getInput("PASSPORT NO");
-		//	cout << "PASSWORD (at least 4 characters) > ";
-		//	string password = tempMenuObj->getPassword();
-		//	cout << "CONFIRM PASSWORD > ";
-		//	string cnfPassword = tempMenuObj->getPassword();
-
-		//	// Validated
-		//	if (Validation().validate(name, Validation().NAME) &&
-		//		(Validation().validate(number, Validation().PASSPORT) || Validation().validate(number, Validation().IC)) &&
-		//		password == cnfPassword && password.length() > 3 && name.length() >= 3) {
-
-		//		// check duplicated data
-		//		DoublyLinkedList<Transaction> record = getTicketPurchaseRecord();
-		//		for (int i = 0; i < record.getSize() - 1; i++) {
-		//			if (record.getItem(i).getTicket().getCustomer().getPassportNo() == number ||
-		//				record.getItem(i).getTicket().getCustomer().getIdentityNo() == number)
-		//				return Error().DUPLICATED_DATA;
-		//		}
-		//		bool isLocal = (local == "y") ? true : false;
-				/*Customer newCustomer = Customer(getCurrentCustomerId(), name, number, password, isLocal);*/
-
+		
 				// get two station id
 				DoublyLinkedList<string> Stations = SubwayStations;
 				string stationA = "", stationB = "";
@@ -525,7 +497,7 @@ public:
 					if (trainDepatureTime[i] <= getCurrentTime() && getCurrentTime() < trainDepatureTime[i + 1])
 						depatureTime = trainDepatureTime[i + 1];
 				}
-				PassangerAccounts.insertAtEnd(currentCustomerObj);
+				
 				Ticket newTicket = Ticket(getCurrentTicketId(), "SID_" + stationA, "SID_" + stationB, stoi(ticketAmount), fare, depatureTime, currentCustomerObj);
 				Transaction newTransaction = Transaction(getCurrentTransactionId(), newTicket);
 				PurchaseRecord.insertAtEnd(newTransaction);
