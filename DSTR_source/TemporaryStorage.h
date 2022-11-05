@@ -20,11 +20,11 @@ public:
 		if (local == "y" || local == "n") {
 			
 			// Create customer Object
-			string name = tempMenuObj->getInput("NAME");
+			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
 			string number = "";
 			if (local == "y") number = tempMenuObj->getInput("IC");
 			else number = tempMenuObj->getInput("PASSPORT NO");
-			cout << "PASSWORD (at least four characters) > ";
+			cout << "PASSWORD (at least 4 characters) > ";
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
 			string cnfPassword = tempMenuObj->getPassword();
@@ -32,12 +32,14 @@ public:
 			// Validated
 			if (Validation().validate(name, Validation().NAME) &&
 				(Validation().validate(number, Validation().PASSPORT) || Validation().validate(number, Validation().IC)) &&
-				password == cnfPassword && password.length()>3) {
+				password == cnfPassword && password.length()>3 && name.length()>=3) {
 
 				// check duplicated data
 				DoublyLinkedList<Transaction> record = this->getTicketPurchaseRecord();
 				for (int i = 0; i < record.getSize() - 1; i++) {
-
+					if (record.getItem(i).getTicket().getCustomer().getPassportNo() == number ||
+						record.getItem(i).getTicket().getCustomer().getIdentityNo() == number)
+						return Error().DUPLICATED_DATA;
 				}
 
 			}
@@ -48,6 +50,8 @@ public:
 		else {
 			return Error().WRONG_INPUT;
 		}
+
+		return 1; //  true
 
 	}
 

@@ -41,4 +41,12 @@ public:
 		return CustomerID;
 	}
 
+	string getIdentityNo() {
+		return IdentityNo;
+	}
+
+	string getPassportNo() {
+		return PassportNo;
+	}
+
 };
