@@ -23,7 +23,14 @@ void Test()
 				/*adminMenu->viewPurchaseTransactions();*/
 			}
 			else {
-				PassengerMenu* passengerMenu = new PassengerMenu(storage);
+
+				// here login
+				//passanger login in test file
+				//return bool
+				/*PassengerMenu* login = PassengerMenu->login();*/
+
+				PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
+				passengerMenu->login();
 				//passengerMenu->viewPurchaseTransactionHistory();
 				//passengerMenu->viewDetailsBetweenTwoCities();
 				passengerMenu->purchaseSubwayTicket();
@@ -34,7 +41,7 @@ void Test()
 		mainMenu = new Menu();
 	}
 
-
+	
 
 
 	//Queue<string> q(5);

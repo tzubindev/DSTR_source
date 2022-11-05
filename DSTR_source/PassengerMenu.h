@@ -12,6 +12,8 @@ private:
 	TemporaryStorage* storage;
 	string customerID = "";
 	bool registered = NULL;
+	Customer currentCustomerObj = Customer();
+
 
 public:
 
@@ -498,7 +500,19 @@ public:
 				}
 				if (isEnd) break;
 			}
-			if (PWcorrect && UNcorrect) return true;
+			if (PWcorrect && UNcorrect) { 
+				
+				// use customerID to find customer object 
+				// do for loop to check every object in the passanger accounts
+				// if ic or passport no == to item.passportno || ic or passport no == to item.identity
+				// currentcustomerobj = item 
+				for (int i = 0; i < Details.getSize(); i++) {
+					if (customerID == Details.getItem(i).CustomerID) {
+						if (icOrPassportNo == Details.getItem(i).PassportNo || icOrPassportNo == Details.getItem(i).IdentityNo)
+							currentCustomerObj = Details.getItem(i);
+					}
+				}
+				return true; }
 		}
 		free(tempMenuObj);
 		return false;
