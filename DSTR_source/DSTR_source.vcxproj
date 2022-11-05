@@ -144,6 +144,7 @@
     <ClInclude Include="Test.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="Transaction.h" />
+    <ClInclude Include="Validation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
