@@ -41,6 +41,98 @@ public:
 						record.getItem(i).getTicket().getCustomer().getIdentityNo() == number)
 						return Error().DUPLICATED_DATA;
 				}
+				bool isLocal = (local == "y") ? true : false;
+				Customer newCustomer = Customer(getCurrentCustomerId(), name, number, password, isLocal);
+
+				// get two station id
+				DoublyLinkedList<string> Stations = SubwayStations;
+				string stationA = "", stationB = "";
+				cout << endl;
+				tempMenuObj->setTab(4);
+				for (int i = 0; i < Stations.getSize(); i++) {
+					cout << "(" << i << ") " << Stations.getItem(i, 1);
+					if (i % 3 != 2) {
+						cout << "\t";
+						if (Stations.getItem(i, 1).length() <= 10)
+							cout << "\t";
+					}
+					else {
+						cout << "\n\n";
+						tempMenuObj->setTab(4);
+					}
+				}
+				for (int i = 0; i < 4; i++) cout << endl;
+
+				stationA = tempMenuObj->getInput("CITY A(ENTER NUMBER)");
+				stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
+				for (int i = 0; i < 2; i++) cout << endl;
+
+				// Validate data
+				int distance = 0, time = 0;
+				double fare = 0;
+				bool isDigit = true;
+				for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
+				if (isDigit) {
+					for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
+					if (isDigit) {
+						if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
+							0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
+						{
+							// get two stations ID
+							bool AisFound = false;
+							bool BisFound = false;
+							bool splitID = false;
+							string temp = "";
+
+							// Step 1 get ID and collect data
+							for (int i = 0; i < Stations.getSize(); i++) {
+								string id = Stations.getItem(i);
+								temp = "";
+								for (char ch : id) {
+									if (splitID) temp += ch;
+									if (ch == '_') splitID = true;
+								}
+								splitID = false;
+								// Stations
+								/*[0] ID
+								// [1] Name
+								// [2] Name -> Prev
+								// [3] Dist
+								// [4] Fare
+								// [5] Time
+								// [6] Name -> Next
+								// [7] Dist
+								// [8] Fare
+								// [9] Time
+								// [10] Nearby Spots */
+
+
+								// Step 1.1 compare chosen and current id
+								if (temp == stationA) AisFound = true;
+								if (temp == stationB) BisFound = true;
+
+								//cout << temp << ' ' << stationA << ' ' << stationB << endl;
+
+								if (AisFound && BisFound) {
+									// case out
+									break;
+								}
+								else if (AisFound || BisFound)
+									// A is found or B is Found
+									// Start collecting data
+								{
+									distance += stoi(Stations.getItem(i, 7));
+									fare += stod(Stations.getItem(i, 8));
+									time += stoi(Stations.getItem(i, 9));
+								}
+							}
+						}
+					}
+					else { return Error().WRONG_INPUT; }
+				}
+
+				// Build ticket object
+				string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
 
 			}
 			else {
