@@ -132,6 +132,7 @@ public:
 				}
 
 				// Build ticket object
+				// Ticket(ticketId, stationAid, stationBid, ticketAmount, (double)ticket, depatureTime, customerobj);
 				isDigit = true;
 				string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
 				for (char ch : ticketAmount) {
@@ -140,6 +141,9 @@ public:
 						break;
 					}
 				}
+
+
+
 
 
 			}
@@ -199,6 +203,13 @@ private:
 		};
 		
 		// TimeObject trainArriveTime[40] = { ... }
+		string trainDepatureTime[]= {	"06:00", "06:30", "07:00", "07:30",
+									"08:00", "08:30", "09:00", "09:30",
+									"10:00", "06:30", "07:00", "07:30",
+									"06:00", "06:30", "07:00", "07:30",
+									"06:00", "06:30", "07:00", "07:30",
+									"06:00", "06:30", "07:00", "07:30",
+		};
 
 		// Stations
 		/*[0] ID
