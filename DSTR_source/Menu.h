@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
+#include <conio.h>
 #include "ConsoleColor.h"
 #include "TemporaryStorage.h"
 
@@ -150,6 +151,24 @@ public:
 				final += tolower(ch);
 		}
 		return final;
+	}
+
+	string getPassword()
+	{
+		string ipt = "";
+		char ipt_ch;
+		while (true) {
+			ipt_ch = getch();
+
+			// Check whether user enters
+			// a special non-printable
+			// character
+			if (ipt_ch < 32) {
+				cout << endl;
+				return ipt;
+			}
+			ipt.push_back(ipt_ch);
+		}
 	}
 
 	void makeTitleBlock(string Title, int tabNumber) {

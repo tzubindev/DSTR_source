@@ -338,7 +338,6 @@ else printError(Error().WRONG_INPUT);
 		}	
 	}
 
-	// Ghassan 
 	//Not done yet, please format the output beatifully
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();

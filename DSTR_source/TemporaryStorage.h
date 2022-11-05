@@ -17,7 +17,15 @@ public:
 		// Create Transaction object here
 		string local = tempMenuObj->getInput("LOCAL? (y/n)");
 		if (local == "y" || local == "n") {
-
+			
+			string name = tempMenuObj->getInput("NAME");
+			string number = "";
+			if (local == "y") number = tempMenuObj->getInput("IC");
+			else number = tempMenuObj->getInput("PASSPORT NO");
+			cout << "PASSWORD > ";
+			string password = tempMenuObj->getPassword();
+			cout << "CONFIRM PASSWORD > ";
+			string cnfPassword = tempMenuObj->getPassword();
 
 		}
 		else {
