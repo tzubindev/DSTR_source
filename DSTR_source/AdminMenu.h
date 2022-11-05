@@ -50,6 +50,21 @@ public:
 	}
 
 	bool deleteTicket() {
+		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+		string input;
+
+		for (int i = 0; i < purchaseRecord.getSize(); i++) {
+			cout << purchaseRecord.getItem(i).toString() << endl;
+			cout << "Insert the Ticket id to delete the ticket:";
+			cin >> input;
+			if (input == purchaseRecord.getItem(i).getTicket().TicketID) {
+				purchaseRecord.deleteItemAt(i);
+				cout << "deleted successfully";
+			}
+			else {
+				cout << "please enter correct input";
+			}
+		}
 		return true;
 	}
 
