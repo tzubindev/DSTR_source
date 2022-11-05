@@ -42,7 +42,19 @@ public:
 	}
 
 	void searchTicketInformation() {
+		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+		string input;
 
+		cout << "Insert the Ticket id to search for ticket:";
+		cin >> input;
+		for (int i = 0; i < purchaseRecord.getSize(); i++) {
+			if (input == purchaseRecord.getItem(i).getTicket().TicketID) {
+				cout << purchaseRecord.getItem(i).toString() << endl;
+			}
+			else {
+				cout << "Please enter the correct Ticket ID:";
+			}
+		}
 	}
 
 	bool editTicketInformation() {
