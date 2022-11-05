@@ -18,6 +18,7 @@ public:
 		string local = tempMenuObj->getInput("LOCAL? (y/n)");
 		if (local == "y" || local == "n") {
 			
+			// Create customer Object
 			string name = tempMenuObj->getInput("NAME");
 			string number = "";
 			if (local == "y") number = tempMenuObj->getInput("IC");
