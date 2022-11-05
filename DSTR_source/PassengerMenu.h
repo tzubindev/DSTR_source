@@ -11,12 +11,14 @@ class PassengerMenu {
 private:
 	TemporaryStorage* storage;
 	string customerID = "";
+	bool registered = NULL;
 
 public:
 
 	PassengerMenu() {}
 
-	PassengerMenu(TemporaryStorage *TempStorage) {
+	PassengerMenu(TemporaryStorage *TempStorage, bool isRegistered) {
+		registered = isRegistered;
 		storage = TempStorage;
 		for (int i = 0; i < 10; i++) cout << '\n';
 	}
@@ -331,7 +333,17 @@ public:
 	}
 
 	void purchaseSubwayTicket() {
-		switch(storage->AddTransaction()){
+
+		int result = -1;
+		if (registered) {
+			result = storage->AddTransaction(currentCustomerObj);
+		}
+		else {
+			result = storage->AddTransaction();
+		}
+
+
+		switch(result){
 		case Error().WRONG_INPUT:
 			cout << "something" << endl;
 			return;

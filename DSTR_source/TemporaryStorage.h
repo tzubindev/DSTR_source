@@ -388,6 +388,9 @@ public:
 
 	}
 
+	int AddTransaction(Customer currentCustomerObj) {
+
+	}
 
 	void sortTransaction() {
 
