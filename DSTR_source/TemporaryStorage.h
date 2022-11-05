@@ -178,7 +178,7 @@ public:
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
 		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "010203040506","123456", true);
-		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00:00", newCustomerObj);
+		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
 
@@ -361,8 +361,16 @@ public:
 					}
 				}
 
-				Ticket newTicket;
+				string depatureTime = "";
+				for (int i = 0; i < (sizeof(trainDepatureTime) / sizeof(string))-1;i++) {
+					if (trainDepatureTime[i] <= getCurrentTime() && getCurrentTime() < trainDepatureTime[i + 1])
+						depatureTime = trainDepatureTime[i + 1];
+				}
 
+				Ticket newTicket = Ticket(getCurrentTicketId(), "SID_"+stationA, "SID_"+stationB, stoi(ticketAmount), fare, depatureTime, newCustomer);
+				Transaction newTransaction = Transaction(getCurrentTransactionId(), newTicket);
+				PurchaseRecord.insertAtEnd(newTransaction);
+				
 
 
 
