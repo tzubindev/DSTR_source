@@ -132,7 +132,15 @@ public:
 				}
 
 				// Build ticket object
+				isDigit = true;
 				string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
+				for (char ch : ticketAmount) {
+					if (!isdigit(ch)) {
+						isDigit = false;
+						break;
+					}
+				}
+
 
 			}
 			else {
