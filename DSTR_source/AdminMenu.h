@@ -25,6 +25,107 @@ public:
 	}
 
 	bool editSubwayInformation() {
+		DoublyLinkedList<string> Stations = storage->getSubwayStations();
+		Menu* tempMenuObj = new Menu(true);
+		string stationID;
+		string temp, temp2;
+		for (int i = 0; i < Stations.getSize(); i++) {
+			cout << "Station ID: " << Stations.getItem(i, 0) << endl;
+			cout << "Station Name: " << Stations.getItem(i, 1) << endl;
+			cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
+			string foo = Stations.getItem(i, 8);
+			foo = foo.substr(0, 4);
+			cout << "\tPrice\t\t: " << "RM " << foo << endl;
+			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
+			cout << endl << endl;
+
+			cout << "\tNearby Sightseeing Spots\n";
+			temp = Stations.getItem(i, 10);
+
+			//int cnt = 0;
+
+			//// count
+			//for (char ch : temp) {
+			//	if (ch == ';') {
+			//		cnt++;
+			//	}
+			//}
+
+			////Queue here
+			//Queue<string> q(cnt);
+
+			////push item to queue
+
+			//for (char ch : temp) {
+			//	if (ch == ';') {
+			//		q.enqueue(temp2);
+			//		temp2 = "";
+			//	}
+			//	else temp2 += ch;
+			//}
+
+			//int size = q.size();
+			//for (int j = 1; j <= size; j++) {
+			//	cout << "\t" << j << ") " << q.dequeue() << endl;
+			//}
+
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
+		}
+		cout << "Please enter the station ID to edit it:";
+		cin >> stationID;
+		for (int i = 0; i < Stations.getSize(); i++) {
+			if (stationID == Stations.getItem(i, 0)) {
+				cout << "Station ID: " << Stations.getItem(i, 0) << endl;
+				cout << "Station Name: " << Stations.getItem(i, 1) << endl;
+				cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
+				string foo = Stations.getItem(i, 8);
+				foo = foo.substr(0, 4);
+				cout << "\tPrice\t\t: " << "RM " << foo << endl;
+				cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
+				cout << endl << endl;
+
+				cout << "\tNearby Sightseeing Spots\n";
+				temp = Stations.getItem(i, 10);
+
+				int option;
+				cout << "1- Station Name \n2- Price\n3- Time" << endl;
+				cout << "Enter the number thing that you want to edit:";
+				cin >> option;
+				string input;
+
+				switch (option)
+				{
+				case 1:
+					cout << "Enter the new name of the staion:";
+					cin >> input;
+					break;
+				case 2:
+					cout << "Enter the new distance:";
+					cin >> input;
+					break;
+				case 3:
+					cout << "Enter the new price:";
+					cin >> input;
+					break;
+				default:
+					break;
+				}
+				cout << "Station ID: " << Stations.getItem(i, 0) << endl;
+				cout << "Station Name: " << Stations.getItem(i, 1) << endl;
+				cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
+				foo = Stations.getItem(i, 8);
+				foo = foo.substr(0, 4);
+				cout << "\tPrice\t\t: " << "RM " << foo << endl;
+				cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
+				cout << endl << endl;
+				cout << "\tNearby Sightseeing Spots\n";
+				temp = Stations.getItem(i, 10);
+
+			}
+		}
 		return true;
 	}
 
