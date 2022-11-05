@@ -24,11 +24,26 @@ public:
 			string number = "";
 			if (local == "y") number = tempMenuObj->getInput("IC");
 			else number = tempMenuObj->getInput("PASSPORT NO");
-			cout << "PASSWORD > ";
+			cout << "PASSWORD (at least four characters) > ";
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
 			string cnfPassword = tempMenuObj->getPassword();
+			
+			// Validated
+			if (Validation().validate(name, Validation().NAME) &&
+				(Validation().validate(number, Validation().PASSPORT) || Validation().validate(number, Validation().IC)) &&
+				password == cnfPassword && password.length()>3) {
 
+				// check duplicated data
+				DoublyLinkedList<Transaction> record = this->getTicketPurchaseRecord();
+				for (int i = 0; i < record.getSize() - 1; i++) {
+
+				}
+
+			}
+			else {
+				return Error().WRONG_INPUT;
+			}
 		}
 		else {
 			return Error().WRONG_INPUT;
