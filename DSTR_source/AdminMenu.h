@@ -163,6 +163,7 @@ public:
 		searchTicketID = getInput("Insert the Ticket id to search for ticket:");
 
 		cout << endl << endl;
+		for (int i = 0; i < searchTicketID.length(); i++) searchTicketID[i] = toupper(searchTicketID[i]);
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			if (searchTicketID == purchaseRecord.getItem(i).getTicket().TicketID) {
 				tempMenuObj->setTab(1);
