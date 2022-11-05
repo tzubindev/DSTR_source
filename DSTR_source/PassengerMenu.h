@@ -231,76 +231,76 @@ public:
 		for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
 		if (isDigit) {
 			for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
-			if (isDigit) {
-				if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
-					0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
-				{
-					// get two stations ID
-					bool AisFound = false;
-					bool BisFound = false;
-					bool splitID = false;
-					int distance = 0, time = 0;
-					double fare = 0;
-					string temp = "";
+if (isDigit) {
+	if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
+		0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
+	{
+		// get two stations ID
+		bool AisFound = false;
+		bool BisFound = false;
+		bool splitID = false;
+		int distance = 0, time = 0;
+		double fare = 0;
+		string temp = "";
 
-					// Step 1 get ID and collect data
-					for (int i = 0; i < Stations.getSize(); i++) {
-						string id = Stations.getItem(i);
-						temp = "";
-						for (char ch : id) {
-							if (splitID) temp += ch;
-							if (ch == '_') splitID = true;
-						}
-						splitID = false;
-						// Stations
-						/*[0] ID
-						// [1] Name
-						// [2] Name -> Prev
-						// [3] Dist
-						// [4] Fare
-						// [5] Time
-						// [6] Name -> Next
-						// [7] Dist
-						// [8] Fare
-						// [9] Time
-						// [10] Nearby Spots */
-
-
-						// Step 1.1 compare chosen and current id
-						if (temp == stationA) AisFound = true;
-						if (temp == stationB) BisFound = true;
-
-						//cout << temp << ' ' << stationA << ' ' << stationB << endl;
-
-						if (AisFound && BisFound) {
-							// case out
-							break;
-						}
-						else if(AisFound || BisFound)
-						// A is found or B is Found
-						// Start collecting data
-						{
-							distance	+= stoi(Stations.getItem(i, 7));
-							fare		+= stod(Stations.getItem(i, 8));
-							time		+= stoi(Stations.getItem(i, 9));
-						}
-					}
-
-					// Step 2 get station name and display added data
-					tempMenuObj->makeTitleBlock(Stations.getItem(stoi(stationA), 1) + " -> " + Stations.getItem(stoi(stationB), 1), 5);
-					cout << endl << endl;
-
-					tempMenuObj->setTab(5);
-					cout << "Distance: " << distance << " KM" << endl<<endl;
-					tempMenuObj->setTab(5);
-					cout << "Fare\t: "	 << "RM " << fixed << setprecision(2) << fare << endl << endl;
-					tempMenuObj->setTab(5);
-					cout << "Time\t: "	 << time	 << " Mins" << endl << endl;
-					delete tempMenuObj;
-				}
-				else printError(Error().WRONG_INPUT);
+		// Step 1 get ID and collect data
+		for (int i = 0; i < Stations.getSize(); i++) {
+			string id = Stations.getItem(i);
+			temp = "";
+			for (char ch : id) {
+				if (splitID) temp += ch;
+				if (ch == '_') splitID = true;
 			}
-			else printError(Error().WRONG_INPUT);
+			splitID = false;
+			// Stations
+			/*[0] ID
+			// [1] Name
+			// [2] Name -> Prev
+			// [3] Dist
+			// [4] Fare
+			// [5] Time
+			// [6] Name -> Next
+			// [7] Dist
+			// [8] Fare
+			// [9] Time
+			// [10] Nearby Spots */
+
+
+			// Step 1.1 compare chosen and current id
+			if (temp == stationA) AisFound = true;
+			if (temp == stationB) BisFound = true;
+
+			//cout << temp << ' ' << stationA << ' ' << stationB << endl;
+
+			if (AisFound && BisFound) {
+				// case out
+				break;
+			}
+			else if (AisFound || BisFound)
+				// A is found or B is Found
+				// Start collecting data
+			{
+				distance += stoi(Stations.getItem(i, 7));
+				fare += stod(Stations.getItem(i, 8));
+				time += stoi(Stations.getItem(i, 9));
+			}
+		}
+
+		// Step 2 get station name and display added data
+		tempMenuObj->makeTitleBlock(Stations.getItem(stoi(stationA), 1) + " -> " + Stations.getItem(stoi(stationB), 1), 5);
+		cout << endl << endl;
+
+		tempMenuObj->setTab(5);
+		cout << "Distance: " << distance << " KM" << endl << endl;
+		tempMenuObj->setTab(5);
+		cout << "Fare\t: " << "RM " << fixed << setprecision(2) << fare << endl << endl;
+		tempMenuObj->setTab(5);
+		cout << "Time\t: " << time << " Mins" << endl << endl;
+		delete tempMenuObj;
+	}
+	else printError(Error().WRONG_INPUT);
+}
+else printError(Error().WRONG_INPUT);
 		}
 		else printError(Error().WRONG_INPUT);
 
@@ -325,12 +325,18 @@ public:
 		cout << '\n';
 		ConsoleColor().setColor(Color.RED);
 		tempMenu->setTab(6);
-		cout <<  ErrorStr <<"\n\n";
+		cout << ErrorStr << "\n\n";
 		ConsoleColor().setColor(Color.WHITE);
 		tempMenu->drawLine('-', MAX_WIDTH);
 	}
 
-	bool purchaseSubwayTicket();
+	void purchaseSubwayTicket() {
+		switch(storage->AddTransaction()){
+		case Error().WRONG_INPUT:
+			cout << "something" << endl;
+			return;
+		}	
+	}
 
 	// Ghassan 
 	//Not done yet, please format the output beatifully
@@ -348,9 +354,8 @@ public:
 		}
 	}
 
-	bool deletePurchaseTransaction();
+	void deletePurchaseTransaction();
 
-private:
 	bool login() {
 		Menu* tempMenuObj = new Menu(true);
 		tempMenuObj->drawLine('=', MAX_WIDTH);
@@ -394,6 +399,8 @@ private:
 		free(tempMenuObj);
 		return false;
 	}
+
+private:
 
 	string getInput() {
 

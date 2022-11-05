@@ -11,10 +11,18 @@ class TemporaryStorage {
 
 public:
 	
-	void AddTransaction() {
+	int AddTransaction() {
 
+		Menu* tempMenuObj = new Menu(true);
 		// Create Transaction object here
+		string local = tempMenuObj->getInput("LOCAL? (y/n)");
+		if (local == "y" || local == "n") {
 
+
+		}
+		else {
+			return Error().WRONG_INPUT;
+		}
 
 	}
 
