@@ -502,15 +502,6 @@ public:
 				Transaction newTransaction = Transaction(getCurrentTransactionId(), newTicket);
 				PurchaseRecord.insertAtEnd(newTransaction);
 
-		//	}
-		//	/*else {
-		//		return Error().WRONG_INPUT;
-		//	}*/
-		//}
-		//else {
-		//	return Error().WRONG_INPUT;
-		//}
-
 		return 1; //  true
 	}
 
