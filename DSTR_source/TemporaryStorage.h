@@ -63,6 +63,20 @@ private:
 		
 		// TimeObject trainArriveTime[40] = { ... }
 
+		// Stations
+		/*[0] ID
+		// [1] Name
+		// [2] Name -> Prev
+		// [3] Dist
+		// [4] Fare
+		// [5] Time
+		// [6] Name -> Next
+		// [7] Dist
+		// [8] Fare
+		// [9] Time
+		// [10] Nearby Spots */
+
+
 public:
 	
 	// Constructor for initialisation.

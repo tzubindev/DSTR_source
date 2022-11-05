@@ -191,7 +191,7 @@ public:
 		// display only station name
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
-		string temp = "", stationA = "", stationB = "";
+		string stationA = "", stationB = "";
 
 		cout << endl;
 		tempMenuObj->drawLine('-', MAX_WIDTH);
@@ -235,7 +235,49 @@ public:
 					0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
 				{
 					// get two stations ID
+					bool AisFound = false;
+					bool BisFound = false;
+					int foundIndex = -1;
+					bool splitID = false;
+					string temp = "";
 
+					// Step 1 get ID
+					for (int i = 0; i < Stations.getSize(); i++) {
+						string id = Stations.getItem(i);
+						temp = "";
+						for (char ch : id) {
+							if (ch == '_') splitID = true;
+							if (splitID)temp += ch;
+						}
+						// Stations
+						/*[0] ID
+						// [1] Name
+						// [2] Name -> Prev
+						// [3] Dist
+						// [4] Fare
+						// [5] Time
+						// [6] Name -> Next
+						// [7] Dist
+						// [8] Fare
+						// [9] Time
+						// [10] Nearby Spots */
+
+						if (AisFound && BisFound) {
+							// case out
+							break;
+						}
+						else if (!AisFound && !BisFound) {
+
+							// Step 1.1 compare chosen and current id
+							if (temp == stationA) AisFound = true;
+							if (temp == stationB) BisFound = true;
+						}
+						// A is found or B is Found
+						// Start collecting data
+						else {
+
+						}
+					}
 
 
 
