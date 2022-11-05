@@ -361,6 +361,8 @@ public:
 					}
 				}
 
+				Ticket newTicket;
+
 
 
 
@@ -381,5 +383,18 @@ public:
 
 	void sortTransaction() {
 
+	}
+
+	string datetime[6];
+	string getCurrentTime() {
+		DateTime* dt = new DateTime;
+		string dateTime = dt->getDateTime();
+		free(dt);
+		return trimTime(datetime[4]);
+
+	}
+
+	string trimTime(string time) {
+		return time.substr(0, 5);
 	}
 };
