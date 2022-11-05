@@ -10,6 +10,9 @@ public:
 	static const int NAME = 0;
 	static const int PASSPORT = 1;
 	static const int IC = 2;
+	int errorType = -1;
+
+	Validation() {}
 
 	bool validate(string str, int type) {
 		
@@ -29,7 +32,17 @@ public:
 
 		regex regexRule(regexPattern);
 		if (!regex_match(str, regexRule)) {
-
+			switch (type) {
+			case NAME:
+				errorType = NAME;
+				return false;
+			case PASSPORT:
+				errorType = PASSPORT;
+				return false;
+			case IC:
+				errorType = IC;
+				return false;
+			}
 		}
 		else
 			return true;

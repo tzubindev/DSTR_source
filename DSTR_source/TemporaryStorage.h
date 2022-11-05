@@ -3,6 +3,7 @@
 #include <string>
 #include "Transaction.h"
 #include "LinkedList.h"
+#include "Validation.h"
 
 using namespace std;
 
