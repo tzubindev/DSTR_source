@@ -2,6 +2,7 @@
 #include <string>
 #include "Queue.h"
 #include "Error.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -247,9 +248,10 @@ public:
 						string id = Stations.getItem(i);
 						temp = "";
 						for (char ch : id) {
+							if (splitID) temp += ch;
 							if (ch == '_') splitID = true;
-							if (splitID)temp += ch;
 						}
+						splitID = false;
 						// Stations
 						/*[0] ID
 						// [1] Name
@@ -263,19 +265,21 @@ public:
 						// [9] Time
 						// [10] Nearby Spots */
 
+
+						// Step 1.1 compare chosen and current id
+						if (temp == stationA) AisFound = true;
+						if (temp == stationB) BisFound = true;
+
+						//cout << temp << ' ' << stationA << ' ' << stationB << endl;
+
 						if (AisFound && BisFound) {
 							// case out
 							break;
 						}
-						else if (!AisFound && !BisFound) {
-
-							// Step 1.1 compare chosen and current id
-							if (temp == stationA) AisFound = true;
-							if (temp == stationB) BisFound = true;
-						}
+						else if(AisFound || BisFound)
 						// A is found or B is Found
 						// Start collecting data
-						else {
+						{
 							distance	+= stoi(Stations.getItem(i, 7));
 							fare		+= stod(Stations.getItem(i, 8));
 							time		+= stoi(Stations.getItem(i, 9));
@@ -283,14 +287,16 @@ public:
 					}
 
 					// Step 2 get station name and display added data
-					tempMenuObj->setTab(3);
-					cout << Stations.getItem(stoi(stationA), 1) << " -> " << Stations.getItem(stoi(stationB), 1) << endl;
+					tempMenuObj->makeTitleBlock(Stations.getItem(stoi(stationA), 1) + " -> " + Stations.getItem(stoi(stationB), 1), 5);
+					cout << endl << endl;
 
-
-
-
-
-
+					tempMenuObj->setTab(5);
+					cout << "Distance: " << distance << " KM" << endl<<endl;
+					tempMenuObj->setTab(5);
+					cout << "Fare\t: "	 << "RM " << fixed << setprecision(2) << fare << endl << endl;
+					tempMenuObj->setTab(5);
+					cout << "Time\t: "	 << time	 << " Mins" << endl << endl;
+					delete tempMenuObj;
 				}
 				else printError(Error().WRONG_INPUT);
 			}

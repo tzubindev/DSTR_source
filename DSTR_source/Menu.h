@@ -146,7 +146,7 @@ public:
 		for (char ch : input) {
 			if (ch != ' ') isTrimmedLeft = true;
 			if (ch == '\n') continue;
-			if(isTrimmedLeft)
+			if (isTrimmedLeft)
 				final += tolower(ch);
 		}
 		return final;
