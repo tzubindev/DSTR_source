@@ -43,17 +43,55 @@ public:
 
 	void searchTicketInformation() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
-		string input;
+		Menu* tempMenuObj = new Menu(true);
+		string searchTicketID = "";
 
-		cout << "Insert the Ticket id to search for ticket:";
-		cin >> input;
+		cout << endl;
+		tempMenuObj->drawLine('-', MAX_WIDTH);
+		cout << endl;
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("View Tickect Information", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		cout << endl;
+
+		searchTicketID = getInput("Insert the Ticket id to search for ticket:");
+
+		cout << endl << endl;
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			if (input == purchaseRecord.getItem(i).getTicket().TicketID) {
-				cout << purchaseRecord.getItem(i).toString() << endl;
+			if (searchTicketID == purchaseRecord.getItem(i).getTicket().TicketID) {
+				tempMenuObj->setTab(1);
+				cout << "TicketId: " << purchaseRecord.getItem(i).getTicket().TicketID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Source Station Id: " << purchaseRecord.getItem(i).getTicket().sourceStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Destination Station Id: " << purchaseRecord.getItem(i).getTicket().destinationStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Amount: " << purchaseRecord.getItem(i).getTicket().ticketAmount << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Price: " << "RM" << purchaseRecord.getItem(i).getTicket().price << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Departure Time: " << purchaseRecord.getItem(i).getTicket().depatureTime << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer ID: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer Name: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Passport Number // IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				delete tempMenuObj;
 			}
 			else {
-				cout << "Please enter the correct Ticket ID:";
+				cout << "";
 			}
+
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
 		}
 	}
 
