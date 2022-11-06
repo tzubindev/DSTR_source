@@ -217,6 +217,7 @@ public:
 		while (curNode != NULL) {
 			if (cnt == y) {
 				curNode->data = elem;
+				break;
 			}
 			else {
 				curNode = curNode->down;

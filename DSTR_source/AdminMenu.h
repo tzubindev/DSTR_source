@@ -29,20 +29,19 @@ public:
 		string stationID;
 		string temp, temp2;
 		for (int i = 0; i < Stations.getSize(); i++) {
+			cout << endl;
 			cout << "Station ID: " << Stations.getItem(i, 0) << endl;
 			cout << "Station Name: " << Stations.getItem(i, 1) << endl;
-			cout << endl << endl;
+		
 
 			tempMenuObj->drawLine('-', MAX_WIDTH);
+			cout << endl;
 			
 		}
 
-		ConsoleColor().setColor(Color.YELLOW);
-		tempMenuObj->drawLine('*', MAX_WIDTH);
-		ConsoleColor();
-
 		
 		stationID = getInput("Please enter the station ID to edit it:");
+		cout << endl;
 		for (int i = 0; i < stationID.length(); i++) stationID[i] = toupper(stationID[i]);
 		for (int i = 0; i < Stations.getSize(); i++) {
 			if (stationID == Stations.getItem(i, 0)) {
@@ -57,6 +56,7 @@ public:
 
 				cout << "\tNearby Sightseeing Spots\n";
 				temp = Stations.getItem(i, 10);
+				tempMenuObj->drawLine('-', MAX_WIDTH);
 				cout << endl;
 				string option;
 				cout << "1- Station Name \n2- Price\n3- Time" << endl;
@@ -76,16 +76,56 @@ public:
 				switch (stoi(option))
 				{
 				case 1:
-					input = getInput("Enter the new name of the staion : ");
+					input = getInput("Enter the new name of the staion : ", false);
+					for (char ch : input) {
+						if (isdigit(ch)) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
 					Stations.setItem(input, i, 1);
+					cout << endl;
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Station Name Successfuly Updated", 6);
+					cout <<endl<<endl;
 					break;
 				case 2:
 					input = getInput("Enter the new price:");
+					for (char ch : input) {
+						if (!isdigit(ch)) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
 					Stations.setItem(input, i, 8);
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Price Successfuly Updated", 6);
+					cout <<endl<<endl;
 					break;
 				case 3:
 					input = getInput("Enter the new time:");
+					for (char ch : input) {
+						if (!isdigit(ch)) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
 					Stations.setItem(input, i, 9);
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Time Successfuly Updated", 6);
+					cout << endl<<endl;
 					break;
 				default:
 					printError(Error().WRONG_INPUT);
@@ -101,6 +141,37 @@ public:
 				cout << endl << endl;
 				cout << "\tNearby Sightseeing Spots\n";
 				temp = Stations.getItem(i, 10);
+				int cnt = 0;
+
+				// count
+				for (char ch : temp) {
+					if (ch == ';') {
+						cnt++;
+					}
+				}
+
+				//Queue here
+				Queue<string> q(cnt);
+
+				//push item to queue
+
+				for (char ch : temp) {
+					if (ch == ';') {
+						q.enqueue(temp2);
+						temp2 = "";
+					}
+					else temp2 += ch;
+				}
+
+				int size = q.size();
+				for (int j = 1; j <= size; j++) {
+					cout << "\t" << j << ") " << q.dequeue() << endl;
+				}
+
+				cout << endl;
+				ConsoleColor().setColor(Color.YELLOW);
+				tempMenuObj->drawLine('*', MAX_WIDTH);
+				ConsoleColor();
 			}
 		}
 	}
@@ -151,6 +222,7 @@ public:
 
 		cout << endl << endl;
 		for (int i = 0; i < searchTicketID.length(); i++) searchTicketID[i] = toupper(searchTicketID[i]);
+
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			if (searchTicketID == purchaseRecord.getItem(i).getTicket().TicketID) {
 				tempMenuObj->setTab(1);
@@ -340,7 +412,7 @@ private:
 		return final;
 	}
 
-	string getInput(string type) {
+	string getInput(string type, bool lower = true) {
 
 		bool isTrimmedLeft = false;
 		ConsoleColor().setColor(Color.LIGHT_BLUE);
@@ -349,12 +421,20 @@ private:
 		string input, final = "";
 		cin >> input;
 		ConsoleColor().setColor(Color.WHITE);
-
-		// lowercase
-		for (char ch : input) {
-			if (ch != ' ') isTrimmedLeft = true;
-			if (isTrimmedLeft)
-				final += tolower(ch);
+		if (lower) {
+			// lowercase
+			for (char ch : input) {
+				if (ch != ' ') isTrimmedLeft = true;
+				if (isTrimmedLeft)
+					final += tolower(ch);
+			}
+		}
+		else {
+			for (char ch : input) {
+				if (ch != ' ') isTrimmedLeft = true;
+				if (isTrimmedLeft)
+					final += (ch);
+			}
 		}
 		return final;
 	}
