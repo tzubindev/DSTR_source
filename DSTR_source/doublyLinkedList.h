@@ -34,7 +34,7 @@ public:
         this->tail = nullptr;
     }
 
-    void insertAtbeginning(T elem)
+    void insertAtBeginning(T elem)
     {
         DoublyNode<T>* newNode = new DoublyNode<T>;
         newNode->prev = nullptr;
@@ -59,12 +59,13 @@ public:
         DoublyNode<T>* newNode = new DoublyNode<T>();
         newNode->data = elem;
         newNode->next = NULL;
-        newNode->prev = tail;
-        tail = newNode;
         if (head == NULL)
-            head = newNode;
-        else
-            newNode->prev->next = newNode;
+            head = tail = newNode;
+        else {
+            tail->next = newNode;
+            newNode->prev = tail;
+            tail = tail->next;
+        }
         size++;
     }
 
@@ -202,11 +203,14 @@ public:
 
            if (head->next != NULL) head = head->next;
            else head = NULL;
-           delete(toDeleteNode);
+           delete toDeleteNode;
            if (head != NULL)
                head->prev = NULL;
+           size--;
        }
-       size--;
+       else {
+           cout << "The head is null\n";
+       }
     }
 
     void deleteLast() {
