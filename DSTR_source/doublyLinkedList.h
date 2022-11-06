@@ -195,6 +195,36 @@ public:
 
 	}
 
+	void setItem(T elem, int x, int y) {
+		DoublyNode<T>* curNode = head;
+		int cnt = 0;
+
+		if (x >= size || y >= height) {
+			cout << "Out of range in get item\n";
+		}
+
+		while (curNode != NULL) {
+			if (cnt == x) {
+				break;
+			}
+			else {
+				curNode = curNode->next;
+				cnt++;
+			}
+		}
+
+		cnt = 0;
+		while (curNode != NULL) {
+			if (cnt == y) {
+				curNode->data = elem;
+			}
+			else {
+				curNode = curNode->down;
+				cnt++;
+			}
+		}
+
+	}
 
 	void deleteFirst() {
 
