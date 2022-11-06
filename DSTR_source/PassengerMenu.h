@@ -553,7 +553,16 @@ public:
 	void registerPassenger() {
 		Menu* tempMenuObj = new Menu(true);
 
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("Register", 7);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		tempMenuObj->setTab(3);
 		string local = tempMenuObj->getInput("LOCAL? (y/n)");
+		cout << endl;
 		if (local == "y" || local == "n") {
 			// Create customer Object
 			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
@@ -565,16 +574,12 @@ public:
 			cout << "CONFIRM PASSWORD > ";
 			string cnfPassword = tempMenuObj->getPassword();
 
-			if (Validation().validate(name, Validation().NAME)) {
-				if (Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) {
-					if (password == cnfPassword && password.length()>3)cout << "alright";
-					else cout << "password not same" << endl;
-				}
-				else
-					cout << "number wrong" << endl;
+			if (Validation().validate(name, Validation().NAME) &&
+				(Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) &&
+				password == cnfPassword && password.length() > 3) {
+				cout << "Account is registered!" << endl;
 			}
-			else
-				cout << "Name wrong" << endl;
+			else printError(Error().WRONG_INPUT);
 
 		}
 		else {
