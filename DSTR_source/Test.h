@@ -21,7 +21,7 @@ void Test()
 				adminMenu->editSubwayInformation();
 			}
 			else {
-				PassengerMenu* passengerMenu = new PassengerMenu();
+				PassengerMenu* passengerMenu = new PassengerMenu(storage);
 				string input;
 				cout << "1- Log in \n2- Register" << endl;
 				cin >> input;

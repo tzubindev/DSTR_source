@@ -16,7 +16,9 @@ private:
 
 public:
 
-	PassengerMenu() {}
+	PassengerMenu(TemporaryStorage* TempStorage) {
+		storage = TempStorage;
+	}
 
 	PassengerMenu(TemporaryStorage* TempStorage, bool isRegistered) {
 		registered = isRegistered;
@@ -414,6 +416,9 @@ public:
 		case Error().WRONG_INPUT:
 			ErrorStr = "Wrong input is given!";
 			break;
+		case Error().DUPLICATED_DATA:
+			ErrorStr = "IC or Passport NO has been used to register!";
+			break;
 		}
 
 		// Error Displaying
@@ -552,7 +557,7 @@ public:
 
 	void registerPassenger() {
 		Menu* tempMenuObj = new Menu(true);
-		LinkedList<Customer> Customers = storage->getPassangerAccounts();
+		DoublyLinkedList<Customer> Customers = storage->getPassengerAccounts();
 
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
@@ -566,10 +571,12 @@ public:
 		cout << endl;
 		if (local == "y" || local == "n") {
 			// Create customer Object
-			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
+			string name = tempMenuObj->getInput("NAME (at least 3 characters, with no space)");
 			string number = "";
-			if (local == "y") number = tempMenuObj->getInput("IC (only digit)");
-			else number = tempMenuObj->getInput("PASSPORT NO");
+			if (local == "y")
+				number = tempMenuObj->getInput("IC (only digit)");
+			else 
+				number = tempMenuObj->getInput("PASSPORT NO");
 			cout << "PASSWORD (at least 4 characters) > ";
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
@@ -737,7 +744,7 @@ public:
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
-		cout << "Passanger Login\n";
+		cout << "Passenger Login\n";
 		ConsoleColor().setColor(Color.WHITE);
 
 		tempMenuObj->drawLine('=', MAX_WIDTH);
@@ -751,7 +758,7 @@ public:
 		cout << "PASSWORD > ";
 		string password = tempMenuObj->getPassword();
 
-		LinkedList<Customer> Details = storage->getPassangerAccounts();
+		DoublyLinkedList<Customer> Details = storage->getPassengerAccounts();
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
 			usernameChecked = false;

@@ -19,14 +19,12 @@ public:
 
     LinkedList()
     {
-        cout << "--- Constructing the LinkedList object ---" << endl;
         this->size = 0;
-        this->head = nullptr;
+        this->head = NULL;
     }
 
     void insertAtbeginning(T elem)
     {
-
         Node<T>* newNode = new Node<T>;
         newNode->data = elem;
         if (head == NULL) {
@@ -43,18 +41,17 @@ public:
     // update this
     void insertAtEnd(T elem)
     {
-        /*cout << "Inserting = " << elem << endl;*/
-        Node<T>* newNode = new Node<T>;
+        Node<T>* newNode = new Node<T>();
         newNode->data = elem;
-        newNode->next = nullptr;
-        if (head == nullptr) {
+        newNode->next = NULL;
+        if (head == NULL) {
             head = newNode;
         }
         else {
-            Node<T>* last = head;
-            while (last->next != nullptr)
-                last = last->next;
-            last->next = newNode;
+            Node<T>* tail = head;
+            while (tail->next != NULL)
+                tail = tail->next;
+            tail->next = newNode;
         }
         size++;
     }

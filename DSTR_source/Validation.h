@@ -17,7 +17,6 @@ public:
 		switch (type) {
 		case NAME:
 			if (str.length() < 3) return false;
-			cout << str;
 			for (int i = 0; i < str.length();i++) {
 				if (isdigit(str[i])) return false;
 				if (!isalpha(str[i]) && str[i] != ' ') return false;
