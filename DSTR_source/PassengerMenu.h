@@ -581,19 +581,66 @@ public:
 		}
 	}
 
-	//Not done yet, please format the output beatifully
+	
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu(true);
+
+		cout << endl;
+		tempMenuObj->drawLine('-', MAX_WIDTH);
+		cout << endl;
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("View Purchase Transaction History", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		cout << endl;
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			if (customerID == purchaseRecord.getItem(i).getTicket().getCustomer().getCustomerID()) {
-				cout << purchaseRecord.getItem(i).toString() << endl;
+				tempMenuObj->makeTitleBlock(purchaseRecord.getItem(i).getTransactionId(), 1);
+				cout << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "TicketId: " << purchaseRecord.getItem(i).getTicket().TicketID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Source Station Id: " << purchaseRecord.getItem(i).getTicket().sourceStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Destination Station Id: " << purchaseRecord.getItem(i).getTicket().destinationStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Amount: " << purchaseRecord.getItem(i).getTicket().ticketAmount << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Price: " << "RM" << purchaseRecord.getItem(i).getTicket().price << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Departure Time: " << purchaseRecord.getItem(i).getTicket().depatureTime << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer ID: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer Name: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Passport Number // IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				cout << endl;
 			}
 			else
 			{
-				cout << "Nothing to show";
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				cout << endl;
+				tempMenuObj->setTab(7);
+				cout << "No Purchase Transaction Found";
+				cout << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				ConsoleColor().setColor(Color.YELLOW);
+				tempMenuObj->drawLine('*', MAX_WIDTH);
+				ConsoleColor();
 			}
 		}
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+		delete tempMenuObj;
 	}
 
 	void deletePurchaseTransaction() {
