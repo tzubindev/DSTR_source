@@ -14,26 +14,34 @@ void Test()
 		while (mainMenu->getErrorStatus()) {
 			mainMenu = new Menu();
 		}
-
 		if (!mainMenu->getExitStatus()) {
 			if (mainMenu->getUserType() == 'A') {
 
 				AdminMenu* adminMenu = new AdminMenu(storage);
-				adminMenu->deleteTransaction();
-				/*adminMenu->viewPurchaseTransactions();*/
+				adminMenu->viewPurchaseTransactions();
 			}
 			else {
-
-				// here login
-				//passanger login in test file
-				//return bool
-				/*PassengerMenu* login = PassengerMenu->login();*/
-
-				PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
-				//passengerMenu->login();
-				////passengerMenu->viewPurchaseTransactionHistory();
-				////passengerMenu->viewDetailsBetweenTwoCities();
-				//passengerMenu->purchaseSubwayTicket();
+				PassengerMenu* passengerMenu = new PassengerMenu();
+				string input;
+				cout << "1- Log in \n2- New User" << endl;
+				cin >> input;
+				if (input == "1" || input == "one") {
+					PassengerMenu* passengerMenu2 = new PassengerMenu(storage, true);
+					if (passengerMenu2->login()) {
+						passengerMenu2->purchaseSubwayTicket();
+					}
+					else
+					{
+						passengerMenu->printError(Error().WRONG_INPUT);
+					}
+				}
+				else if (input == "2" || input == "two") {
+					passengerMenu->purchaseSubwayTicket();
+				}
+				else
+				{
+					passengerMenu->printError(Error().WRONG_INPUT);
+				}
 			}
 		}
 		else break;
