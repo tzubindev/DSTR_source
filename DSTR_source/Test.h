@@ -29,11 +29,11 @@ void Test()
 				//return bool
 				/*PassengerMenu* login = PassengerMenu->login();*/
 
-				PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
-				passengerMenu->login();
-				//passengerMenu->viewPurchaseTransactionHistory();
-				//passengerMenu->viewDetailsBetweenTwoCities();
-				passengerMenu->purchaseSubwayTicket();
+				//PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
+				//passengerMenu->login();
+				////passengerMenu->viewPurchaseTransactionHistory();
+				////passengerMenu->viewDetailsBetweenTwoCities();
+				//passengerMenu->purchaseSubwayTicket();
 			}
 		}
 		else break;

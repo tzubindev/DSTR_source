@@ -221,10 +221,8 @@ public:
 		return true;
 	}
 
-private:
-
 	bool login() {
-		Menu *tempMenuObj = new Menu(true);
+		Menu* tempMenuObj = new Menu(true);
 		tempMenuObj->drawLine('=', MAX_WIDTH);
 		tempMenuObj->setTab(5);
 
@@ -274,6 +272,8 @@ private:
 		free(tempMenuObj);
 		return false;
 	}
+
+private:
 
 	string getInput() {
 
