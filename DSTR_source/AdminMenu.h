@@ -13,7 +13,7 @@ private:
 
 	// Implementation
 public:
-	AdminMenu(TemporaryStorage *TempStorage) {
+	AdminMenu(TemporaryStorage* TempStorage) {
 		storage = TempStorage;
 
 		for (int i = 0; i < 10; i++) cout << '\n';
@@ -31,50 +31,16 @@ public:
 		for (int i = 0; i < Stations.getSize(); i++) {
 			cout << "Station ID: " << Stations.getItem(i, 0) << endl;
 			cout << "Station Name: " << Stations.getItem(i, 1) << endl;
-			cout << "\tDistance\t: " << Stations.getItem(i, 7) << " KM" << endl;
-			string foo = Stations.getItem(i, 8);
-			foo = foo.substr(0, 4);
-			cout << "\tPrice\t\t: " << "RM " << foo << endl;
-			cout << "\tTime\t\t: " << Stations.getItem(i, 9) << " mins" << endl;
 			cout << endl << endl;
 
-			cout << "\tNearby Sightseeing Spots\n";
-			temp = Stations.getItem(i, 10);
-
-			//int cnt = 0;
-
-			//// count
-			//for (char ch : temp) {
-			//	if (ch == ';') {
-			//		cnt++;
-			//	}
-			//}
-
-			////Queue here
-			//Queue<string> q(cnt);
-
-			////push item to queue
-
-			//for (char ch : temp) {
-			//	if (ch == ';') {
-			//		q.enqueue(temp2);
-			//		temp2 = "";
-			//	}
-			//	else temp2 += ch;
-			//}
-
-			//int size = q.size();
-			//for (int j = 1; j <= size; j++) {
-			//	cout << "\t" << j << ") " << q.dequeue() << endl;
-			//}
 
 			cout << endl;
 			ConsoleColor().setColor(Color.YELLOW);
 			tempMenuObj->drawLine('*', MAX_WIDTH);
 			ConsoleColor();
 		}
-		cout << "Please enter the station ID to edit it:";
-		cin >> stationID;
+		stationID = getInput("Please enter the station ID to edit it:");
+
 		for (int i = 0; i < Stations.getSize(); i++) {
 			if (stationID == Stations.getItem(i, 0)) {
 				cout << "Station ID: " << Stations.getItem(i, 0) << endl;
@@ -89,28 +55,37 @@ public:
 				cout << "\tNearby Sightseeing Spots\n";
 				temp = Stations.getItem(i, 10);
 
-				int option;
+				string option;
 				cout << "1- Station Name \n2- Price\n3- Time" << endl;
-				cout << "Enter the number thing that you want to edit:";
-				cin >> option;
-				string input;
+				option = getInput("Enter the number thing that you want to edit:");
 
-				switch (option)
+				string input;
+				for (char ch : option) {
+					if (!isdigit(ch)) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
+				}
+				if (option.length() == 0) {
+					printError(Error().WRONG_INPUT);
+					return;
+				}
+				switch (stoi(option))
 				{
 				case 1:
-					cout << "Enter the new name of the staion:";
-					cin >> input;
+					input = getInput("Enter the new name of the staion : ");
+					// old station = NULL
+					// new station name = ""
 					break;
 				case 2:
-					cout << "Enter the new distance:";
-					cin >> input;
+					input = getInput("Enter the new distance:");
 					break;
 				case 3:
-					cout << "Enter the new price:";
-					cin >> input;
+					input = getInput("Enter the new price:");
 					break;
 				default:
-					break;
+					printError(Error().WRONG_INPUT);
+					return;
 				}
 				cout << "Station ID: " << Stations.getItem(i, 0) << endl;
 				cout << "Station Name: " << Stations.getItem(i, 1) << endl;
@@ -222,7 +197,7 @@ public:
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
 		cout << endl;
-		
+
 		if (Transactions.getSize() == 0) {
 			tempMenuObj->setTab(4);
 			cout << "No Data!";
@@ -243,7 +218,7 @@ public:
 
 		cout << endl;
 		string toDeleteID = tempMenuObj->getInput("TRANSACTION ID");
-		for (int i = 0; i < toDeleteID.length();i++) toDeleteID[i] = toupper(toDeleteID[i]);
+		for (int i = 0; i < toDeleteID.length(); i++) toDeleteID[i] = toupper(toDeleteID[i]);
 		bool isFound = false;
 
 		// check record
