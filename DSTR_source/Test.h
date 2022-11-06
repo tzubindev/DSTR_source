@@ -28,7 +28,7 @@ void Test()
 				if (input == "1" || input == "one") {
 					PassengerMenu* passengerMenu2 = new PassengerMenu(storage, true);
 					if (passengerMenu2->login()) {
-						passengerMenu2->deletePurchaseTransaction();
+						passengerMenu2->purchaseSubwayTicket();
 					}
 					else
 					{

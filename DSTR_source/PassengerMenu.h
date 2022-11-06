@@ -18,7 +18,7 @@ public:
 
 	PassengerMenu() {}
 
-	PassengerMenu(TemporaryStorage *TempStorage, bool isRegistered) {
+	PassengerMenu(TemporaryStorage* TempStorage, bool isRegistered) {
 		registered = isRegistered;
 		storage = TempStorage;
 		for (int i = 0; i < 10; i++) cout << '\n';
@@ -116,7 +116,7 @@ public:
 			}
 		}
 		else {
-			for (int i = Stations.getSize() -1 ; i >= 0; i--) {
+			for (int i = Stations.getSize() - 1; i >= 0; i--) {
 				cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
 				cout << endl << endl;
 
@@ -188,7 +188,7 @@ public:
 	}
 
 
-	
+
 	void searchStationDetails() {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
@@ -304,7 +304,7 @@ public:
 		cout << endl;
 		tempMenuObj->setTab(4);
 		for (int i = 0; i < Stations.getSize(); i++) {
-			cout << "(" << i << ") "<<Stations.getItem(i, 1);
+			cout << "(" << i << ") " << Stations.getItem(i, 1);
 			if (i % 3 != 2) {
 				cout << "\t";
 				if (Stations.getItem(i, 1).length() <= 10)
@@ -429,125 +429,132 @@ public:
 	void purchaseSubwayTicket() {
 
 		int result = -1;
-		if (registered) {
-			Menu* tempMenuObj = new Menu(true);
+		Menu* tempMenuObj = new Menu(true);
 
-			// get two station id
-			DoublyLinkedList<string> Stations = storage->getSubwayStations();
-			string stationA = "", stationB = "";
-			cout << endl;
-			tempMenuObj->setTab(4);
-			for (int i = 0; i < Stations.getSize(); i++) {
-				cout << "(" << i << ") " << Stations.getItem(i, 1);
-				if (i % 3 != 2) {
+		// get two station id
+		DoublyLinkedList<string> Stations = storage->getSubwayStations();
+		string stationA = "", stationB = "";
+		cout << endl;
+		tempMenuObj->setTab(4);
+		for (int i = 0; i < Stations.getSize(); i++) {
+			cout << "(" << i << ") " << Stations.getItem(i, 1);
+			if (i % 3 != 2) {
+				cout << "\t";
+				if (Stations.getItem(i, 1).length() <= 10)
 					cout << "\t";
-					if (Stations.getItem(i, 1).length() <= 10)
-						cout << "\t";
-				}
-				else {
-					cout << "\n\n";
-					tempMenuObj->setTab(4);
-				}
 			}
-			for (int i = 0; i < 4; i++) cout << endl;
+			else {
+				cout << "\n\n";
+				tempMenuObj->setTab(4);
+			}
+		}
+		for (int i = 0; i < 4; i++) cout << endl;
 
-			stationA = tempMenuObj->getInput("CITY A(ENTER NUMBER)");
-			stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
-			for (int i = 0; i < 2; i++) cout << endl;
+		stationA = tempMenuObj->getInput("CITY A(ENTER NUMBER)");
+		stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
+		for (int i = 0; i < 2; i++) cout << endl;
 
-			// Validate data
-			int distance = 0, time = 0;
-			double fare = 0;
-			bool isDigit = true;
-			for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
+		// Validate data
+		int distance = 0, time = 0;
+		double fare = 0;
+		bool isDigit = true;
+		for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
+		if (isDigit) {
+			for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
 			if (isDigit) {
-				for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
-				if (isDigit) {
-					if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
-						0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
-					{
-						// get two stations ID
-						bool AisFound = false;
-						bool BisFound = false;
-						bool splitID = false;
-						string temp = "";
+				if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
+					0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
+				{
+					// get two stations ID
+					bool AisFound = false;
+					bool BisFound = false;
+					bool splitID = false;
+					string temp = "";
 
-						// Step 1 get ID and collect data
-						for (int i = 0; i < Stations.getSize(); i++) {
-							string id = Stations.getItem(i);
-							temp = "";
-							for (char ch : id) {
-								if (splitID) temp += ch;
-								if (ch == '_') splitID = true;
-							}
-							splitID = false;
-							// Stations
-							/*[0] ID
-							// [1] Name
-							// [2] Name -> Prev
-							// [3] Dist
-							// [4] Fare
-							// [5] Time
-							// [6] Name -> Next
-							// [7] Dist
-							// [8] Fare
-							// [9] Time
-							// [10] Nearby Spots */
+					// Step 1 get ID and collect data
+					for (int i = 0; i < Stations.getSize(); i++) {
+						string id = Stations.getItem(i);
+						temp = "";
+						for (char ch : id) {
+							if (splitID) temp += ch;
+							if (ch == '_') splitID = true;
+						}
+						splitID = false;
+						// Stations
+						/*[0] ID
+						// [1] Name
+						// [2] Name -> Prev
+						// [3] Dist
+						// [4] Fare
+						// [5] Time
+						// [6] Name -> Next
+						// [7] Dist
+						// [8] Fare
+						// [9] Time
+						// [10] Nearby Spots */
 
 
-							// Step 1.1 compare chosen and current id
-							if (temp == stationA) AisFound = true;
-							if (temp == stationB) BisFound = true;
+						// Step 1.1 compare chosen and current id
+						if (temp == stationA) AisFound = true;
+						if (temp == stationB) BisFound = true;
 
-							//cout << temp << ' ' << stationA << ' ' << stationB << endl;
+						//cout << temp << ' ' << stationA << ' ' << stationB << endl;
 
-							if (AisFound && BisFound) {
-								// case out
-								break;
-							}
-							else if (AisFound || BisFound)
-								// A is found or B is Found
-								// Start collecting data
-							{
-								distance += stoi(Stations.getItem(i, 7));
-								fare += stod(Stations.getItem(i, 8));
-								time += stoi(Stations.getItem(i, 9));
-							}
+						if (AisFound && BisFound) {
+							// case out
+							break;
+						}
+						else if (AisFound || BisFound)
+							// A is found or B is Found
+							// Start collecting data
+						{
+							distance += stoi(Stations.getItem(i, 7));
+							fare += stod(Stations.getItem(i, 8));
+							time += stoi(Stations.getItem(i, 9));
 						}
 					}
 				}
-				else { result = Error().WRONG_INPUT; }
 			}
-
-			// Build ticket object
-			// Ticket(ticketId, stationAid, stationBid, ticketAmount, (double)ticket, depatureTime, customerobj);
-			isDigit = true;
-			string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
-			for (char ch : ticketAmount) {
-				if (!isdigit(ch)) {
-					isDigit = false;
-					break;
-				}
-			}
-
-			string depatureTime = "";
-			for (int i = 0; i < (sizeof(storage->trainDepatureTime) / sizeof(string)) - 1; i++) {
-				if (storage->trainDepatureTime[i] <= storage->getCurrentTime() && storage->getCurrentTime() < storage->trainDepatureTime[i + 1])
-					depatureTime = storage->trainDepatureTime[i + 1];
-			}
-
-			Ticket newTicket = Ticket(storage->getCurrentTicketId(), "SID_" + stationA, "SID_" + stationB, stoi(ticketAmount), fare, depatureTime, currentCustomerObj);
-			Transaction newTransaction = Transaction(storage->getCurrentTransactionId(), newTicket);
-			storage->addTransaction(newTransaction);
-
-			result = 1;
+			else { result = Error().WRONG_INPUT; }
 		}
-		else {
+
+		// Build ticket object
+		// Ticket(ticketId, stationAid, stationBid, ticketAmount, (double)ticket, depatureTime, customerobj);
+		isDigit = true;
+		string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
+		for (char ch : ticketAmount) {
+			if (!isdigit(ch)) {
+				isDigit = false;
+				break;
+			}
+		}
+
+		string depatureTime = "";
+		for (int i = 0; i < (sizeof(storage->trainDepatureTime) / sizeof(string)) - 1; i++) {
+			if (storage->trainDepatureTime[i] <= storage->getCurrentTime() && storage->getCurrentTime() < storage->trainDepatureTime[i + 1])
+				depatureTime = storage->trainDepatureTime[i + 1];
+		}
+
+		Ticket newTicket = Ticket(storage->getCurrentTicketId(), "SID_" + stationA, "SID_" + stationB, stoi(ticketAmount), fare, depatureTime, currentCustomerObj);
+		Transaction newTransaction = Transaction(storage->getCurrentTransactionId(), newTicket);
+		storage->addTransaction(newTransaction);
+
+		result = 1;
+
+
+
+		switch (result) {
+		case Error().WRONG_INPUT:
+			cout << "something" << endl;
+			return;
+		}
+	}
+
+	void registerPassenger() {
 		Menu* tempMenuObj = new Menu(true);
-		// Create Transaction object here
+
 		string local = tempMenuObj->getInput("LOCAL? (y/n)");
 		if (local == "y" || local == "n") {
-
 			// Create customer Object
 			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
 			string number = "";
@@ -557,148 +564,7 @@ public:
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
 			string cnfPassword = tempMenuObj->getPassword();
-
-			// Validated
-			if (Validation().validate(name, Validation().NAME) &&
-				(Validation().validate(number, Validation().PASSPORT) || Validation().validate(number, Validation().IC)) &&
-				password == cnfPassword && password.length() > 3 && name.length() >= 3) {
-
-				// check duplicated data
-				DoublyLinkedList<Transaction> record = storage->getTicketPurchaseRecord();
-				for (int i = 0; i < record.getSize() - 1; i++) {
-					if (record.getItem(i).getTicket().getCustomer().getPassportNo() == number ||
-						record.getItem(i).getTicket().getCustomer().getIdentityNo() == number)
-						result = Error().DUPLICATED_DATA;
-				}
-				bool isLocal = (local == "y") ? true : false;
-				Customer newCustomer = Customer(storage->getCurrentCustomerId(), name, number, password, isLocal);
-
-				// get two station id
-				DoublyLinkedList<string> Stations = storage->getSubwayStations();
-				string stationA = "", stationB = "";
-				cout << endl;
-				tempMenuObj->setTab(4);
-				for (int i = 0; i < Stations.getSize(); i++) {
-					cout << "(" << i << ") " << Stations.getItem(i, 1);
-					if (i % 3 != 2) {
-						cout << "\t";
-						if (Stations.getItem(i, 1).length() <= 10)
-							cout << "\t";
-					}
-					else {
-						cout << "\n\n";
-						tempMenuObj->setTab(4);
-					}
-				}
-				for (int i = 0; i < 4; i++) cout << endl;
-
-				stationA = tempMenuObj->getInput("CITY A(ENTER NUMBER)");
-				stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
-				for (int i = 0; i < 2; i++) cout << endl;
-
-				// Validate data
-				int distance = 0, time = 0;
-				double fare = 0;
-				bool isDigit = true;
-				for (char ch : stationA) if (!isdigit(ch)) { isDigit = false; break; }
-				if (isDigit) {
-					for (char ch : stationB) if (!isdigit(ch)) { isDigit = false; break; }
-					if (isDigit) {
-						if (0 <= stoi(stationA) && stoi(stationA) <= (Stations.getSize() - 1) &&
-							0 <= stoi(stationB) && stoi(stationB) <= (Stations.getSize() - 1))
-						{
-							// get two stations ID
-							bool AisFound = false;
-							bool BisFound = false;
-							bool splitID = false;
-							string temp = "";
-
-							// Step 1 get ID and collect data
-							for (int i = 0; i < Stations.getSize(); i++) {
-								string id = Stations.getItem(i);
-								temp = "";
-								for (char ch : id) {
-									if (splitID) temp += ch;
-									if (ch == '_') splitID = true;
-								}
-								splitID = false;
-								// Stations
-								/*[0] ID
-								// [1] Name
-								// [2] Name -> Prev
-								// [3] Dist
-								// [4] Fare
-								// [5] Time
-								// [6] Name -> Next
-								// [7] Dist
-								// [8] Fare
-								// [9] Time
-								// [10] Nearby Spots */
-
-
-								// Step 1.1 compare chosen and current id
-								if (temp == stationA) AisFound = true;
-								if (temp == stationB) BisFound = true;
-
-								//cout << temp << ' ' << stationA << ' ' << stationB << endl;
-
-								if (AisFound && BisFound) {
-									// case out
-									break;
-								}
-								else if (AisFound || BisFound)
-									// A is found or B is Found
-									// Start collecting data
-								{
-									distance += stoi(Stations.getItem(i, 7));
-									fare += stod(Stations.getItem(i, 8));
-									time += stoi(Stations.getItem(i, 9));
-								}
-							}
-						}
-					}
-					else { result = Error().WRONG_INPUT; }
-				}
-
-				// Build ticket object
-				// Ticket(ticketId, stationAid, stationBid, ticketAmount, (double)ticket, depatureTime, customerobj);
-				isDigit = true;
-				string ticketAmount = tempMenuObj->getInput("TICKET AMOUNT");
-				for (char ch : ticketAmount) {
-					if (!isdigit(ch)) {
-						isDigit = false;
-						break;
-					}
-				}
-
-				string depatureTime = "";
-				for (int i = 0; i < (sizeof(storage->trainDepatureTime) / sizeof(string)) - 1; i++) {
-					if (storage->trainDepatureTime[i] <= storage->getCurrentTime() && storage->getCurrentTime() < storage->trainDepatureTime[i + 1])
-						depatureTime = storage->trainDepatureTime[i + 1];
-				}
-				storage->addPassengerAccount(newCustomer);
-				Ticket newTicket = Ticket(storage->getCurrentTicketId(), "SID_" + stationA, "SID_" + stationB, stoi(ticketAmount), fare, depatureTime, newCustomer);
-				Transaction newTransaction = Transaction(storage->getCurrentTransactionId(), newTicket);
-				storage->addTransaction(newTransaction);
-
-			}
-			else {
-				result = Error().WRONG_INPUT;
-			}
 		}
-		else {
-			result = Error().WRONG_INPUT;
-		}
-
-		result = true;
-		}
-
-
-		switch(result){
-		case Error().WRONG_INPUT:
-			cout << "something" << endl;
-			return;
-		}	
 	}
 
 	//Not done yet, please format the output beatifully
@@ -761,7 +627,7 @@ public:
 						if (i == 0) Transactions.deleteFirst();
 						else if (i == Transactions.getSize() - 1) Transactions.deleteLast();
 						else Transactions.deleteItemAt(i);
-						
+
 
 						tempMenuObj->setTab(2);
 						cout << toDeleteID << " is deleted successfully. " << endl;
@@ -784,7 +650,7 @@ public:
 		}
 
 
-		
+
 	}
 
 	bool login() {
@@ -826,8 +692,8 @@ public:
 				}
 				if (isEnd) break;
 			}
-			if (PWcorrect && UNcorrect) { 
-				
+			if (PWcorrect && UNcorrect) {
+
 				// use customerID to find customer object 
 				// do for loop to check every object in the passanger accounts
 				// if ic or passport no == to item.passportno || ic or passport no == to item.identity
@@ -838,7 +704,8 @@ public:
 							currentCustomerObj = Details.getItem(i);
 					}
 				}
-				return true; }
+				return true;
+			}
 		}
 		free(tempMenuObj);
 		return false;
