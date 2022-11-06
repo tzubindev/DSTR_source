@@ -15,7 +15,9 @@ private:
 
 public:
 
-	PassengerMenu() {}
+	PassengerMenu(TemporaryStorage* TempStorage) {
+		storage = TempStorage;
+	}
 
 	PassengerMenu(TemporaryStorage* TempStorage, bool isRegistered) {
 		registered = isRegistered;
@@ -413,6 +415,9 @@ public:
 		case Error().WRONG_INPUT:
 			ErrorStr = "Wrong input is given!";
 			break;
+		case Error().DUPLICATED_DATA:
+			ErrorStr = "IC or Passport NO has been used to register!";
+			break;
 		}
 
 		// Error Displaying
@@ -551,6 +556,7 @@ public:
 
 	void registerPassenger() {
 		Menu* tempMenuObj = new Menu(true);
+		DoublyLinkedList<Customer> Customers = storage->getPassengerAccounts();
 
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
@@ -564,10 +570,12 @@ public:
 		cout << endl;
 		if (local == "y" || local == "n") {
 			// Create customer Object
-			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
+			string name = tempMenuObj->getInput("NAME (at least 3 characters, with no space)");
 			string number = "";
-			if (local == "y") number = tempMenuObj->getInput("IC (only digit)");
-			else number = tempMenuObj->getInput("PASSPORT NO");
+			if (local == "y")
+				number = tempMenuObj->getInput("IC (only digit)");
+			else 
+				number = tempMenuObj->getInput("PASSPORT NO");
 			cout << "PASSWORD (at least 4 characters) > ";
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
@@ -576,6 +584,15 @@ public:
 			if (Validation().validate(name, Validation().NAME) &&
 				(Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) &&
 				password == cnfPassword && password.length() > 3) {
+
+
+				// check duplication
+				for (int i = 0; i < Customers.getSize(); i++) {
+					if (Customers.getItem(i).getIdentityNo() == number || Customers.getItem(i).getPassportNo() == number) {
+						printError(Error().DUPLICATED_DATA);
+						return;
+					}
+				}
 				cout << "Account is registered!" << endl;
 			}
 			else printError(Error().WRONG_INPUT);
@@ -660,6 +677,15 @@ public:
 		ConsoleColor();
 		cout << endl;
 
+		if (Transactions.getSize() == 0) {
+			tempMenuObj->setTab(4);
+			cout << "No Data!";
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
+			return;
+		}
 		for (int i = 0; i < Transactions.getSize(); i++) {
 			if (customerID == Transactions.getItem(i).getTicket().customerObj.getCustomerID()) {
 				tempMenuObj->setTab(2);
@@ -686,35 +712,23 @@ public:
 
 		if (!isFound) printError(Error().WRONG_INPUT);
 		else {
-
 			for (int i = 0; i < Transactions.getSize(); i++) {
 				if (customerID == Transactions.getItem(i).getTicket().customerObj.getCustomerID()) {
-					if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
-						if (i == 0) Transactions.deleteFirst();
-						else if (i == Transactions.getSize() - 1) Transactions.deleteLast();
-						else Transactions.deleteItemAt(i);
-
-
-						tempMenuObj->setTab(2);
-						cout << toDeleteID << " is deleted successfully. " << endl;
-						cout << endl;
-						ConsoleColor().setColor(Color.YELLOW);
-						tempMenuObj->drawLine('*', MAX_WIDTH);
-						ConsoleColor();
-
-						delete tempMenuObj;
-
-						break;
-					}
-
-				}
-				else
-				{
-					printError(Error().WRONG_INPUT);
+					storage->deleteTransaction(toDeleteID);
+					break;
 				}
 			}
 		}
 
+		if (isFound) {
+			tempMenuObj->setTab(2);
+			cout << toDeleteID << " is deleted successfully. " << endl;
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
+		}
+		delete tempMenuObj;
 
 
 	}
@@ -726,7 +740,7 @@ public:
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
-		cout << "Passanger Login\n";
+		cout << "Passenger Login\n";
 		ConsoleColor().setColor(Color.WHITE);
 
 		tempMenuObj->drawLine('=', MAX_WIDTH);
@@ -740,7 +754,7 @@ public:
 		cout << "PASSWORD > ";
 		string password = tempMenuObj->getPassword();
 
-		LinkedList<Customer> Details = storage->getPassangerDetails();
+		DoublyLinkedList<Customer> Details = storage->getPassengerAccounts();
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
 			usernameChecked = false;

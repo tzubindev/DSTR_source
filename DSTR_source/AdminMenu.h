@@ -341,7 +341,7 @@ public:
 		string password = tempMenuObj->getPassword();
 
 		// Verification here [Ghassan]
-		LinkedList<string> Details = storage->getAdminDetails();
+		DoublyLinkedList<string> Details = storage->getAdminDetails();
 		string temp = "";
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {

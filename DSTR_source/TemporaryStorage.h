@@ -15,8 +15,8 @@ private:
 	// Data members
 	DoublyLinkedList<string> SubwayStations; 
 	DoublyLinkedList<Transaction> PurchaseRecord; 
-	LinkedList<string> AdminAccounts;
-	LinkedList<Customer> PassangerAccounts;
+	DoublyLinkedList<string> AdminAccounts;
+	DoublyLinkedList<Customer> PassengerAccounts;
 	int StationNumber = 8;
 	int currentTransactionId = 0;
 	int currentCustomerId = 0;
@@ -177,11 +177,14 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "010203040506","123456", true);
+		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506","123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		Transaction newTransactionObj2 = Transaction(getCurrentTransactionId(), newTicketObj);
 		Transaction newTransactionObj3 = Transaction(getCurrentTransactionId(), newTicketObj);
+
+		PassengerAccounts.insertAtEnd(newCustomerObj);
+
 		PurchaseRecord.insertAtEnd(newTransactionObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj2);
 		PurchaseRecord.insertAtEnd(newTransactionObj3);
@@ -194,19 +197,18 @@ public:
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
 
 		// Initialise Passanger accounts 
-		PassangerAccounts.insertAtEnd(newCustomerObj);
+		PassengerAccounts.insertAtEnd(newCustomerObj);
 
 
 	}
 
-	LinkedList<string> getAdminDetails() {
+	DoublyLinkedList<string> getAdminDetails() {
 		return AdminAccounts;
 
 	}
 
-	LinkedList<Customer> getPassangerDetails() {
-		return PassangerAccounts;
-
+	DoublyLinkedList<Customer> getPassengerAccounts() {
+		return PassengerAccounts;
 	}
 
 	// Output Data Object: Subway Stations
@@ -253,7 +255,7 @@ public:
 	}
 
 	void addPassengerAccount(Customer newCustomer) {
-		PassangerAccounts.insertAtEnd(newCustomer);
+		PassengerAccounts.insertAtEnd(newCustomer);
 	}
 
 	void addTransaction(Transaction newTransaction) {

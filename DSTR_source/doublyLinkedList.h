@@ -59,8 +59,10 @@ public:
 		DoublyNode<T>* newNode = new DoublyNode<T>();
 		newNode->data = elem;
 		newNode->next = NULL;
-		if (head == NULL)
-			head = tail = newNode;
+		if (head == NULL) {
+			head = newNode;
+			tail = head;
+		}
 		else {
 			tail->next = newNode;
 			newNode->prev = tail;
