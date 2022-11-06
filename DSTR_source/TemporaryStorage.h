@@ -180,7 +180,11 @@ public:
 		Customer newCustomerObj = Customer(getCurrentCustomerId(), "passanger1", "010203040506","123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
+		Transaction newTransactionObj2 = Transaction(getCurrentTransactionId(), newTicketObj);
+		Transaction newTransactionObj3 = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
+		PurchaseRecord.insertAtEnd(newTransactionObj2);
+		PurchaseRecord.insertAtEnd(newTransactionObj3);
 
 		ticketAmount = 4;
 
