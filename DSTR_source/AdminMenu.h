@@ -383,10 +383,12 @@ public:
 				string data;
 				switch (stoi(option))
 				{
+					// For example after selecting and entering the source station id to change 
+					// We need to change the detail in the selected ticket in the transactions doubly linkedlist
+					// but changing the information in the transactions doubly linked list is not working 
 				case 1:
 					input = getInput("Enter the new source station ID: ", false);
 					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
-
 						cout << endl;
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Source station Successfuly Updated", 6);
