@@ -213,6 +213,15 @@ public:
 		ConsoleColor();
 		cout << endl;
 		
+		if (Transactions.getSize() == 0) {
+			tempMenuObj->setTab(4);
+			cout << "No Data!";
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
+			return;
+		}
 		for (int i = 0; i < Transactions.getSize(); i++) {
 			tempMenuObj->setTab(2);
 			cout << "Transaction ID : " << Transactions.getItem(i).getTransactionId() << endl;
@@ -250,14 +259,14 @@ public:
 
 		}
 
-
-		tempMenuObj->setTab(2);
-		cout << toDeleteID << " is deleted successfully. " << endl;
-		cout << endl;
-		ConsoleColor().setColor(Color.YELLOW);
-		tempMenuObj->drawLine('*', MAX_WIDTH);
-		ConsoleColor();
-
+		if (isFound) {
+			tempMenuObj->setTab(2);
+			cout << toDeleteID << " is deleted successfully. " << endl;
+			cout << endl;
+			ConsoleColor().setColor(Color.YELLOW);
+			tempMenuObj->drawLine('*', MAX_WIDTH);
+			ConsoleColor();
+		}
 		delete tempMenuObj;
 	}
 

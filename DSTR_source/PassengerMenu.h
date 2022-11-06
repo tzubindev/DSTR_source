@@ -716,7 +716,76 @@ public:
 		}
 	}
 
-	void deletePurchaseTransaction();
+	void deletePurchaseTransaction() {
+		DoublyLinkedList<Transaction> Transactions = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu(true);
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("Delete Transaction", 6);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+		cout << endl;
+
+		for (int i = 0; i < Transactions.getSize(); i++) {
+			if (customerID == Transactions.getItem(i).getTicket().customerObj.getCustomerID()) {
+				tempMenuObj->setTab(2);
+				cout << "Transaction ID : " << Transactions.getItem(i).getTransactionId() << endl;
+				tempMenuObj->setTab(2);
+				cout << "Customer ID : " << Transactions.getItem(i).getTicket().getCustomer().getCustomerID() << endl;
+				tempMenuObj->setTab(2);
+				cout << "Ticket Date and Time :" << Transactions.getItem(i).getTicket().getTicketDateTime() << endl;
+			}
+		}
+
+		cout << endl;
+		string toDeleteID = tempMenuObj->getInput("TRANSACTION ID");
+		for (int i = 0; i < toDeleteID.length(); i++) toDeleteID[i] = toupper(toDeleteID[i]);
+		bool isFound = false;
+
+		// check record
+		for (int i = 0; i < Transactions.getSize(); i++) {
+			if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
+				isFound = true;
+				break;
+			}
+		}
+
+		if (!isFound) printError(Error().WRONG_INPUT);
+		else {
+
+			for (int i = 0; i < Transactions.getSize(); i++) {
+				if (customerID == Transactions.getItem(i).getTicket().customerObj.getCustomerID()) {
+					if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
+						if (i == 0) Transactions.deleteFirst();
+						else if (i == Transactions.getSize() - 1) Transactions.deleteLast();
+						else Transactions.deleteItemAt(i);
+						
+
+						tempMenuObj->setTab(2);
+						cout << toDeleteID << " is deleted successfully. " << endl;
+						cout << endl;
+						ConsoleColor().setColor(Color.YELLOW);
+						tempMenuObj->drawLine('*', MAX_WIDTH);
+						ConsoleColor();
+
+						delete tempMenuObj;
+
+						break;
+					}
+
+				}
+				else
+				{
+					printError(Error().WRONG_INPUT);
+				}
+			}
+		}
+
+
+		
+	}
 
 	bool login() {
 		Menu* tempMenuObj = new Menu(true);

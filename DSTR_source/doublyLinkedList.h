@@ -202,7 +202,7 @@ public:
 
            if (head->next != NULL) head = head->next;
            else head = NULL;
-           free(toDeleteNode);
+           delete(toDeleteNode);
            if (head != NULL)
                head->prev = NULL;
        }
@@ -217,7 +217,7 @@ public:
         }
         else if (head->next == NULL) {
             head = NULL;
-            free(head);
+            delete(head);
         }else {
             toDeleteNode = tail;
             tail = tail->prev;
