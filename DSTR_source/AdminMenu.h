@@ -130,11 +130,21 @@ public:
 
 	void viewPurchaseTransactions() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu(true);
 
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("View Purchase Transactions", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+		cout << endl;
 
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			cout << purchaseRecord.getItem(i).toString() << endl;
 		}
+
+		delete tempMenuObj;
 	}
 
 	// no complete
