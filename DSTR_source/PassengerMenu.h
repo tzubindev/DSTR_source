@@ -564,6 +564,20 @@ public:
 			string password = tempMenuObj->getPassword();
 			cout << "CONFIRM PASSWORD > ";
 			string cnfPassword = tempMenuObj->getPassword();
+
+			if (Validation().validate(name, Validation().NAME)) {
+				if (Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) {
+					
+				}
+				else
+					cout << "number wrong" << endl;
+			}
+			else
+				cout << "Name wrong" << endl;
+
+		}
+		else {
+			printError(Error().WRONG_INPUT);
 		}
 	}
 
