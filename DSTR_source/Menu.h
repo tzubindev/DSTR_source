@@ -4,6 +4,7 @@
 #include <conio.h>
 #include "ConsoleColor.h"
 #include "TemporaryStorage.h"
+#include "Error.h"
 
 using namespace std;
 

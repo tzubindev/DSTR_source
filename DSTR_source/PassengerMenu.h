@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Queue.h"
-#include "Error.h"
 #include <iomanip>
 
 using namespace std;

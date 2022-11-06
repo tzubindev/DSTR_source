@@ -16,8 +16,7 @@ public:
 	AdminMenu(TemporaryStorage *TempStorage) {
 		storage = TempStorage;
 
-		for (int i = 0; i < 100; i++) cout << '\n';
-		cout << login() << endl;
+		for (int i = 0; i < 10; i++) cout << '\n';
 	}
 
 	bool addSubwayStation() {
@@ -202,9 +201,9 @@ public:
 		return true;
 	}
 
-	bool deleteTransaction() {
+	void deleteTransaction() {
 		DoublyLinkedList<Transaction> Transactions = storage->getTicketPurchaseRecord();
-		Menu* tempMenuObj = new Menu();
+		Menu* tempMenuObj = new Menu(true);
 
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
@@ -212,19 +211,60 @@ public:
 		cout << endl;
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
-
-
+		cout << endl;
+		
 		for (int i = 0; i < Transactions.getSize(); i++) {
-			cout << Transactions.getItem(i).getTransactionId() << endl;
+			tempMenuObj->setTab(2);
+			cout << "Transaction ID : " << Transactions.getItem(i).getTransactionId() << endl;
+			tempMenuObj->setTab(2);
+			cout << "Customer ID : " << Transactions.getItem(i).getTicket().getCustomer().getCustomerID() << endl;
+			tempMenuObj->setTab(2);
+			cout << "Ticket Date and Time :" << Transactions.getItem(i).getTicket().getTicketDateTime() << endl;
 		}
 
-		return true;
+		cout << endl;
+		string toDeleteID = tempMenuObj->getInput("TRANSACTION ID");
+		for (int i = 0; i < toDeleteID.length();i++) toDeleteID[i] = toupper(toDeleteID[i]);
+		bool isFound = false;
+
+		// check record
+		for (int i = 0; i < Transactions.getSize(); i++) {
+			if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
+				isFound = true;
+				break;
+			}
+		}
+
+		if (!isFound) printError(Error().WRONG_INPUT);
+		else {
+
+			for (int i = 0; i < Transactions.getSize(); i++) {
+				if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
+					if (i == 0) Transactions.deleteFirst();
+					else if (i == Transactions.getSize() - 1) Transactions.deleteLast();
+					else Transactions.deleteItemAt(i);
+					break;
+				}
+			}
+
+
+		}
+
+
+		tempMenuObj->setTab(2);
+		cout << toDeleteID << " is deleted successfully. " << endl;
+		cout << endl;
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		delete tempMenuObj;
 	}
 
 	bool login() {
 		Menu* tempMenuObj = new Menu(true);
 		tempMenuObj->drawLine('=', MAX_WIDTH);
-		tempMenuObj->setTab(5);
+		tempMenuObj->setTab(6);
 
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
@@ -233,7 +273,7 @@ public:
 
 		tempMenuObj->drawLine('=', MAX_WIDTH);
 		cout << '\n';
-		tempMenuObj->setTab(3);
+		tempMenuObj->setTab(4);
 		cout << "Please fill in your username and password.\n\n";
 		tempMenuObj->drawLine('-', MAX_WIDTH);
 
@@ -275,6 +315,26 @@ public:
 	}
 
 private:
+
+	void printError(int errorType) {
+		string ErrorStr = "";
+		Menu* tempMenu = new Menu(true);
+
+		switch (errorType) {
+		case Error().WRONG_INPUT:
+			ErrorStr = "Wrong input is given!";
+			break;
+		}
+
+		// Error Displaying
+		tempMenu->drawLine('-', MAX_WIDTH);
+		cout << '\n';
+		ConsoleColor().setColor(Color.RED);
+		tempMenu->setTab(6);
+		cout << ErrorStr << "\n\n";
+		ConsoleColor().setColor(Color.WHITE);
+		tempMenu->drawLine('-', MAX_WIDTH);
+	}
 
 	string getInput() {
 

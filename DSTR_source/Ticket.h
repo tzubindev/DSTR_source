@@ -115,5 +115,9 @@ public:
 			customerObj.toString();
 	}
 
+	string getTicketDateTime() {
+		return currentDateTime;
+	}
+
 
 };

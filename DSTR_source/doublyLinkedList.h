@@ -200,12 +200,13 @@ public:
        if (head != NULL){
            DoublyNode<T>* toDeleteNode = head;
 
-           head = head->next;
+           if (head->next != NULL) head = head->next;
+           else head = NULL;
            free(toDeleteNode);
-
-           if(head != NULL)
+           if (head != NULL)
                head->prev = NULL;
        }
+       size--;
     }
 
     void deleteLast() {
@@ -224,44 +225,41 @@ public:
         }
         
         delete toDeleteNode;
+        size--;
         
     }
 
     void deleteItemAt(int index) {
-        if (index < 0) {
-            cout << "\nindex should be >= 0.";
+        if (index <= 0 || index >= size) {
+            cout << "\n Wrong Index\n";
+            abort();
         }
-        else if (index == 0 && head != NULL) {
-            DoublyNode<T>* nodeToDelete = head;
-            head = head->next;
-            delete nodeToDelete;
-            if (head != NULL)
-                head->prev = NULL;
-        }
-        else if (index == size-1) {
-            DoublyNode<T> * nodeToDelete = tail;
-            tail = tail->prev;
-            tail->next = nullptr;
-            delete nodeToDelete;
-        }
-        else {
-            DoublyNode<T>* temp = head;
-            for (int i = 0; i < index - 1; i++) {
-                if (temp != NULL) {
-                    temp = temp->next;
-                }
-            }
-            if (temp != NULL && temp->next != NULL) {
-                DoublyNode<T>* nodeToDelete = temp->next;
-                temp->next = temp->next->next;
-                if (temp->next->next != NULL)
-                    temp->next->next->prev = temp->next;
-                delete nodeToDelete;
-            }
-            else {
-                cout << "\nThe node is already null.";
-            }
-        }
+        
+		DoublyNode<T>* temp = head;
+		for (int i = 0; i < index; i++) {
+			if (temp != NULL) {
+				temp = temp->next;
+			}
+		}
+
+        // A B C
+        // if A !NULL AND C !NULL
+        // del = B
+        // A->next = A->next->next(C)
+        // so A->next = C
+        // A->next(C)->prev(B) = A (changed)
+		if (temp != NULL && temp->next->next != NULL) {
+			DoublyNode<T>* nodeToDelete = temp->next;
+			temp->next = temp->next->next;
+			temp->next->prev = temp;
+			delete nodeToDelete;
+            size--;
+		}
+		else {
+			cout << "\nThe node is already null.";
+		}
+
+
     }
 
     void clear() {

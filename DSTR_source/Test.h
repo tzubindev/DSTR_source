@@ -2,7 +2,6 @@
 #include "AdminMenu.h"
 #include "PassengerMenu.h"
 
-
 using namespace std;
 
 void Test()
@@ -30,7 +29,7 @@ void Test()
 				//return bool
 				/*PassengerMenu* login = PassengerMenu->login();*/
 
-				//PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
+				PassengerMenu* passengerMenu = new PassengerMenu(storage, true);
 				//passengerMenu->login();
 				////passengerMenu->viewPurchaseTransactionHistory();
 				////passengerMenu->viewDetailsBetweenTwoCities();
