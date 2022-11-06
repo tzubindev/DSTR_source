@@ -552,6 +552,7 @@ public:
 
 	void registerPassenger() {
 		Menu* tempMenuObj = new Menu(true);
+		LinkedList<Customer> Customers = storage->getPassangerAccounts();
 
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
@@ -577,6 +578,15 @@ public:
 			if (Validation().validate(name, Validation().NAME) &&
 				(Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) &&
 				password == cnfPassword && password.length() > 3) {
+
+
+				// check duplication
+				for (int i = 0; i < Customers.getSize(); i++) {
+					if (Customers.getItem(i).getIdentityNo() == number || Customers.getItem(i).getPassportNo() == number) {
+						printError(Error().DUPLICATED_DATA);
+						return;
+					}
+				}
 				cout << "Account is registered!" << endl;
 			}
 			else printError(Error().WRONG_INPUT);
@@ -741,7 +751,7 @@ public:
 		cout << "PASSWORD > ";
 		string password = tempMenuObj->getPassword();
 
-		LinkedList<Customer> Details = storage->getPassangerDetails();
+		LinkedList<Customer> Details = storage->getPassangerAccounts();
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
 			usernameChecked = false;

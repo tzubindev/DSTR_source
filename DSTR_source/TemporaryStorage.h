@@ -204,7 +204,7 @@ public:
 
 	}
 
-	LinkedList<Customer> getPassangerDetails() {
+	LinkedList<Customer> getPassangerAccounts() {
 		return PassangerAccounts;
 
 	}
