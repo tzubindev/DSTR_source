@@ -214,18 +214,18 @@ public:
     }
 
     void deleteLast() {
-        DoublyNode<T>* toDeleteNode = tail;
+        DoublyNode<T>* toDeleteNode = nullptr;
 
         if (head == NULL) {
             abort();
         }
         else if (head->next == NULL) {
+            toDeleteNode = head;
             head = NULL;
-            delete(head);
         }else {
             toDeleteNode = tail;
             tail = tail->prev;
-            toDeleteNode->prev->next = NULL;
+            tail->next = NULL;
         }
         
         delete toDeleteNode;
