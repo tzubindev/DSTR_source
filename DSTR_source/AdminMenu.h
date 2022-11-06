@@ -202,22 +202,22 @@ public:
 		return true;
 	}
 
-	bool deleteTicket() {
-		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
-		string input;
+	bool deleteTransaction() {
+		DoublyLinkedList<Transaction> Transactions = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu();
 
-		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			cout << purchaseRecord.getItem(i).toString() << endl;
-			cout << "Insert the Ticket id to delete the ticket:";
-			cin >> input;
-			if (input == purchaseRecord.getItem(i).getTicket().TicketID) {
-				purchaseRecord.deleteItemAt(i);
-				cout << "deleted successfully";
-			}
-			else {
-				cout << "please enter correct input";
-			}
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("Delete Transaction", 6);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+
+		for (int i = 0; i < Transactions.getSize(); i++) {
+			cout << Transactions.getItem(i).getTransactionId() << endl;
 		}
+
 		return true;
 	}
 
