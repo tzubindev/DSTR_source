@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include <windows.h>
 #include "Menu.h"
 
@@ -19,8 +20,64 @@ public:
 		for (int i = 0; i < 10; i++) cout << '\n';
 	}
 
-	bool addSubwayStation() {
-		return true;
+	void addSubwayStation() {
+		DoublyLinkedList<string> Stations = storage->getSubwayStations();
+		Menu* tempMenuObj = new Menu(true);
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("Add Subway Station", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+		cout << endl;
+
+		for (int i = 0; i < Stations.getSize(); i++) {
+			tempMenuObj->setTab(5);
+			cout << Stations.getItem(i, 0) << " || " << Stations.getItem(i, 1) << endl;
+		}
+		cout << endl;
+
+		tempMenuObj->setTab(5);
+		cout << "1 - Add from the front.\n";
+		tempMenuObj->setTab(5);
+		cout << "2 - Add from the end.\n";
+
+		string option = getInput("ADD FROM");
+		if (option == "1" || option == "2") {
+			string StationId = "SID_" + to_string(storage->getCurrentStationId());
+
+			cout << "Station Name (use '_' to replace space):";
+			string StationName;
+			cin >> StationName;
+			bool isFront = option == "1";
+			string Distance;
+			cout << "Distance(integer, km): ";
+			cin >> Distance;
+			string Fare;
+			cout << "Fare(double, RM): ";
+			cin >> Fare;
+			string Time;
+			cout << "Time(int, min): ";
+			cin >> Time;
+			string NearbySpots;
+			cout << "NearbySpots(used ';' for the end of every spot and use '_' to replace space)[e.g. a;b_c;]: ";
+			cin >> NearbySpots;
+
+			// Validation needed
+			if()
+			storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
+		}
+		else {
+			printError(Error().WRONG_INPUT);
+		}
+		
+
+		cout << endl;
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+		delete tempMenuObj;
 	}
 
 	void editSubwayInformation() {

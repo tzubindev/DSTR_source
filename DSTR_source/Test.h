@@ -18,7 +18,11 @@ void Test()
 			if (mainMenu->getUserType() == 'A') {
 
 				AdminMenu* adminMenu = new AdminMenu(storage);
-				adminMenu->editTicketInformation();
+				//adminMenu->editTicketInformation();
+				adminMenu->addSubwayStation();
+				PassengerMenu* passengerMenu = new PassengerMenu(storage);
+				passengerMenu->DisplayTravelRoute(true);
+				passengerMenu->DisplayTravelRoute(false);
 			}
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu(storage);

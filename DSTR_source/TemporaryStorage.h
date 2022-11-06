@@ -21,6 +21,7 @@ private:
 	int currentTransactionId = 0;
 	int currentCustomerId = 0;
 	int currentTicketId = 0;
+	int currentStationId = 7;
 
 	//// INITIALISATION SUPPORT ARRAYS
 		// Subway ID will be generated in constructor
@@ -237,6 +238,15 @@ public:
 		return currentTicketId;
 	}
 
+	int getCurrentStationId() {
+		currentStationId++;
+		return currentStationId;
+	}
+
+	void failIncreStationId() {
+		currentStationId--;
+	}
+
 	void sortTransaction() {
 
 	}
@@ -304,5 +314,65 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void addStation(string StationId, string StationName, bool isFront, string Distance, string Fare, string Time, string NearbySightseeingSpots) {
+		int i = currentStationId;
+		if (isFront) i = 0;
+
+		if(isFront)SubwayStations.insertAtBeginning(StationId);
+		else SubwayStations.insertAtEnd(StationId);
+
+		// Cur Station Name
+		SubwayStations.insertVerticallyAt(StationName, i);
+
+		// if back
+		// Data related to "prev"
+		if (i != 0) {
+
+			// Prev Station Name
+			SubwayStations.insertVerticallyAt(getSubwayStations().getItem(getSubwayStations().getSize()-2, 1), i);
+			SubwayStations.setItem(StationName, getSubwayStations().getSize() - 2, 6);
+
+			// Travel Distance Between Previous Station
+			SubwayStations.insertVerticallyAt(Distance, i);
+			SubwayStations.setItem(Distance, getSubwayStations().getSize() - 2, 7);
+
+			// Travel Fare Between Previous Station
+			SubwayStations.insertVerticallyAt(Fare, i);
+			SubwayStations.setItem(Fare, getSubwayStations().getSize() - 2, 8);
+
+			// Travel Time Between Previous Station
+			SubwayStations.insertVerticallyAt(Time, i);
+			SubwayStations.setItem(Time, getSubwayStations().getSize() - 2, 9);
+
+		}
+		else {
+			for (int j = 0; j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
+		}
+
+		
+		if (i != currentStationId) {
+
+			// Next Station Name
+			SubwayStations.insertVerticallyAt(getSubwayStations().getItem(1, 1), i);
+			SubwayStations.setItem(StationName, 1, 2);
+
+			// Travel Distance Between Next Station
+			SubwayStations.insertVerticallyAt(Distance, i);
+			SubwayStations.setItem(Distance, 1, 3);
+			// Travel Fare Between Next Station
+			SubwayStations.insertVerticallyAt(Fare, i);
+			SubwayStations.setItem(Fare, 1, 4);
+			// Travel Time Between Next Station
+			SubwayStations.insertVerticallyAt(Time, i);
+			SubwayStations.setItem(Time, 1, 5);
+
+		}
+		else {
+			for (int j = 0; j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
+		}
+
+		SubwayStations.insertVerticallyAt(NearbySightseeingSpots, i);
 	}
 };

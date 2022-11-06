@@ -219,14 +219,14 @@ public:
 		while (curNode != NULL) {
 			if (cnt == y) {
 				curNode->data = elem;
-				break;
+				return;
 			}
 			else {
 				curNode = curNode->down;
 				cnt++;
 			}
 		}
-
+		cout << "Not found!";
 	}
 
 	void deleteFirst() {
