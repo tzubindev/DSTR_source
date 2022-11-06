@@ -320,19 +320,24 @@ public:
 				{
 				case 1:
 					input = getInput("Enter the new source station ID: ", false);
-					/*Ticket.setItem(input, i, 4);*/
-					cout << endl;
-					tempMenuObj->drawLine('-', MAX_WIDTH);
-					tempMenuObj->makeTitleBlock("Source station Successfuly Updated", 6);
-					cout << endl << endl;
+					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
+
+						cout << endl;
+						tempMenuObj->drawLine('-', MAX_WIDTH);
+						tempMenuObj->makeTitleBlock("Source station Successfuly Updated", 6);
+						cout << endl << endl;
+					}
+					else printError(Error().NOT_FOUND);
 					break;
 				case 2:
 					input = getInput("Enter the new destination station ID: ");
 					
-					/*Stations.setItem(input, i, 8);*/
-					tempMenuObj->drawLine('-', MAX_WIDTH);
-					tempMenuObj->makeTitleBlock("Destination Station Successfuly Updated", 6);
-					cout << endl << endl;
+					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
+						tempMenuObj->drawLine('-', MAX_WIDTH);
+						tempMenuObj->makeTitleBlock("Destination Station Successfuly Updated", 6);
+						cout << endl << endl;
+					}
+					else printError(Error().NOT_FOUND);
 					break;
 				case 3:
 					input = getInput("Enter the new ticket amount: ");
@@ -346,10 +351,11 @@ public:
 						printError(Error().WRONG_INPUT);
 						return;
 					}
-					/*Stations.setItem(input, i, 9);*/
-					tempMenuObj->drawLine('-', MAX_WIDTH);
-					tempMenuObj->makeTitleBlock("Ticket Amount Successfuly Updated", 6);
-					cout << endl << endl;
+					if (storage->setTicketAmount(Ticket.getItem(i).getTicket().TicketID, stoi(input))) {
+						tempMenuObj->drawLine('-', MAX_WIDTH);
+						tempMenuObj->makeTitleBlock("Ticket Amount Successfuly Updated", 6);
+						cout << endl << endl;
+					}printError(Error().NOT_FOUND);
 					break;
 				default:
 					printError(Error().WRONG_INPUT);
@@ -505,6 +511,12 @@ private:
 		switch (errorType) {
 		case Error().WRONG_INPUT:
 			ErrorStr = "Wrong input is given!";
+			break;
+		case Error().DUPLICATED_DATA:
+			ErrorStr = "Duplicated data";
+			break;
+		case Error().NOT_FOUND:
+			ErrorStr = "Not found";
 			break;
 		}
 

@@ -272,4 +272,37 @@ public:
 			}
 		}
 	}
+
+	bool setSourceStationId(string ticketId, string SourceStationId) {
+		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
+			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
+			{
+				PurchaseRecord.getItem(i).getTicket().sourceStationId = SourceStationId;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool setDestinationStationId(string ticketId, string DestinationStationId) {
+		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
+			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
+			{
+				PurchaseRecord.getItem(i).getTicket().destinationStationId = DestinationStationId;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool setTicketAmount(string ticketId, int TicketAmount) {
+		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
+			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
+			{
+				PurchaseRecord.getItem(i).getTicket().setTicketAmount(TicketAmount);
+				return true;
+			}
+		}
+		return false;
+	}
 };

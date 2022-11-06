@@ -115,9 +115,11 @@ public:
 			customerObj.toString();
 	}
 
+	void setTicketAmount(int TicketAmount) {
+		ticketAmount = TicketAmount;
+	}
+
 	string getTicketDateTime() {
 		return currentDateTime;
 	}
-
-
 };
