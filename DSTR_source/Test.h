@@ -18,7 +18,7 @@ void Test()
 			if (mainMenu->getUserType() == 'A') {
 
 				AdminMenu* adminMenu = new AdminMenu(storage);
-				adminMenu->editSubwayInformation();
+				adminMenu->editTicketInformation();
 			}
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu(storage);

@@ -256,8 +256,132 @@ public:
 		}
 	}
 
-	bool editTicketInformation() {
-		return true;
+	void editTicketInformation() {
+		DoublyLinkedList<Transaction> Ticket = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu(true);
+		string TicketID;
+		string temp, temp2;
+		for (int i = 0; i < Ticket.getSize(); i++) {
+			cout << endl;
+			cout << "Customer ID: " << Ticket.getItem(i).getTicket().customerObj.getCustomerID() << endl;
+			cout << "Tickect ID " << Ticket.getItem(i).getTicket().TicketID << endl;
+
+
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			cout << endl;
+
+		}
+
+
+		TicketID = getInput("Please enter the Ticket ID to edit it:");
+		cout << endl;
+		for (int i = 0; i < TicketID.length(); i++) TicketID[i] = toupper(TicketID[i]);
+		for (int i = 0; i < Ticket.getSize(); i++) {
+			if (TicketID == Ticket.getItem(i).getTicket().TicketID) {
+				cout << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "TicketId: " << Ticket.getItem(i).getTicket().TicketID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Source Station Id: " << Ticket.getItem(i).getTicket().sourceStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Destination Station Id: " << Ticket.getItem(i).getTicket().destinationStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Amount: " << Ticket.getItem(i).getTicket().ticketAmount << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Price: " << "RM" << Ticket.getItem(i).getTicket().price << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Departure Time: " << Ticket.getItem(i).getTicket().depatureTime << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer ID: " << Ticket.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer Name: " << Ticket.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Passport Number // IC: " << Ticket.getItem(i).getTicket().customerObj.IdentityNo << Ticket.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				cout << endl;
+
+				string option;
+				cout << "1- Source Staion \n2- Destination Station\n3- Ticket Amount" << endl;
+				option = getInput("Enter the number thing that you want to edit:");
+				cout << endl;
+				string input;
+				for (char ch : option) {
+					if (!isdigit(ch)) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
+				}
+				if (option.length() == 0) {
+					printError(Error().WRONG_INPUT);
+					return;
+				}
+				string data;
+				switch (stoi(option))
+				{
+				case 1:
+					input = getInput("Enter the new source station ID: ", false);
+					/*Ticket.setItem(input, i, 4);*/
+					cout << endl;
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Source station Successfuly Updated", 6);
+					cout << endl << endl;
+					break;
+				case 2:
+					input = getInput("Enter the new destination station ID: ");
+					
+					/*Stations.setItem(input, i, 8);*/
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Destination Station Successfuly Updated", 6);
+					cout << endl << endl;
+					break;
+				case 3:
+					input = getInput("Enter the new ticket amount: ");
+					for (char ch : input) {
+						if (!isdigit(ch)) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
+					/*Stations.setItem(input, i, 9);*/
+					tempMenuObj->drawLine('-', MAX_WIDTH);
+					tempMenuObj->makeTitleBlock("Ticket Amount Successfuly Updated", 6);
+					cout << endl << endl;
+					break;
+				default:
+					printError(Error().WRONG_INPUT);
+					return;
+				}
+				cout << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "TicketId: " << Ticket.getItem(i).getTicket().TicketID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Source Station Id: " << Ticket.getItem(i).getTicket().sourceStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Destination Station Id: " << Ticket.getItem(i).getTicket().destinationStationId << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Amount: " << Ticket.getItem(i).getTicket().ticketAmount << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Ticket Price: " << "RM" << Ticket.getItem(i).getTicket().price << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Departure Time: " << Ticket.getItem(i).getTicket().depatureTime << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer ID: " << Ticket.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Customer Name: " << Ticket.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+				tempMenuObj->setTab(1);
+				cout << "Passport Number // IC: " << Ticket.getItem(i).getTicket().customerObj.IdentityNo << Ticket.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				cout << endl;
+
+				ConsoleColor().setColor(Color.YELLOW);
+				tempMenuObj->drawLine('*', MAX_WIDTH);
+				ConsoleColor();
+			}
+		}
 	}
 
 	void deleteTransaction() {
