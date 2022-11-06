@@ -23,9 +23,9 @@ void Test()
 			else {
 				PassengerMenu* passengerMenu = new PassengerMenu();
 				string input;
-				cout << "1- Log in \n2- New User" << endl;
+				cout << "1- Log in \n2- Register" << endl;
 				cin >> input;
-				if (input == "1" || input == "one") {
+				if (input == "1") {
 					PassengerMenu* passengerMenu2 = new PassengerMenu(storage, true);
 					if (passengerMenu2->login()) {
 						passengerMenu2->purchaseSubwayTicket();
@@ -35,8 +35,8 @@ void Test()
 						passengerMenu->printError(Error().WRONG_INPUT);
 					}
 				}
-				else if (input == "2" || input == "two") {
-					passengerMenu->purchaseSubwayTicket();
+				else if (input == "2") {
+					passengerMenu->registerPassenger();
 				}
 				else
 				{

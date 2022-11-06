@@ -1,8 +1,6 @@
 #include <iostream>
-#include <regex>
 
 using namespace std;
-
 
 class Validation {
 
@@ -10,44 +8,42 @@ public:
 	static const int NAME = 0;
 	static const int PASSPORT = 1;
 	static const int IC = 2;
-	int errorType = -1;
+	bool isOnlyDigit = true;
 
 	Validation() {}
 
 	bool validate(string str, int type) {
 		
-		string regexPattern = "";
 		switch (type) {
 		case NAME:
-			regexPattern = "[a-zA-z. ]";
+			if (str.length() < 3) return false;
+			cout << str;
+			for (int i = 0;i<str) {
+				cout << ch;
+				if (isdigit(ch)) return false; 
+				if (!isalpha(ch) || ch != ' ') return false;
+			}
 			break;
 		case PASSPORT:
-			regexPattern = "^ (? !^ 0 + $)[a - zA - Z0 - 9] {3, 20}$";
+			if (str.length() < 3 || str.length() > 20) return false;
+			for (char ch : str) {
+				if (ch == ' ' || !isdigit(ch) || !isalpha(ch)) return false;
+				if (!isdigit(ch)) isOnlyDigit = false;
+			}
+			if (!isOnlyDigit) {
+				if (stoi(str) == 0) return false;
+			}
 			break;
 		case IC:
-			regexPattern = "[0-9]{12}";
+			if (str.length() != 12) return false;
+			for (char ch : str) if (!isdigit(ch)) return false;
 			break;
 		}
 
 
-		regex regexRule(regexPattern);
-		if (!regex_match(str, regexRule)) {
-			switch (type) {
-			case NAME:
-				errorType = NAME;
-				return false;
-			case PASSPORT:
-				errorType = PASSPORT;
-				return false;
-			case IC:
-				errorType = IC;
-				return false;
-			}
-		}
-		else
-			return true;
 
 
+		return true;
 	}
 
 

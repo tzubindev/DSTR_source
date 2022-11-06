@@ -558,7 +558,7 @@ public:
 			// Create customer Object
 			string name = tempMenuObj->getInput("NAME (at least 3 characters)");
 			string number = "";
-			if (local == "y") number = tempMenuObj->getInput("IC");
+			if (local == "y") number = tempMenuObj->getInput("IC (only digit)");
 			else number = tempMenuObj->getInput("PASSPORT NO");
 			cout << "PASSWORD (at least 4 characters) > ";
 			string password = tempMenuObj->getPassword();
@@ -567,7 +567,8 @@ public:
 
 			if (Validation().validate(name, Validation().NAME)) {
 				if (Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) {
-					
+					if (password == cnfPassword && password.length()>3)cout << "alright";
+					else cout << "password not same" << endl;
 				}
 				else
 					cout << "number wrong" << endl;
