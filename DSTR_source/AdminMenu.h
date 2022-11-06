@@ -23,7 +23,7 @@ public:
 		return true;
 	}
 
-	bool editSubwayInformation() {
+	void editSubwayInformation() {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
 		string stationID;
@@ -74,14 +74,17 @@ public:
 				{
 				case 1:
 					input = getInput("Enter the new name of the staion : ");
+					Stations.setItem(input, i, 1);
 					// old station = NULL
 					// new station name = ""
 					break;
 				case 2:
-					input = getInput("Enter the new distance:");
+					input = getInput("Enter the new price:");
+					Stations.setItem(input, i, 8);
 					break;
 				case 3:
-					input = getInput("Enter the new price:");
+					input = getInput("Enter the new time:");
+					Stations.setItem(input, i, 9);
 					break;
 				default:
 					printError(Error().WRONG_INPUT);
@@ -100,7 +103,6 @@ public:
 
 			}
 		}
-		return true;
 	}
 
 	void viewPurchaseTransactions() {
