@@ -12,7 +12,7 @@ public:
 	string sourceStationId = "";
 	string destinationStationId = "";
 	string currentDateTime = "";
-	int ticketAmount = NULL;
+	int	ticketAmount = NULL;
 	double price = NULL;
 	string depatureTime = "";
 	Customer customerObj;	

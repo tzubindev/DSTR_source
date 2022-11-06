@@ -170,7 +170,6 @@ public:
 		cout << endl;
 	}
 
-
 	void chooseAndDisplayTravelRoute() {
 		string input;
 		cout << "1- Titiwangsa --> Chan Sow Lin" << "\n" <<
@@ -188,8 +187,6 @@ public:
 			cout << "Please select the correct travel route:";
 		}
 	}
-
-
 
 	void searchStationDetails() {
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
@@ -604,7 +601,6 @@ public:
 		}
 	}
 
-	
 	void viewPurchaseTransactionHistory() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
 		Menu* tempMenuObj = new Menu(true);
