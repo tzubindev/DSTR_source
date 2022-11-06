@@ -255,4 +255,15 @@ public:
 	void addTransaction(Transaction newTransaction) {
 		PurchaseRecord.insertAtEnd(newTransaction);
 	}
+
+	void deleteTransaction(string transactionID) {
+		for (int i = 0; i < PurchaseRecord.size; i++) {
+			if (transactionID == PurchaseRecord.getItem(i).getTransactionId()) {
+				if (i == 0) PurchaseRecord.deleteFirst();
+				else if (i == PurchaseRecord.size - 1) PurchaseRecord.deleteLast();
+				else PurchaseRecord.deleteItemAt(i);
+				break;
+			}
+		}
+	}
 };

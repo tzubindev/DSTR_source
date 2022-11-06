@@ -256,17 +256,7 @@ public:
 
 		if (!isFound) printError(Error().WRONG_INPUT);
 		else {
-
-			for (int i = 0; i < Transactions.getSize(); i++) {
-				if (toDeleteID == Transactions.getItem(i).getTransactionId()) {
-					if (i == 0) Transactions.deleteFirst();
-					else if (i == Transactions.getSize() - 1) Transactions.deleteLast();
-					else Transactions.deleteItemAt(i);
-					break;
-				}
-			}
-
-
+			storage->deleteTransaction(toDeleteID);
 		}
 
 		if (isFound) {
