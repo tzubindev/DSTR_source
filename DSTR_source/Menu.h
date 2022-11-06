@@ -5,6 +5,7 @@
 #include "ConsoleColor.h"
 #include "TemporaryStorage.h"
 #include "Error.h"
+#include "Queue.h"
 
 using namespace std;
 
