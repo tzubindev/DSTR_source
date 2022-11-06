@@ -61,12 +61,20 @@ public:
 			cout << "Time(int, min): ";
 			cin >> Time;
 			string NearbySpots;
-			cout << "NearbySpots(used ';' for the end of every spot and use '_' to replace space)[e.g. a;b_c;]: ";
+			cout << "NearbySpots(use ';' for the end of every spot and use '_' to replace space, if no then enter ';')[e.g. a;b_c;]: ";
 			cin >> NearbySpots;
 
 			// Validation needed
-			if()
-			storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
+			if (Validation().validate(StationName, Validation().SNAME) &&
+				Validation().validate(Distance, Validation().SDIST) &&
+				Validation().validate(Fare, Validation().SFARE) &&
+				Validation().validate(Time, Validation().STIME) &&
+				Validation().validate(NearbySpots, Validation().SSPOT)) {
+				for (int i = 0; i < StationName.length(); i++) if (StationName[i] == '_') StationName[i] = ' ';
+				for (int i = 0; i < NearbySpots.length(); i++) if (NearbySpots[i] == '_') NearbySpots[i] = ' ';
+
+				storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
+			}else printError(Error().WRONG_INPUT);
 		}
 		else {
 			printError(Error().WRONG_INPUT);
