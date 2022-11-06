@@ -33,14 +33,17 @@ public:
 			cout << "Station Name: " << Stations.getItem(i, 1) << endl;
 			cout << endl << endl;
 
-
-			cout << endl;
-			ConsoleColor().setColor(Color.YELLOW);
-			tempMenuObj->drawLine('*', MAX_WIDTH);
-			ConsoleColor();
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			
 		}
-		stationID = getInput("Please enter the station ID to edit it:");
 
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
+		
+		stationID = getInput("Please enter the station ID to edit it:");
+		for (int i = 0; i < stationID.length(); i++) stationID[i] = toupper(stationID[i]);
 		for (int i = 0; i < Stations.getSize(); i++) {
 			if (stationID == Stations.getItem(i, 0)) {
 				cout << "Station ID: " << Stations.getItem(i, 0) << endl;
@@ -54,11 +57,11 @@ public:
 
 				cout << "\tNearby Sightseeing Spots\n";
 				temp = Stations.getItem(i, 10);
-
+				cout << endl;
 				string option;
 				cout << "1- Station Name \n2- Price\n3- Time" << endl;
 				option = getInput("Enter the number thing that you want to edit:");
-
+				cout << endl;
 				string input;
 				for (char ch : option) {
 					if (!isdigit(ch)) {
@@ -75,8 +78,6 @@ public:
 				case 1:
 					input = getInput("Enter the new name of the staion : ");
 					Stations.setItem(input, i, 1);
-					// old station = NULL
-					// new station name = ""
 					break;
 				case 2:
 					input = getInput("Enter the new price:");
@@ -100,7 +101,6 @@ public:
 				cout << endl << endl;
 				cout << "\tNearby Sightseeing Spots\n";
 				temp = Stations.getItem(i, 10);
-
 			}
 		}
 	}
