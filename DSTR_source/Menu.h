@@ -158,7 +158,7 @@ public:
 		string ipt = "";
 		char ipt_ch;
 		while (true) {
-			ipt_ch = getch();
+			ipt_ch = _getch();
 
 			// Check whether user enters
 			// a special non-printable

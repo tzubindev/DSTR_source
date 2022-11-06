@@ -239,7 +239,8 @@ public:
 
 		cout << "\n\n";
 		string username = getInput("USERNAME");
-		string password = getInput("PASSWORD");
+		cout << "PASSWORD > ";
+		string password = tempMenuObj->getPassword();
 
 		// Verification here [Ghassan]
 		LinkedList<string> Details = storage->getAdminDetails();

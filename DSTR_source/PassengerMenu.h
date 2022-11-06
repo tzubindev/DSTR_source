@@ -737,7 +737,8 @@ public:
 
 		cout << "\n\n";
 		string icOrPassportNo = getInput("PASSPORT NO // IC");
-		string password = getInput("PASSWORD");
+		cout << "PASSWORD > ";
+		string password = tempMenuObj->getPassword();
 
 		LinkedList<Customer> Details = storage->getPassangerDetails();
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
