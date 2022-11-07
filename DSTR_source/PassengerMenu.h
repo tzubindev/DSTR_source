@@ -618,6 +618,8 @@ public:
 
 		cout << endl;
 
+		bool isAvalible = true;
+
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			if (customerID == purchaseRecord.getItem(i).getTicket().getCustomer().getCustomerID()) {
 				tempMenuObj->makeTitleBlock(purchaseRecord.getItem(i).getTransactionId(), 1);
@@ -639,23 +641,29 @@ public:
 				tempMenuObj->setTab(1);
 				cout << "Customer Name: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
 				tempMenuObj->setTab(1);
-				cout << "Passport Number // IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				if (purchaseRecord.getItem(i).getTicket().customerObj.PassportNo == "NULL") {
+					cout << "IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << endl << endl;
+				}
+				else {
+					cout << "Passport Number: " << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				}
 				tempMenuObj->drawLine('-', MAX_WIDTH);
 				cout << endl;
-			}
-			else
-			{
-				tempMenuObj->drawLine('-', MAX_WIDTH);
+				isAvalible = false;
 				cout << endl;
-				tempMenuObj->setTab(7);
-				cout << "No Purchase Transaction Found";
-				cout << endl;
-				tempMenuObj->drawLine('-', MAX_WIDTH);
-				ConsoleColor().setColor(Color.YELLOW);
-				tempMenuObj->drawLine('*', MAX_WIDTH);
-				ConsoleColor();
 			}
 		}
+
+		if (isAvalible) {
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			tempMenuObj->setTab(6);
+			cout << "No Purchase Transaction Found";
+			cout << endl;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			ConsoleColor().setColor(Color.YELLOW);
+			ConsoleColor();
+		}
+		
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();

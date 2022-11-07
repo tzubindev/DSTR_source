@@ -248,8 +248,25 @@ public:
 		currentStationId--;
 	}
 
-	void sortTransaction() {
-
+	DoublyLinkedList<Transaction> sortTransaction() {
+		// purchase record wont be affected
+		DoublyLinkedList<Transaction> CT = PurchaseRecord;
+		//   i
+		//     j
+		// 1 3 2 
+		// name1 name2
+		// boy   ada   > 0
+		for (int i = 0; i < CT.getSize(); i++) {
+			for (int j = i; j < CT.getSize(); j++) {
+				if (CT.getItem(i).getTicket().getCustomer().CustomerName.compare(CT.getItem(j).getTicket().getCustomer().CustomerName) > 0) {
+					CT.swap(i, j);
+				}
+			}
+		}
+		/*for (int i = 0; i < CT.getSize(); i++) {
+			cout << CT.getItem(i).toString() << endl;
+		}*/
+		return CT;
 	}
 
 	string datetime[6];

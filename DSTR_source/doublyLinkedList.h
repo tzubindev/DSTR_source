@@ -343,5 +343,47 @@ public:
 		// check
 
 	}
+	void swap(int x, int y)
+	{
+		DoublyNode<T>* curr = head;
+		DoublyNode<T>* temp = nullptr;
+		int cnt = 0;
+		if (x > y) {
+			swap(x, y);
+		}
+		if (x == y) {
+			cout << "Invalid swap.\n";
+			abort();
+		}
+		if (!(0 <= x && y < size))
+		{
+			cout << "out of range.\n";
+			abort();
+		}
+		T foo, foo2;
+		while (curr != NULL) {
+			if (y == cnt) {
+				foo2 = curr->data;
+				curr->data = foo;
+				break;
+			}
+			if (x == cnt) {
+				foo = curr->data;
+			}
+			curr = curr->next;
+			cnt++;
+		}
+		cnt = 0;
+		// visit again
+		curr = head;
+		while (curr != NULL) {
+			if (x == cnt) {
+				curr->data = foo2;
+				break;
+			}
+			curr = curr->next;
+			cnt++;
+		}
+	}
 };
 

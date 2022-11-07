@@ -262,8 +262,45 @@ public:
 
 	// no complete
 	void sortPurchaseTransactions() {
+		DoublyLinkedList<Transaction> Transactions = storage->sortTransaction();
 
+
+		//DoublyLinkedList<Transaction> Transactions = storage->getTicketPurchaseRecord();
+		Menu* tempMenuObj = new Menu(true);
+
+
+		for (int i = 0; i < storage->sortTransaction().getSize(); i++) {
+			tempMenuObj->makeTitleBlock(Transactions.getItem(i).getTransactionId(), 1);
+			cout << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Customer Name: " << Transactions.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "TicketId: " << Transactions.getItem(i).getTicket().TicketID << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Source Station Id: " << Transactions.getItem(i).getTicket().sourceStationId << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Destination Station Id: " << Transactions.getItem(i).getTicket().destinationStationId << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Ticket Amount: " << Transactions.getItem(i).getTicket().ticketAmount << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Ticket Price: " << "RM" << Transactions.getItem(i).getTicket().price << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Departure Time: " << Transactions.getItem(i).getTicket().depatureTime << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Customer ID: " << Transactions.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+			tempMenuObj->setTab(1);
+			if (Transactions.getItem(i).getTicket().customerObj.PassportNo == "NULL") {
+				cout << "IC: " << Transactions.getItem(i).getTicket().customerObj.IdentityNo << endl << endl;
+			}
+			else {
+				cout << "Passport Number: " << Transactions.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+			}
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			cout << endl;
+		}
+		delete tempMenuObj;
 	}
+
 
 	void searchTicketInformation() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
