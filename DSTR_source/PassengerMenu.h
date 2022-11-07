@@ -606,11 +606,13 @@ public:
 				if (local == "y") {
 					if (!Validation().validate(number, Validation().IC)) {
 						printError(Error().WRONG_INPUT);
+						return;
 					}
 				}
 				else {
 					if (!Validation().validate(number, Validation().PASSPORT)) {
 						printError(Error().WRONG_INPUT);
+						return;
 					}
 				}
 				// check duplication
