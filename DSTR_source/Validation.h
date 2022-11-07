@@ -30,7 +30,7 @@ public:
 		case PASSPORT:
 			if (str.length() < 3 || str.length() > 20) return false;
 			for (char ch : str) {
-				if (ch == ' ' || !isdigit(ch) || !isalpha(ch)) return false;
+				if (ch == ' ' || (!isdigit(ch) && !isalpha(ch))) return false;
 				if (!isdigit(ch)) isOnlyDigit = false;
 			}
 			if (!isOnlyDigit) {
