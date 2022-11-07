@@ -234,12 +234,13 @@ public:
 		int cnt = 0;
 
 		if (x<0 || x >= size) {
-			cout << "Out of range in get item\n";
+			cout << "Out of range\n";
 		}
 
 		while (curNode != NULL) {
 			if (cnt == x) {
 				curNode->data = elem;
+				return;
 			}
 			else {
 				curNode = curNode->next;

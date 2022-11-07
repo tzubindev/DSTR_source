@@ -1,6 +1,7 @@
 using namespace std;
 
-struct ResetType {
+class ResetType {
+public:
 
 	static const int RT_SOURCE_ID = 0;
 	static const int RT_DESTINATION_ID = 1;
@@ -9,4 +10,4 @@ struct ResetType {
 	static const int RT_DEPATURE_TIME = 4;
 
 
-} ResetType;
+};

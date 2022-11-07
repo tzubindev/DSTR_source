@@ -383,23 +383,29 @@ public:
 				string data;
 				switch (stoi(option))
 				{
-					// For example after selecting and entering the source station id to change 
-					// We need to change the detail in the selected ticket in the transactions doubly linkedlist
-					// but changing the information in the transactions doubly linked list is not working 
 				case 1:
 					input = getInput("Enter the new source station ID: ", false);
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
+					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
 					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						cout << endl;
 						tempMenuObj->drawLine('-', MAX_WIDTH);
-						tempMenuObj->makeTitleBlock("Source station Successfuly Updated", 6);
+						tempMenuObj->makeTitleBlock("Source Station Successfuly Updated", 6);
 						cout << endl << endl;
 					}
 					else printError(Error().NOT_FOUND);
 					break;
 				case 2:
-					input = getInput("Enter the new destination station ID: ");
-					
-					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
+					input = getInput("Enter the new destination station ID: ", false);
+					if (input.length() == 0) {
+						printError(Error().WRONG_INPUT);
+						return;
+					}
+					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
+					if (storage->setDestinationStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Destination Station Successfuly Updated", 6);
 						cout << endl << endl;
@@ -422,7 +428,7 @@ public:
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Ticket Amount Successfuly Updated", 6);
 						cout << endl << endl;
-					}printError(Error().NOT_FOUND);
+					}else printError(Error().NOT_FOUND);
 					break;
 				default:
 					printError(Error().WRONG_INPUT);

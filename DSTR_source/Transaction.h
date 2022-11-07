@@ -36,25 +36,27 @@ public:
 
 		Ticket newTicket = this->getTicket();
 		switch (resetType) {
-		case ResetType.RT_SOURCE_ID:
+		case ResetType().RT_SOURCE_ID:
 			newTicket.setSourceStationID(replaceStr);
 			break;
-		case ResetType.RT_DESTINATION_ID:
+		case ResetType().RT_DESTINATION_ID:
 			newTicket.setDestinationStationID(replaceStr);
 			break;
-		case ResetType.RT_TICKET_AMOUNT:
+		case ResetType().RT_TICKET_AMOUNT:
 			newTicket.setTicketAmount(stoi(replaceStr));
 			break;
-		case ResetType.RT_PRICE:
+		case ResetType().RT_PRICE:
 			newTicket.setPrice(stod(replaceStr));
 			break;
-		case ResetType.RT_DEPATURE_TIME:
+		case ResetType().RT_DEPATURE_TIME:
 			newTicket.setDepatureTime(replaceStr);
 			break;
+		default:
+			cout << "Type Error "<<endl;
+			return;
 		}
 
 		TicketObject = newTicket;
-
 
 	}
 

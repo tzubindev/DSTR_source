@@ -257,12 +257,12 @@ public:
 		DateTime* dt = new DateTime;
 		string dateTime = dt->getDateTime();
 		free(dt);
-		return trimTime(datetime[4]);
+		return trimTime(dateTime);
 
 	}
 
 	string trimTime(string time) {
-		return time.substr(0, 5);
+		return time.substr(11, 5);
 	}
 
 	void addPassengerAccount(Customer newCustomer) {
@@ -289,10 +289,16 @@ public:
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
 				Transaction curTransaction = PurchaseRecord.getItem(i);
-				if (setNewInfo(SourceStationId, curTransaction.getTicket().destinationStationId, curTransaction.getTicket().getTicketAmount(), curTransaction))
+				if (
+					setNewInfo(
+						SourceStationId,
+						curTransaction.getTicket().destinationStationId,
+						curTransaction.getTicket().getTicketAmount(),
+						curTransaction)){
 					PurchaseRecord.setItem(curTransaction, i);
+					return true;
+				}
 				else return false;
-				return true;
 			}
 		}
 		return false;
@@ -388,12 +394,12 @@ public:
 			if (trainDepatureTime[i] <= getCurrentTime() && getCurrentTime() < trainDepatureTime[i + 1])
 				depatureTime = trainDepatureTime[i + 1];
 		}
-		
-		Transaction.resetTransaction(stationA, ResetType.RT_SOURCE_ID);
-		Transaction.resetTransaction(stationB, ResetType.RT_DESTINATION_ID);
-		Transaction.resetTransaction(to_string(TicketAmount), ResetType.RT_TICKET_AMOUNT);
-		Transaction.resetTransaction(to_string(fare), ResetType.RT_PRICE);
-		Transaction.resetTransaction(depatureTime, ResetType.RT_DEPATURE_TIME);
+
+		Transaction.resetTransaction(stationA, ResetType().RT_SOURCE_ID);
+		Transaction.resetTransaction(stationB, ResetType().RT_DESTINATION_ID);
+		Transaction.resetTransaction(to_string(TicketAmount), ResetType().RT_TICKET_AMOUNT);
+		Transaction.resetTransaction(to_string(fare), ResetType().RT_PRICE);
+		Transaction.resetTransaction(depatureTime, ResetType().RT_DEPATURE_TIME);
 		return true;
 	}
 
