@@ -382,22 +382,22 @@ public:
 				delete tempMenuObj;
 				return;
 			}
-			if (!isAvalible) {
-				isAvalible = true;
-				tempMenuObj->drawLine('-', MAX_WIDTH);
-				tempMenuObj->setTab(6);
-				cout << "Please enter a valid Ticket ID: ";
-				cout << endl;
-				tempMenuObj->drawLine('-', MAX_WIDTH);
-				ConsoleColor().setColor(Color.YELLOW);
-				ConsoleColor();
-				searchTicketInformation();
-			}
-			cout << endl;
-			ConsoleColor().setColor(Color.YELLOW);
-			tempMenuObj->drawLine('*', MAX_WIDTH);
-			ConsoleColor();
 		}
+		if (!isAvalible) {
+			isAvalible = true;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			tempMenuObj->setTab(6);
+			cout << "Please enter a valid Ticket ID: ";
+			cout << endl;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			ConsoleColor().setColor(Color.YELLOW);
+			ConsoleColor();
+			searchTicketInformation();
+		}
+		cout << endl;
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
 	}
 
 	void editTicketInformation() {
@@ -611,39 +611,36 @@ public:
 		cout << "PASSWORD > ";
 		string password = tempMenuObj->getPassword();
 
-		// Verification here [Ghassan]
+		// Verification here 
 		DoublyLinkedList<string> Details = storage->getAdminDetails();
 		string temp = "";
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
-			/*cout << Details.getItem(i) << endl;*/
+			cout << Details.getItem(i) << endl;
 			usernameChecked = false;
 			UNcorrect = false;
 			PWcorrect = false;
+			temp = "";
 			for (char ch : Details.getItem(i)) {
 				if (ch != ';') {
 					temp += ch;
 				}
 				else {
-					if (usernameChecked) {
-						if (password == temp) PWcorrect = true;
-						isEnd = true;
+					if (!usernameChecked) {
+						usernameChecked = true;
+						if (username == temp) UNcorrect = true;
+						temp = "";
 					}
 					else {
-						if (username == temp) UNcorrect = true;
-						usernameChecked = true;
+						if (password == temp) {
+							PWcorrect = true;
+							break;
+						}
 					}
-					temp = "";
 				}
-				if (isEnd) break;
 			}
 			if (PWcorrect && UNcorrect) {
 				return true;
-			}
-			else {
-				username = "";
-				password = "";
-				return false;
 			}
 
 		}

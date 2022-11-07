@@ -280,17 +280,18 @@ public:
 				ConsoleColor();
 				return;
 			}
-			if (!isAvalible) {
-				isAvalible = true;
-				tempMenuObj->drawLine('-', MAX_WIDTH);
-				tempMenuObj->setTab(6);
-				cout << "Please enter a valid Ticket ID: ";
-				cout << endl;
-				tempMenuObj->drawLine('-', MAX_WIDTH);
-				ConsoleColor().setColor(Color.YELLOW);
-				ConsoleColor();
-				searchStationDetails();
-			}
+
+		}
+		if (!isAvalible) {
+			isAvalible = true;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			tempMenuObj->setTab(6);
+			cout << "Please enter a valid Station ID: ";
+			cout << endl;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			ConsoleColor().setColor(Color.YELLOW);
+			ConsoleColor();
+			searchStationDetails();
 		}
 	}
 
@@ -584,7 +585,7 @@ public:
 			string number = "";
 			if (local == "y")
 				number = tempMenuObj->getInput("IC (only digit)");
-			else 
+			else
 				number = tempMenuObj->getInput("PASSPORT NO");
 			cout << "PASSWORD (at least 4 characters) > ";
 			string password = tempMenuObj->getPassword();
@@ -680,7 +681,7 @@ public:
 			ConsoleColor().setColor(Color.YELLOW);
 			ConsoleColor();
 		}
-		
+
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
@@ -786,10 +787,10 @@ public:
 		for (int i = 0; i < Details.getSize(); i++) {
 			UNcorrect = false;
 			PWcorrect = false;
-			for (int i = 0; i < Details.getSize();i++) {
+			for (int i = 0; i < Details.getSize(); i++) {
 
-				if (icOrPassportNo == Details.getItem(i).PassportNo || 
-					icOrPassportNo == Details.getItem(i).IdentityNo) 
+				if (icOrPassportNo == Details.getItem(i).PassportNo ||
+					icOrPassportNo == Details.getItem(i).IdentityNo)
 					UNcorrect = true;
 
 				if (UNcorrect) {
@@ -797,7 +798,7 @@ public:
 						PWcorrect = true;
 						customerID = Details.getItem(i).CustomerID;
 					}
-						break;
+					break;
 				}
 			}
 			if (PWcorrect && UNcorrect) {
