@@ -13,8 +13,8 @@ class TemporaryStorage {
 	// Subway Station Data Structure
 private:
 	// Data members
-	DoublyLinkedList<string> SubwayStations; 
-	DoublyLinkedList<Transaction> PurchaseRecord; 
+	DoublyLinkedList<string> SubwayStations;
+	DoublyLinkedList<Transaction> PurchaseRecord;
 	DoublyLinkedList<string> AdminAccounts;
 	DoublyLinkedList<Customer> PassengerAccounts;
 	int StationNumber = 8;
@@ -25,48 +25,48 @@ private:
 
 	//// INITIALISATION SUPPORT ARRAYS
 		// Subway ID will be generated in constructor
-		
+
 		// Current Subway Station Name
-		string CurrentSubwayStationName[8] = { "Titiwangsa", "PWTC", "Sultan Ismail", "Majlis Jamek", "Plaza Rakyat", "Hang Tuah", "Pudu", "Chan Sow Lin"};
+	string CurrentSubwayStationName[8] = { "Titiwangsa", "PWTC", "Sultan Ismail", "Majlis Jamek", "Plaza Rakyat", "Hang Tuah", "Pudu", "Chan Sow Lin" };
 
-		// PreviousStationName & NextStationName will be generated in constructor
-		
-		// Travel Distance Between Previous Station & Travel Distance Between Next Station will be generated based on TravelDistance array
-		int TravelDistance[7] = { 4 , 8 , 8 , 6 , 10 , 5 , 5 };
+	// PreviousStationName & NextStationName will be generated in constructor
 
-		//Travel Fare Between Previous Station & Trave Fare Between Next Station
-		double Fare[7] = { 0.4 , 0.8 , 0.8 , 0.6 , 1.0 , 0.5 , 0.5 };
+	// Travel Distance Between Previous Station & Travel Distance Between Next Station will be generated based on TravelDistance array
+	int TravelDistance[7] = { 4 , 8 , 8 , 6 , 10 , 5 , 5 };
 
-		//Travel Time Between Previous Station & Travel Time Between Next Station
-		int Time[7] = { 3 , 7 , 7 , 5 , 9 , 4 , 4 };
-		
-		//Nearby Sightseeing Spots.
-		string NearbySightseeingSpots[8] = {
-			"a;b;",
-			"c;",
-			"d;",
-			"e;",
-			"f;",
-			"g;",
-			"h;",
-			"i;"
-		};
+	//Travel Fare Between Previous Station & Trave Fare Between Next Station
+	double Fare[7] = { 0.4 , 0.8 , 0.8 , 0.6 , 1.0 , 0.5 , 0.5 };
 
-		// Stations
-		/*[0] ID
-		// [1] Name
-		// [2] Name -> Prev
-		// [3] Dist
-		// [4] Fare
-		// [5] Time
-		// [6] Name -> Next
-		// [7] Dist
-		// [8] Fare
-		// [9] Time
-		// [10] Nearby Spots */
+	//Travel Time Between Previous Station & Travel Time Between Next Station
+	int Time[7] = { 3 , 7 , 7 , 5 , 9 , 4 , 4 };
+
+	//Nearby Sightseeing Spots.
+	string NearbySightseeingSpots[8] = {
+		"a;b;",
+		"c;",
+		"d;",
+		"e;",
+		"f;",
+		"g;",
+		"h;",
+		"i;"
+	};
+
+	// Stations
+	/*[0] ID
+	// [1] Name
+	// [2] Name -> Prev
+	// [3] Dist
+	// [4] Fare
+	// [5] Time
+	// [6] Name -> Next
+	// [7] Dist
+	// [8] Fare
+	// [9] Time
+	// [10] Nearby Spots */
 
 public:
-	
+
 	string trainDepatureTime[37] = { "06:00", "06:30", "07:00", "07:30",
 								"08:00", "08:30", "09:00", "09:30",
 								"10:00", "10:30", "11:00", "12:30",
@@ -80,7 +80,7 @@ public:
 
 
 	// Constructor for initialisation.
-	TemporaryStorage () {
+	TemporaryStorage() {
 
 		// Initial subway stations height
 		SubwayStations.setHeight(11);
@@ -90,30 +90,30 @@ public:
 
 			// Subway ID
 			SubwayStations.insertAtEnd("SID_" + to_string(i));
-			
+
 			// Cur Station Name
 			SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i], i);
-			
+
 			// Data related to "prev"
 			if (i != 0) {
-				
+
 				// Prev Station Name
-				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i-1], i);
+				SubwayStations.insertVerticallyAt(CurrentSubwayStationName[i - 1], i);
 
 				// Travel Distance Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i-1]), i);
+				SubwayStations.insertVerticallyAt(to_string(TravelDistance[i - 1]), i);
 
 				// Travel Fare Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(Fare[i-1]), i);
+				SubwayStations.insertVerticallyAt(to_string(Fare[i - 1]), i);
 
 				// Travel Time Between Previous Station
-				SubwayStations.insertVerticallyAt(to_string(Time[i-1]), i);
+				SubwayStations.insertVerticallyAt(to_string(Time[i - 1]), i);
 
 			}
 			else {
-				for(int j = 0;j<4;j++) SubwayStations.insertVerticallyAt("NULL", i);
+				for (int j = 0; j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
-			
+
 			// Except 7
 			if (i != StationNumber - 1) {
 
@@ -130,8 +130,8 @@ public:
 				SubwayStations.insertVerticallyAt(to_string(Time[i]), i);
 
 			}
-			else { 
-				for(int j = 0;j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
+			else {
+				for (int j = 0; j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
 			}
 
 			SubwayStations.insertVerticallyAt(NearbySightseeingSpots[i], i);
@@ -139,7 +139,7 @@ public:
 			// Finish Inserting Data into Station linked list
 		}
 
-		/* 
+		/*
 			Detail of Stations:
 			+---------+
 			| SUMMARY |
@@ -178,7 +178,7 @@ public:
 
 		// Initialise Ticket Pruchasing records
 		int ticketAmount = 1;
-		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506","123456", true);
+		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506", "123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
 		PurchaseRecord.insertAtEnd(newTransactionObj);
@@ -220,7 +220,7 @@ public:
 
 
 	// Output Data Object: Ticket Purchasing
-	DoublyLinkedList<Transaction> getTicketPurchaseRecord () {
+	DoublyLinkedList<Transaction> getTicketPurchaseRecord() {
 		return PurchaseRecord;
 	}
 
@@ -288,7 +288,10 @@ public:
 		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
-				PurchaseRecord.getItem(i).getTicket().setSourceStationID(SourceStationId);
+				Transaction curTransaction = PurchaseRecord.getItem(i);
+				if (setNewInfo(SourceStationId, curTransaction.getTicket().destinationStationId, curTransaction.getTicket().getTicketAmount(), curTransaction))
+					PurchaseRecord.setItem(curTransaction, i);
+				else return false;
 				return true;
 			}
 		}
@@ -299,7 +302,10 @@ public:
 		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
-				PurchaseRecord.getItem(i).getTicket().setDestinationStationID(DestinationStationId);
+				Transaction curTransaction = PurchaseRecord.getItem(i);
+				if(setNewInfo(curTransaction.getTicket().sourceStationId, DestinationStationId, curTransaction.getTicket().getTicketAmount(), curTransaction))
+					PurchaseRecord.setItem(curTransaction, i);
+				else return false;
 				return true;
 			}
 		}
@@ -310,18 +316,92 @@ public:
 		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
-				PurchaseRecord.getItem(i).getTicket().setTicketAmount(TicketAmount);
+				Transaction curTransaction = PurchaseRecord.getItem(i);
+				if(setNewInfo(curTransaction.getTicket().sourceStationId, curTransaction.getTicket().destinationStationId, TicketAmount, curTransaction))
+					PurchaseRecord.setItem(curTransaction, i);
+				else return false;
 				return true;
 			}
 		}
 		return false;
 	}
 
+	bool setNewInfo(string stationA, string stationB, int TicketAmount, Transaction& Transaction) {
+
+		// Validate data
+		int distance = 0, time = 0;
+		double fare = 0;
+
+		// get two stations ID
+		bool AisFound = false;
+		bool BisFound = false;
+		bool splitID = false;
+
+		// Step 1 get ID and collect data
+		for (int i = 0; i < SubwayStations.getSize(); i++) {
+			string id = SubwayStations.getItem(i);
+			// Stations
+			/*[0] ID
+			// [1] Name
+			// [2] Name -> Prev
+			// [3] Dist
+			// [4] Fare
+			// [5] Time
+			// [6] Name -> Next
+			// [7] Dist
+			// [8] Fare
+			// [9] Time
+			// [10] Nearby Spots */
+
+
+			// Step 1.1 compare chosen and current id
+			if (id == stationA) AisFound = true;
+			else if (id == stationB) BisFound = true;
+
+			//cout << temp << ' ' << stationA << ' ' << stationB << endl;
+
+			if (AisFound && BisFound) {
+				// case out
+				break;
+			}
+			else if (AisFound || BisFound)
+				// A is found or B is Found
+				// Start collecting data
+			{
+				distance += stoi(SubwayStations.getItem(i, 7));
+				fare += stod(SubwayStations.getItem(i, 8));
+				time += stoi(SubwayStations.getItem(i, 9));
+			}
+		}
+
+		if (!(AisFound && BisFound)) {
+			cout << "\nNot Found\n";
+			return false;
+		}
+
+
+		fare *= (double)TicketAmount;
+		// Build ticket object
+		// Ticket(ticketId, stationAid, stationBid, ticketAmount, (double)ticket, depatureTime, customerobj);
+		string depatureTime = "";
+		for (int i = 0; i < (sizeof(trainDepatureTime) / sizeof(string)) - 1; i++) {
+			if (trainDepatureTime[i] <= getCurrentTime() && getCurrentTime() < trainDepatureTime[i + 1])
+				depatureTime = trainDepatureTime[i + 1];
+		}
+		
+		Transaction.resetTransaction(stationA, ResetType.RT_SOURCE_ID);
+		Transaction.resetTransaction(stationB, ResetType.RT_DESTINATION_ID);
+		Transaction.resetTransaction(to_string(TicketAmount), ResetType.RT_TICKET_AMOUNT);
+		Transaction.resetTransaction(to_string(fare), ResetType.RT_PRICE);
+		Transaction.resetTransaction(depatureTime, ResetType.RT_DEPATURE_TIME);
+		return true;
+	}
+
 	void addStation(string StationId, string StationName, bool isFront, string Distance, string Fare, string Time, string NearbySightseeingSpots) {
 		int i = currentStationId;
 		if (isFront) i = 0;
 
-		if(isFront)SubwayStations.insertAtBeginning(StationId);
+		if (isFront)SubwayStations.insertAtBeginning(StationId);
 		else SubwayStations.insertAtEnd(StationId);
 
 		// Cur Station Name
@@ -332,7 +412,7 @@ public:
 		if (i != 0) {
 
 			// Prev Station Name
-			SubwayStations.insertVerticallyAt(getSubwayStations().getItem(getSubwayStations().getSize()-2, 1), i);
+			SubwayStations.insertVerticallyAt(getSubwayStations().getItem(getSubwayStations().getSize() - 2, 1), i);
 			SubwayStations.setItem(StationName, getSubwayStations().getSize() - 2, 6);
 
 			// Travel Distance Between Previous Station
@@ -352,7 +432,7 @@ public:
 			for (int j = 0; j < 4; j++) SubwayStations.insertVerticallyAt("NULL", i);
 		}
 
-		
+
 		if (i != currentStationId) {
 
 			// Next Station Name

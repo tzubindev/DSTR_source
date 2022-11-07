@@ -497,7 +497,7 @@ public:
 
 						// Step 1.1 compare chosen and current id
 						if (temp == stationA) AisFound = true;
-						if (temp == stationB) BisFound = true;
+						else if (temp == stationB) BisFound = true;
 
 						//cout << temp << ' ' << stationA << ' ' << stationB << endl;
 
@@ -536,6 +536,7 @@ public:
 				depatureTime = storage->trainDepatureTime[i + 1];
 		}
 
+		fare *= stod(ticketAmount);
 		Ticket newTicket = Ticket(storage->getCurrentTicketId(), "SID_" + stationA, "SID_" + stationB, stoi(ticketAmount), fare, depatureTime, currentCustomerObj);
 		Transaction newTransaction = Transaction(storage->getCurrentTransactionId(), newTicket);
 		storage->addTransaction(newTransaction);
@@ -546,7 +547,7 @@ public:
 
 		switch (result) {
 		case Error().WRONG_INPUT:
-			cout << "something" << endl;
+			printError(Error().WRONG_INPUT);
 			return;
 		}
 	}

@@ -140,6 +140,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="PassengerMenu.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="ResetType.h" />
     <ClInclude Include="TemporaryStorage.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="Ticket.h" />

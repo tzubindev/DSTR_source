@@ -229,6 +229,26 @@ public:
 		cout << "Not found!";
 	}
 
+	void setItem(T elem, int x) {
+		DoublyNode<T>* curNode = head;
+		int cnt = 0;
+
+		if (x<0 || x >= size) {
+			cout << "Out of range in get item\n";
+		}
+
+		while (curNode != NULL) {
+			if (cnt == x) {
+				curNode->data = elem;
+			}
+			else {
+				curNode = curNode->next;
+				cnt++;
+			}
+		}
+		cout << "Not found!";
+	}
+
 	void deleteFirst() {
 
 		if (head != NULL) {

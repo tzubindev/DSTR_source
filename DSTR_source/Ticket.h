@@ -127,6 +127,23 @@ public:
 		destinationStationId = id;
 	}
 
+	void setPrice(double newPrice)
+	{
+		price = newPrice;
+	}
+
+	double getPrice() {
+		return price;
+	}
+
+	int getTicketAmount() {
+		return ticketAmount;
+	}
+
+	void setDepatureTime(string time) {
+		depatureTime = time;
+	}
+
 	string getTicketDateTime() {
 		return currentDateTime;
 	}
