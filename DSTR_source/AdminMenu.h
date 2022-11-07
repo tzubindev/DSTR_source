@@ -635,7 +635,7 @@ private:
 		else {
 			for (char ch : input) {
 				if (ch != ' ') isTrimmedLeft = true;
-				if (isTrimmedLeft)
+				if (isTrimmedLeft && ch!='\n')
 					final += (ch);
 			}
 		}
