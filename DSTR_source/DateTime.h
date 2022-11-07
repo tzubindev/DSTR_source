@@ -7,7 +7,6 @@ using namespace std;
 class DateTime {
 
 	time_t now = time(NULL);
-	//char *str = ctime(&now);
 	char str[26] = {};
 
 public:
