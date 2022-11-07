@@ -206,11 +206,9 @@ public:
 					}
 				}
 
-				//Queue here
 				Queue<string> q(cnt);
 
 				//push item to queue
-
 				for (char ch : temp) {
 					if (ch == ';') {
 						q.enqueue(temp2);
@@ -293,12 +291,9 @@ public:
 	}
 
 
-	// no complete
 	void sortPurchaseTransactions() {
 		DoublyLinkedList<Transaction> Transactions = storage->sortTransaction();
 
-
-		//DoublyLinkedList<Transaction> Transactions = storage->getTicketPurchaseRecord();
 		Menu* tempMenuObj = new Menu(true);
 
 
