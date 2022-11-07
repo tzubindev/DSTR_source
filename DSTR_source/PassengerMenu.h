@@ -766,22 +766,23 @@ public:
 		string password = tempMenuObj->getPassword();
 
 		DoublyLinkedList<Customer> Details = storage->getPassengerAccounts();
-		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
+		bool UNcorrect = false, PWcorrect = false;
 		for (int i = 0; i < Details.getSize(); i++) {
-			usernameChecked = false;
 			UNcorrect = false;
 			PWcorrect = false;
-			for (auto detail : Details.getItem(i).toString()) {
-				if (usernameChecked) {
-					if (password == Details.getItem(i).Password) PWcorrect = true;
-					customerID = Details.getItem(i).CustomerID;
-					isEnd = true;
+			for (int i = 0; i < Details.getSize();i++) {
+
+				if (icOrPassportNo == Details.getItem(i).PassportNo || 
+					icOrPassportNo == Details.getItem(i).IdentityNo) 
+					UNcorrect = true;
+
+				if (UNcorrect) {
+					if (password == Details.getItem(i).Password) {
+						PWcorrect = true;
+						customerID = Details.getItem(i).CustomerID;
+					}
+						break;
 				}
-				else {
-					if (icOrPassportNo == Details.getItem(i).PassportNo || icOrPassportNo == Details.getItem(i).IdentityNo) UNcorrect = true;
-					usernameChecked = true;
-				}
-				if (isEnd) break;
 			}
 			if (PWcorrect && UNcorrect) {
 

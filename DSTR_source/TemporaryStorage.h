@@ -77,7 +77,6 @@ public:
 								"23:00", "23:30", "00:00", "00:30",  "01:00"
 	};
 
-
 	// Constructor for initialisation.
 	TemporaryStorage() {
 
