@@ -569,13 +569,21 @@ public:
 				}
 				if (isEnd) break;
 			}
-			if (PWcorrect && UNcorrect) return true;
+			if (PWcorrect && UNcorrect) {
+				return true;
+			}
+			else {
+				username = "";
+				password = "";
+				return false;
+			}
+
 		}
 		free(tempMenuObj);
 		return false;
 	}
 
-private:
+
 
 	void printError(int errorType) {
 		string ErrorStr = "";

@@ -788,7 +788,7 @@ public:
 		return false;
 	}
 
-private:
+
 
 	string getInput() {
 
