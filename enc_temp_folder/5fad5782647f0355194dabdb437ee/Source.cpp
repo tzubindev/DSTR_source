@@ -145,7 +145,7 @@ int main() {
 					tempMenuObj->drawLine('*', MAX_WIDTH);
 					tempMenuObj->makeTitleBlock("Admin Menu", 6);
 					tempMenuObj->drawLine('*', MAX_WIDTH);
-					cout << endl << endl;
+					cout << endl;
 
 					cout << "1- Add new subway station information " << endl;
 					cout << "2- Edit current subway stations?information" << endl;
