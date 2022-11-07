@@ -814,7 +814,7 @@ public:
 							currentCustomerObj = Details.getItem(i);
 					}
 				}
-				cout << "Login succsufoul!!" << endl;
+				cout << "Login successful!!" << endl;
 				return true;
 			}
 		}

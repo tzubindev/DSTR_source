@@ -74,6 +74,7 @@ public:
 				for (int i = 0; i < NearbySpots.length(); i++) if (NearbySpots[i] == '_') NearbySpots[i] = ' ';
 
 				storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
+				tempMenuObj->makeTitleBlock("New Station has been Successfuly added", 4);
 			}
 			else printError(Error().WRONG_INPUT);
 		}
@@ -89,7 +90,7 @@ public:
 		delete tempMenuObj;
 	}
 
-	void editSubwayInformation() {
+	void editSubwayInformation() {	
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
 		string stationID;

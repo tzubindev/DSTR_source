@@ -148,7 +148,7 @@ int main() {
 					cout << endl << endl;
 
 					cout << "1- Add new subway station information " << endl;
-					cout << "2- Edit current subway stations?information" << endl;
+					cout << "2- Edit current subway stationsinformation?" << endl;
 					cout << "3- View all purchase transactions " << endl;
 					cout << "4- Sort purchase" << endl;
 					cout << "5- Search specific customer ticket purchase information " << endl;
