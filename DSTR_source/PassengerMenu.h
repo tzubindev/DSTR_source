@@ -208,10 +208,13 @@ public:
 
 		cout << endl << endl;
 
+		bool isAvalible = false;
+
 		for (int i = 0; i < Stations.getSize(); i++) {
 
 			for (int i = 0; i < stationID.length(); i++) stationID[i] = toupper(stationID[i]);
 			if (stationID == Stations.getItem(i, 0)) {
+				isAvalible = true;
 
 				cout << "\tStation ID: " << Stations.getItem(i, 0) << "\t\t" << "||\t" << "Station Name: " << Stations.getItem(i, 1) << endl;
 				cout << endl << endl;
@@ -268,10 +271,18 @@ public:
 				ConsoleColor().setColor(Color.YELLOW);
 				tempMenuObj->drawLine('*', MAX_WIDTH);
 				ConsoleColor();
-
+				return;
 			}
-			else {
-
+			if (!isAvalible) {
+				isAvalible = true;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				tempMenuObj->setTab(6);
+				cout << "Please enter a valid Ticket ID: ";
+				cout << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				ConsoleColor().setColor(Color.YELLOW);
+				ConsoleColor();
+				searchStationDetails();
 			}
 		}
 	}
@@ -742,6 +753,11 @@ public:
 		tempMenuObj->drawLine('=', MAX_WIDTH);
 		tempMenuObj->setTab(5);
 
+		DoublyLinkedList<Customer> Customers = storage->getPassengerAccounts();
+		for (int i = 0; i < Customers.getSize(); i++) {
+			cout << Customers.getItem(i).toString() << endl;
+		}
+
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
 		cout << "Passenger Login\n";
@@ -788,6 +804,7 @@ public:
 							currentCustomerObj = Details.getItem(i);
 					}
 				}
+				cout << "Login succsufoul!!" << endl;
 				return true;
 			}
 		}
