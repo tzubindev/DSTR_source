@@ -74,6 +74,7 @@ public:
 				for (int i = 0; i < NearbySpots.length(); i++) if (NearbySpots[i] == '_') NearbySpots[i] = ' ';
 
 				storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
+				tempMenuObj->makeTitleBlock("Station Name Successfuly Updated", 6);
 			}
 			else printError(Error().WRONG_INPUT);
 		}
