@@ -89,6 +89,7 @@ public:
     {
         return (!isEmpty()) ? arr[front] : -1;
     }
+
     int last()
     {
         return (!isEmpty()) ? arr[rear] : -1;

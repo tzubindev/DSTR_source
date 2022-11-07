@@ -344,7 +344,7 @@ public:
 
 		ConsoleColor().setColor(Color.YELLOW);
 		tempMenuObj->drawLine('*', MAX_WIDTH);
-		tempMenuObj->makeTitleBlock("View Tickect Information", 5);
+		tempMenuObj->makeTitleBlock("Search for a Specific Tickect Information", 5);
 		cout << endl;
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
@@ -356,8 +356,11 @@ public:
 		cout << endl << endl;
 		for (int i = 0; i < searchTicketID.length(); i++) searchTicketID[i] = toupper(searchTicketID[i]);
 
+		bool isAvalible = false;
+
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
 			if (searchTicketID == purchaseRecord.getItem(i).getTicket().TicketID) {
+				isAvalible = true;
 				tempMenuObj->setTab(1);
 				cout << "TicketId: " << purchaseRecord.getItem(i).getTicket().TicketID << endl << endl;
 				tempMenuObj->setTab(1);
@@ -377,11 +380,19 @@ public:
 				tempMenuObj->setTab(1);
 				cout << "Passport Number // IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
 				delete tempMenuObj;
+				return;
 			}
-			else {
-				
+			if (!isAvalible) {
+				isAvalible = true;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				tempMenuObj->setTab(6);
+				cout << "Please enter a valid Ticket ID: ";
+				cout << endl;
+				tempMenuObj->drawLine('-', MAX_WIDTH);
+				ConsoleColor().setColor(Color.YELLOW);
+				ConsoleColor();
+				searchTicketInformation();
 			}
-
 			cout << endl;
 			ConsoleColor().setColor(Color.YELLOW);
 			tempMenuObj->drawLine('*', MAX_WIDTH);
