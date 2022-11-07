@@ -6,7 +6,6 @@
 
 using namespace std;
 
-bool initialCheck();
 void setSize();
 
 int main() {
@@ -113,11 +112,6 @@ int main() {
 	ConsoleColor();
 
 	return 0;
-}
-
-bool initialCheck() {
-	// Progressbar: https://www.geeksforgeeks.org/how-to-create-a-command-line-progress-bar-in-c-c/
-	return true;
 }
 
 void setSize() {
