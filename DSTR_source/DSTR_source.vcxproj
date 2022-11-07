@@ -136,7 +136,6 @@
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="doublyLinkedList.h" />
     <ClInclude Include="Error.h" />
-    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="PassengerMenu.h" />
     <ClInclude Include="Queue.h" />

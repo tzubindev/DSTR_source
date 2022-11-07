@@ -54,9 +54,9 @@ public:
 		cout << '\n';
 		setTab(6);
 		ConsoleColor().setColor(Color.GREEN);
-		cout << "A - Ticket Purchase\n\n";
+		cout << "A - Passenger\n\n";
 		setTab(6);
-		cout << "B - Login (Admin)\n\n";
+		cout << "B - Admin\n\n";
 		ConsoleColor().setColor(Color.WHITE);
 		drawLine('-', MAX_WIDTH, 0);
 		cout << "\n";

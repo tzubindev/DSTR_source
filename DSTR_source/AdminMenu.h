@@ -693,4 +693,8 @@ public:
 		return final;
 	}
 
+	TemporaryStorage* outputLatestStorage() {
+		return storage;
+	}
+
 };

@@ -19,12 +19,6 @@ public:
 		storage = TempStorage;
 	}
 
-	PassengerMenu(TemporaryStorage* TempStorage, bool isRegistered) {
-		registered = isRegistered;
-		storage = TempStorage;
-		for (int i = 0; i < 10; i++) cout << '\n';
-	}
-
 
 
 	// Display Travel Route Format
@@ -591,7 +585,11 @@ public:
 						return;
 					}
 				}
+				bool isLocal = (local == "y");
+				Customer newCustomer = Customer(storage->getCurrentCustomerId(), name, number, password, isLocal);
+				storage->addPassengerAccount(newCustomer);
 				cout << "Account is registered!" << endl;
+				return;
 			}
 			else printError(Error().WRONG_INPUT);
 
@@ -599,6 +597,7 @@ public:
 		else {
 			printError(Error().WRONG_INPUT);
 		}
+		return;
 	}
 
 	void viewPurchaseTransactionHistory() {
@@ -796,8 +795,6 @@ public:
 		return false;
 	}
 
-
-
 	string getInput() {
 
 		bool isTrimmedLeft = false;
@@ -835,4 +832,7 @@ public:
 		return final;
 	}
 
+	TemporaryStorage* outputLatestStorage() {
+		return storage;
+	}
 };
