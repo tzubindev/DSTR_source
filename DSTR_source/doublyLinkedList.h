@@ -97,7 +97,6 @@ public:
 
 	}
 
-	// Dont change
 	void insertVerticallyAt(T elem, int index) {
 		if (index >= size)
 		{
@@ -146,7 +145,6 @@ public:
 		return height;
 	}
 
-	// Dont change
 	T getItem(int x) {
 		DoublyNode<T>* curNode = head;
 		int cnt = 0;
@@ -318,31 +316,6 @@ public:
 		while (head != NULL) deleteLast();
 	}
 
-	void showForward()
-	{
-
-	} // ignore
-
-	void showBackward()
-	{
-
-	} // ignore
-
-	void sort()
-	{
-		DoublyNode<T>* curr = head;
-		DoublyNode<T>* temp = nullptr;
-
-		while (curr->next != NULL) {
-
-			// if next node value > cur node value, swap
-
-
-		}
-
-		// check
-
-	}
 	void swap(int x, int y)
 	{
 		DoublyNode<T>* curr = head;

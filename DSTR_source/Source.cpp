@@ -65,6 +65,8 @@ int main() {
 			// Split direction
 			if (choice == "1") {
 				passengerMenu->registerPassenger();
+				storage = passengerMenu->outputLatestStorage();
+				passengerMenu = new PassengerMenu(storage);
 			}
 			else if (choice == "2") {
 
