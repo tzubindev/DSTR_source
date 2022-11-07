@@ -119,6 +119,14 @@ public:
 		ticketAmount = TicketAmount;
 	}
 
+	void setSourceStationID(string id) {
+		sourceStationId = id;
+	}
+
+	void setDestinationStationID(string id) {
+		destinationStationId = id;
+	}
+
 	string getTicketDateTime() {
 		return currentDateTime;
 	}

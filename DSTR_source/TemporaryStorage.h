@@ -287,7 +287,7 @@ public:
 		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
-				PurchaseRecord.getItem(i).getTicket().sourceStationId = SourceStationId;
+				PurchaseRecord.getItem(i).getTicket().setSourceStationID(SourceStationId);
 				return true;
 			}
 		}
@@ -298,7 +298,7 @@ public:
 		for (int i = 0; i < PurchaseRecord.getSize(); i++) {
 			if (PurchaseRecord.getItem(i).getTicket().TicketID == ticketId)
 			{
-				PurchaseRecord.getItem(i).getTicket().destinationStationId = DestinationStationId;
+				PurchaseRecord.getItem(i).getTicket().setDestinationStationID(DestinationStationId);
 				return true;
 			}
 		}
