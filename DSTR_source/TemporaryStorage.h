@@ -181,26 +181,27 @@ public:
 		Customer newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name", "010203040506","123456", true);
 		Ticket newTicketObj = Ticket(getCurrentTicketId(), "SID_1", "SID_2", ticketAmount, 0.4, "12:00", newCustomerObj);
 		Transaction newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
-		Transaction newTransactionObj2 = Transaction(getCurrentTransactionId(), newTicketObj);
-		Transaction newTransactionObj3 = Transaction(getCurrentTransactionId(), newTicketObj);
-
+		PurchaseRecord.insertAtEnd(newTransactionObj);
 		PassengerAccounts.insertAtEnd(newCustomerObj);
 
-		PurchaseRecord.insertAtEnd(newTransactionObj);
-		PurchaseRecord.insertAtEnd(newTransactionObj2);
-		PurchaseRecord.insertAtEnd(newTransactionObj3);
-
 		ticketAmount = 4;
+		newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name Two", "123456789012", "123456", true);
+		newTicketObj = Ticket(getCurrentTicketId(), "SID_3", "SID_4", ticketAmount, 0.4, "12:00", newCustomerObj);
+		newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
+		PurchaseRecord.insertAtEnd(newTransactionObj);
+		PassengerAccounts.insertAtEnd(newCustomerObj);
+
+		ticketAmount = 2;
+		newCustomerObj = Customer(getCurrentCustomerId(), "Sample Name three", "135798642012", "123456", true);
+		newTicketObj = Ticket(getCurrentTicketId(), "SID_0", "SID_5", ticketAmount, 0.4, "12:00", newCustomerObj);
+		newTransactionObj = Transaction(getCurrentTransactionId(), newTicketObj);
+		PurchaseRecord.insertAtEnd(newTransactionObj);
+		PassengerAccounts.insertAtEnd(newCustomerObj);
 
 
 		// Initialise Admin accounts 
 		AdminAccounts.insertAtEnd("admin1;123456;");
 		AdminAccounts.insertAtEnd("admin2;aab3456;");
-
-		// Initialise Passanger accounts 
-		PassengerAccounts.insertAtEnd(newCustomerObj);
-
-
 	}
 
 	DoublyLinkedList<string> getAdminDetails() {
