@@ -468,6 +468,11 @@ public:
 		stationB = tempMenuObj->getInput("CITY B(ENTER NUMBER)");
 		for (int i = 0; i < 2; i++) cout << endl;
 
+		if (stationA == stationB) {
+			printError(Error().WRONG_INPUT);
+			return;
+		}
+
 		// Validate data
 		int distance = 0, time = 0;
 		double fare = 0;

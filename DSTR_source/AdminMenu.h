@@ -125,7 +125,7 @@ public:
 				tempMenuObj->drawLine('-', MAX_WIDTH);
 				cout << endl;
 				string option;
-				cout << "1- Station Name \n2- Price\n3- Time\n4- Cancel" << endl;
+				cout << "1- Station Name(type '_' to replace space) \n2- Price\n3- Time\n4- Cancel" << endl;
 				option = getInput("Enter the number thing that you want to edit:");
 				cout << endl;
 				string input;
@@ -140,11 +140,12 @@ public:
 				case 1:
 					input = getInput("Enter the new name of the staion : ", false);
 					for (char ch : input) {
-						if (isdigit(ch)) {
+						if (isdigit(ch) && ch!='_') {
 							printError(Error().WRONG_INPUT);
 							return;
 						}
 					}
+					for (int i = 0; i < input.length(); i++) if (input[i] == '_') input[i] = ' ';
 					Stations.setItem(input, i, 1);
 					cout << endl;
 					tempMenuObj->drawLine('-', MAX_WIDTH);
