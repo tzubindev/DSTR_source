@@ -89,7 +89,7 @@ public:
 		delete tempMenuObj;
 	}
 
-	void editSubwayInformation() {
+	void editSubwayInformation() {	
 		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		Menu* tempMenuObj = new Menu(true);
 		string stationID;

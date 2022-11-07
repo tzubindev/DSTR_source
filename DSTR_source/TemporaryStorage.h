@@ -41,14 +41,14 @@ private:
 
 	//Nearby Sightseeing Spots.
 	string NearbySightseeingSpots[8] = {
-		"a;b;",
-		"c;",
-		"d;",
-		"e;",
-		"f;",
-		"g;",
-		"h;",
-		"i;"
+		"Balai Seni Negara;",
+		"Tirta Spa;",
+		"Ayasofea Hammami Spa;",
+		"Pertama Therapy Zone;",
+		"Sky Suites;",
+		"Times Square;",
+		"HealthLand Pudu KL;",
+		"Vivatel Kuala Lumpur;"
 	};
 
 	// Stations
