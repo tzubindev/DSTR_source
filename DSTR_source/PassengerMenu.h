@@ -761,11 +761,6 @@ public:
 		tempMenuObj->drawLine('=', MAX_WIDTH);
 		tempMenuObj->setTab(5);
 
-		DoublyLinkedList<Customer> Customers = storage->getPassengerAccounts();
-		for (int i = 0; i < Customers.getSize(); i++) {
-			cout << Customers.getItem(i).toString() << endl;
-		}
-
 		// Set Colour
 		ConsoleColor().setColor(Color.YELLOW);
 		cout << "Passenger Login\n";
