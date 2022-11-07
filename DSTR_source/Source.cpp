@@ -46,7 +46,6 @@ int main() {
 
 				cout << "CHOICE> ";
 				cin >> choice;
-
 				if (choice == "1" || choice == "2" || choice == "3") break;
 				else cout << "Error: Wrong Input.\n";
 			}
@@ -73,7 +72,9 @@ int main() {
 					
 					// if true, customerObj will be caught
 					string option = "";
+					bool error = false;
 					while (option != "7") {
+						error = false;
 						cout << "1- Choose the travel route and Display the list" << endl;
 						cout << "2- Search the subway station details" << endl;
 						cout << "3- View the details between two selected cities" << endl;
@@ -82,32 +83,40 @@ int main() {
 						cout << "6- Delete purchase transaction " << endl;
 						cout << "7- Logout " << endl;
 						cout << endl;
-
+						option = passengerMenu->getInput("Please Enter the Option:");
 						//validation
+						for (char ch : option) {
+							if (!isdigit(ch)) {
+								passengerMenu->printError(Error().WRONG_INPUT);
+								error = true;
+							}
+						}
+						if (!error) {
+							switch (stoi(option)) {
+							case 1:
+								passengerMenu->chooseAndDisplayTravelRoute();
+								break;
+							case 2:
+								passengerMenu->searchStationDetails();
+								break;
+							case 3:
+								passengerMenu->viewDetailsBetweenTwoCities();
+								break;
+							case 4:
+								passengerMenu->purchaseSubwayTicket();
+								break;
+							case 5:
+								passengerMenu->viewPurchaseTransactionHistory();
+								break;
+							case 6:
+								passengerMenu->deletePurchaseTransaction();
+								break;
+							case 7:
 
-						switch (stoi(option)) {
-						case 1:
-							passengerMenu->chooseAndDisplayTravelRoute();
-							break;
-						case 2:
-							passengerMenu->searchStationDetails();
-							break;
-						case 3:
-							passengerMenu->viewDetailsBetweenTwoCities();
-							break;
-						case 4:
-							passengerMenu->purchaseSubwayTicket();
-							break;
-						case 5:
-							passengerMenu->viewPurchaseTransactionHistory();
-							break;
-						case 6:
-							passengerMenu->deletePurchaseTransaction();
-							break;
-						case 7:
-							break;
-						default:
-							cout << "Wrong Input" << endl;
+								break;
+							default:
+								cout << "Wrong Input" << endl;
+							}
 						}
 						tempMenuObj->drawLine('*', MAX_WIDTH);
 						ConsoleColor();
@@ -127,7 +136,9 @@ int main() {
 			cout << endl;
 
 			if (adminMenu->login()) {
+				bool error = false;
 				while (true) {
+					error = false;
 					ConsoleColor().setColor(Color.YELLOW);
 					tempMenuObj->drawLine('*', MAX_WIDTH);
 					tempMenuObj->makeTitleBlock("Admin Menu", 6);
@@ -145,34 +156,41 @@ int main() {
 					string option = adminMenu->getInput("Please Enter the Option: ");
 
 					// validation
-
-					switch (stoi(option)) {
-					case 1:
-						adminMenu->addSubwayStation();
-						break;
-					case 2:
-						adminMenu->editSubwayInformation();
-						break;
-					case 3:
-						adminMenu->viewPurchaseTransactions();
-						break;
-					case 4:
-						adminMenu->sortPurchaseTransactions();
-						break;
-					case 5:
-						adminMenu->searchTicketInformation();
-						break;
-					case 6:
-						adminMenu->editTicketInformation();
-						break;
-					case 7:
-						adminMenu->deleteTransaction();
-						break;
-					case 8:
-						storage = adminMenu->outputLatestStorage();
-						break;
-					default:
-						cout << "Wrong Input" << endl;
+					for (char ch : option) {
+						if (!isdigit(ch)) {
+							adminMenu->printError(Error().WRONG_INPUT);
+							error = true;
+						}
+					}
+					if (!error) {
+						switch (stoi(option)) {
+						case 1:
+							adminMenu->addSubwayStation();
+							break;
+						case 2:
+							adminMenu->editSubwayInformation();
+							break;
+						case 3:
+							adminMenu->viewPurchaseTransactions();
+							break;
+						case 4:
+							adminMenu->sortPurchaseTransactions();
+							break;
+						case 5:
+							adminMenu->searchTicketInformation();
+							break;
+						case 6:
+							adminMenu->editTicketInformation();
+							break;
+						case 7:
+							adminMenu->deleteTransaction();
+							break;
+						case 8:
+							storage = adminMenu->outputLatestStorage();
+							break;
+						default:
+							cout << "Wrong Input" << endl;
+						}
 					}
 					tempMenuObj->drawLine('*', MAX_WIDTH);
 					ConsoleColor();
@@ -180,6 +198,7 @@ int main() {
 
 				}
 			}
+			menu = new Menu();
 		}
 		else {
 			cout << "Error: Uncaught type\n";

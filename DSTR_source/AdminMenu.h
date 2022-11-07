@@ -74,12 +74,13 @@ public:
 				for (int i = 0; i < NearbySpots.length(); i++) if (NearbySpots[i] == '_') NearbySpots[i] = ' ';
 
 				storage->addStation(StationId, StationName, isFront, Distance, Fare, Time, NearbySpots);
-			}else printError(Error().WRONG_INPUT);
+			}
+			else printError(Error().WRONG_INPUT);
 		}
 		else {
 			printError(Error().WRONG_INPUT);
 		}
-		
+
 
 		cout << endl;
 		ConsoleColor().setColor(Color.YELLOW);
@@ -97,15 +98,15 @@ public:
 			cout << endl;
 			cout << "Station ID: " << Stations.getItem(i, 0) << endl;
 			cout << "Station Name: " << Stations.getItem(i, 1) << endl;
-		
+
 
 			tempMenuObj->drawLine('-', MAX_WIDTH);
 			cout << endl;
-			
+
 		}
 
-		
-		stationID = getInput("Please enter the station ID to edit it:");
+
+		stationID = getInput("Please enter the station ID to edit it: ");
 		cout << endl;
 		for (int i = 0; i < stationID.length(); i++) stationID[i] = toupper(stationID[i]);
 		for (int i = 0; i < Stations.getSize(); i++) {
@@ -124,7 +125,7 @@ public:
 				tempMenuObj->drawLine('-', MAX_WIDTH);
 				cout << endl;
 				string option;
-				cout << "1- Station Name \n2- Price\n3- Time" << endl;
+				cout << "1- Station Name \n2- Price\n3- Time\n4- Cancel" << endl;
 				option = getInput("Enter the number thing that you want to edit:");
 				cout << endl;
 				string input;
@@ -133,10 +134,6 @@ public:
 						printError(Error().WRONG_INPUT);
 						return;
 					}
-				}
-				if (option.length() == 0) {
-					printError(Error().WRONG_INPUT);
-					return;
 				}
 				switch (stoi(option))
 				{
@@ -148,15 +145,11 @@ public:
 							return;
 						}
 					}
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
-					}
 					Stations.setItem(input, i, 1);
 					cout << endl;
 					tempMenuObj->drawLine('-', MAX_WIDTH);
 					tempMenuObj->makeTitleBlock("Station Name Successfuly Updated", 6);
-					cout <<endl<<endl;
+					cout << endl << endl;
 					break;
 				case 2:
 					input = getInput("Enter the new price:");
@@ -166,14 +159,10 @@ public:
 							return;
 						}
 					}
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
-					}
 					Stations.setItem(input, i, 8);
 					tempMenuObj->drawLine('-', MAX_WIDTH);
 					tempMenuObj->makeTitleBlock("Price Successfuly Updated", 6);
-					cout <<endl<<endl;
+					cout << endl << endl;
 					break;
 				case 3:
 					input = getInput("Enter the new time:");
@@ -183,15 +172,15 @@ public:
 							return;
 						}
 					}
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
-					}
 					Stations.setItem(input, i, 9);
 					tempMenuObj->drawLine('-', MAX_WIDTH);
 					tempMenuObj->makeTitleBlock("Time Successfuly Updated", 6);
-					cout << endl<<endl;
+					cout << endl << endl;
 					break;
+				case 4:
+					tempMenuObj->setTab(6);
+					cout << "Editing Cancelled\n";
+					return;
 				default:
 					printError(Error().WRONG_INPUT);
 					return;
@@ -252,13 +241,55 @@ public:
 		tempMenuObj->drawLine('*', MAX_WIDTH);
 		ConsoleColor();
 		cout << endl;
-
+		bool isAvalible = true;
 		for (int i = 0; i < purchaseRecord.getSize(); i++) {
-			cout << purchaseRecord.getItem(i).toString() << endl;
+			tempMenuObj->makeTitleBlock(purchaseRecord.getItem(i).getTransactionId(), 1);
+			cout << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "TicketId: " << purchaseRecord.getItem(i).getTicket().TicketID << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Source Station Id: " << purchaseRecord.getItem(i).getTicket().sourceStationId << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Destination Station Id: " << purchaseRecord.getItem(i).getTicket().destinationStationId << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Ticket Amount: " << purchaseRecord.getItem(i).getTicket().ticketAmount << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Ticket Price: " << "RM" << purchaseRecord.getItem(i).getTicket().price << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Departure Time: " << purchaseRecord.getItem(i).getTicket().depatureTime << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Customer ID: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerID << endl << endl;
+			tempMenuObj->setTab(1);
+			cout << "Customer Name: " << purchaseRecord.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
+			tempMenuObj->setTab(1);
+			if (purchaseRecord.getItem(i).getTicket().customerObj.PassportNo == "NULL") {
+				cout << "IC: " << purchaseRecord.getItem(i).getTicket().customerObj.IdentityNo << endl << endl;
+			}
+			else {
+				cout << "Passport Number: " << purchaseRecord.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+			}
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			cout << endl;
+			isAvalible = false;
+			cout << endl;
 		}
 
+		if (isAvalible) {
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			tempMenuObj->setTab(6);
+			cout << "No Purchase Transaction Found";
+			cout << endl;
+			tempMenuObj->drawLine('-', MAX_WIDTH);
+			ConsoleColor().setColor(Color.YELLOW);
+			ConsoleColor();
+		}
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
 		delete tempMenuObj;
 	}
+
 
 	// no complete
 	void sortPurchaseTransactions() {
@@ -348,7 +379,7 @@ public:
 				delete tempMenuObj;
 			}
 			else {
-				cout << "";
+				
 			}
 
 			cout << endl;
@@ -413,19 +444,11 @@ public:
 						return;
 					}
 				}
-				if (option.length() == 0) {
-					printError(Error().WRONG_INPUT);
-					return;
-				}
 				string data;
 				switch (stoi(option))
 				{
 				case 1:
 					input = getInput("Enter the new source station ID: ", false);
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
-					}
 					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
 					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						cout << endl;
@@ -437,10 +460,6 @@ public:
 					break;
 				case 2:
 					input = getInput("Enter the new destination station ID: ", false);
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
-					}
 					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
 					if (storage->setDestinationStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						tempMenuObj->drawLine('-', MAX_WIDTH);
@@ -456,10 +475,6 @@ public:
 							printError(Error().WRONG_INPUT);
 							return;
 						}
-					}
-					if (input.length() == 0) {
-						printError(Error().WRONG_INPUT);
-						return;
 					}
 					if (storage->setTicketAmount(Ticket.getItem(i).getTicket().TicketID, stoi(input))) {
 						tempMenuObj->drawLine('-', MAX_WIDTH);
@@ -489,7 +504,12 @@ public:
 				tempMenuObj->setTab(1);
 				cout << "Customer Name: " << Ticket.getItem(i).getTicket().customerObj.CustomerName << endl << endl;
 				tempMenuObj->setTab(1);
-				cout << "Passport Number // IC: " << Ticket.getItem(i).getTicket().customerObj.IdentityNo << Ticket.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				if (Ticket.getItem(i).getTicket().customerObj.PassportNo == "NULL") {
+					cout << "IC: " << Ticket.getItem(i).getTicket().customerObj.IdentityNo << endl << endl;
+				}
+				else {
+					cout << "Passport Number: " << Ticket.getItem(i).getTicket().customerObj.PassportNo << endl << endl;
+				}
 				tempMenuObj->drawLine('-', MAX_WIDTH);
 				cout << endl;
 
@@ -590,7 +610,7 @@ public:
 			UNcorrect = false;
 			PWcorrect = false;
 			for (char ch : Details.getItem(i)) {
-				if (ch != ',') {
+				if (ch != ';') {
 					temp += ch;
 				}
 				else {
