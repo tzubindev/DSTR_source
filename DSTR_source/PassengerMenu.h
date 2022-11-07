@@ -601,10 +601,18 @@ public:
 			string cnfPassword = tempMenuObj->getPassword();
 
 			if (Validation().validate(name, Validation().NAME) &&
-				(Validation().validate(number, Validation().IC) || Validation().validate(number, Validation().PASSPORT)) &&
 				password == cnfPassword && password.length() > 3) {
 
-
+				if (local == "y") {
+					if (!Validation().validate(number, Validation().IC)) {
+						printError(Error().WRONG_INPUT);
+					}
+				}
+				else {
+					if (!Validation().validate(number, Validation().PASSPORT)) {
+						printError(Error().WRONG_INPUT);
+					}
+				}
 				// check duplication
 				for (int i = 0; i < Customers.getSize(); i++) {
 					if (Customers.getItem(i).getIdentityNo() == number || Customers.getItem(i).getPassportNo() == number) {

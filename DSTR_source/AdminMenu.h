@@ -108,6 +108,24 @@ public:
 
 
 		stationID = getInput("Please enter the station ID to edit it: ");
+
+		if (stationID.substr(0, 4) != "SID_") {
+			printError(Error().WRONG_INPUT);
+			return;
+		}
+
+		bool startCollect = false;
+		for (char ch : stationID) {
+			if (ch == '_') startCollect = true;
+			if (startCollect) {
+				if (!isdigit(ch)) {
+					printError(Error().WRONG_INPUT);
+					return;
+				}
+			}
+		}
+
+
 		cout << endl;
 		for (int i = 0; i < stationID.length(); i++) stationID[i] = toupper(stationID[i]);
 		for (int i = 0; i < Stations.getSize(); i++) {
