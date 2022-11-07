@@ -165,19 +165,26 @@ public:
 
 	void chooseAndDisplayTravelRoute() {
 		string input;
-		cout << "1- Titiwangsa --> Chan Sow Lin" << "\n" <<
-			"OR" << "\n" <<
-			"2- Chan Sow Lin --> Titiwangsa" << "\n" <<
-			"Please Select the Travel Route:";
-		cin >> input;
-		if (input == "1") {
+		cout << "\n1- Titiwangsa --> Chan Sow Lin" << "\n\n" <<
+			"OR" << "\n\n" <<
+			"2- Chan Sow Lin --> Titiwangsa\n" << endl;
+		input = getInput("Please Select the Travel Route:");
+		for (char ch : input) {
+			if (!isdigit(ch)) {
+				printError(Error().WRONG_INPUT);
+				return;
+			}
+		}
+		switch (stoi(input)) {
+		case 1:
 			DisplayTravelRoute(true);
-		}
-		else if (input == "2") {
+			break;
+		case 2:
 			DisplayTravelRoute(false);
-		}
-		else {
-			cout << "Please select the correct travel route:";
+			break;
+		default:
+			printError(Error().WRONG_INPUT);
+			return;
 		}
 	}
 
