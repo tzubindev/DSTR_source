@@ -268,7 +268,6 @@ public:
 		return CT;
 	}
 
-	string datetime[6];
 	string getCurrentTime() {
 		DateTime* dt = new DateTime;
 		string dateTime = dt->getDateTime();
