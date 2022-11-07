@@ -164,10 +164,11 @@ public:
 	}
 
 	void chooseAndDisplayTravelRoute() {
+		DoublyLinkedList<string> Stations = storage->getSubwayStations();
 		string input;
-		cout << "\n1- Titiwangsa --> Chan Sow Lin" << "\n\n" <<
+		cout << "\n1- "<< Stations.getItem(0, 1) << " --> "<< Stations.getItem(Stations.getSize()-1, 1) << "\n\n" <<
 			"OR" << "\n\n" <<
-			"2- Chan Sow Lin --> Titiwangsa\n" << endl;
+			"2- " << Stations.getItem(Stations.getSize() - 1, 1)  <<" --> " << Stations.getItem(0,1) << "\n" << endl;
 		input = getInput("Please Select the Travel Route:");
 		for (char ch : input) {
 			if (!isdigit(ch)) {
