@@ -568,6 +568,8 @@ public:
 		case Error().WRONG_INPUT:
 			printError(Error().WRONG_INPUT);
 			return;
+		default:
+			tempMenuObj->makeTitleBlock("Ticket has been Successfuly Purchaced", 4);
 		}
 	}
 
