@@ -618,7 +618,6 @@ public:
 		string temp = "";
 		bool usernameChecked = false, UNcorrect = false, PWcorrect = false, isEnd = false;
 		for (int i = 0; i < Details.getSize(); i++) {
-			cout << Details.getItem(i) << endl;
 			usernameChecked = false;
 			UNcorrect = false;
 			PWcorrect = false;
