@@ -461,7 +461,7 @@ public:
 
 				string option;
 				cout << "1- Source Staion \n2- Destination Station\n3- Ticket Amount" << endl;
-				option = getInput("Enter the number thing that you want to edit:");
+				option = getInput("Enter the number thing that you want to edit");
 				cout << endl;
 				string input;
 				for (char ch : option) {
@@ -474,25 +474,45 @@ public:
 				switch (stoi(option))
 				{
 				case 1:
-					input = getInput("Enter the new source station ID: ", false);
+					input = getInput("Enter the new source station ID", false);
 					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
+					if (input.substr(0, 4) != "SID_") { printError(Error().WRONG_INPUT); return; }
+					for (int i = 0; i < input.length() - 4; i++) {
+						if (!isdigit(input[4 + i])) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
 					if (storage->setSourceStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						cout << endl;
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Source Station Successfuly Updated", 6);
 						cout << endl << endl;
 					}
-					else printError(Error().NOT_FOUND);
+					else {
+						printError(Error().NOT_FOUND);
+						return;
+					}
 					break;
 				case 2:
-					input = getInput("Enter the new destination station ID: ", false);
+					input = getInput("Enter the new destination station ID", false);
 					for (int i = 0; i < input.length(); i++) input[i] = toupper(input[i]);
+					if (input.substr(0, 4) != "SID_") { printError(Error().WRONG_INPUT); return; }
+					for (int i = 0; i < input.length() - 4; i++) {
+						if (!isdigit(input[4 + i])) {
+							printError(Error().WRONG_INPUT);
+							return;
+						}
+					}
 					if (storage->setDestinationStationId(Ticket.getItem(i).getTicket().TicketID, input)) {
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Destination Station Successfuly Updated", 6);
 						cout << endl << endl;
 					}
-					else printError(Error().NOT_FOUND);
+					else {
+						printError(Error().NOT_FOUND);
+						return;
+					}
 					break;
 				case 3:
 					input = getInput("Enter the new ticket amount: ");
@@ -506,7 +526,11 @@ public:
 						tempMenuObj->drawLine('-', MAX_WIDTH);
 						tempMenuObj->makeTitleBlock("Ticket Amount Successfuly Updated", 6);
 						cout << endl << endl;
-					}else printError(Error().NOT_FOUND);
+					}
+					else {
+						printError(Error().NOT_FOUND);
+						return;
+					}
 					break;
 				default:
 					printError(Error().WRONG_INPUT);
