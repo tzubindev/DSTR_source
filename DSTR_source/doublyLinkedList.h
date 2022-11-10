@@ -100,6 +100,7 @@ public:
 	void insertVerticallyAt(T elem, int index) {
 		if (index >= size)
 		{
+			cout << index << ' ' << size << endl;
 			cout << "Out of range\n";
 			abort();
 

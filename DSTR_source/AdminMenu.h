@@ -308,7 +308,6 @@ public:
 		delete tempMenuObj;
 	}
 
-
 	void sortPurchaseTransactions() {
 		DoublyLinkedList<Transaction> Transactions = storage->sortTransaction();
 
@@ -346,7 +345,6 @@ public:
 		}
 		delete tempMenuObj;
 	}
-
 
 	void searchTicketInformation() {
 		DoublyLinkedList<Transaction> purchaseRecord = storage->getTicketPurchaseRecord();
@@ -420,24 +418,39 @@ public:
 		Menu* tempMenuObj = new Menu(true);
 		string TicketID;
 		string temp, temp2;
+
+		ConsoleColor().setColor(Color.YELLOW);
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		tempMenuObj->makeTitleBlock("View Purchase Transactions", 5);
+		cout << endl;
+		tempMenuObj->drawLine('*', MAX_WIDTH);
+		ConsoleColor();
+
 		for (int i = 0; i < Ticket.getSize(); i++) {
 			cout << endl;
 			cout << "Customer ID: " << Ticket.getItem(i).getTicket().customerObj.getCustomerID() << endl;
 			cout << "Tickect ID " << Ticket.getItem(i).getTicket().TicketID << endl;
 
-
-			tempMenuObj->drawLine('-', MAX_WIDTH);
 			cout << endl;
-
+			tempMenuObj->drawLine('-', MAX_WIDTH);
 		}
 
 
 		TicketID = getInput("Please enter the Ticket ID to edit it:");
 		cout << endl;
 		for (int i = 0; i < TicketID.length(); i++) TicketID[i] = toupper(TicketID[i]);
+		if (TicketID.substr(0, 5) != "TKID_") {
+			printError(Error().WRONG_INPUT);
+			return;
+		}
+		for (int i = 0; i < TicketID.length() - 5; i++) if (!isdigit(TicketID[5+i])) {
+			printError(Error().WRONG_INPUT);
+			return;
+		}
+
 		for (int i = 0; i < Ticket.getSize(); i++) {
 			if (TicketID == Ticket.getItem(i).getTicket().TicketID) {
-				cout << endl << endl;
+				cout << endl << endl ;
 				tempMenuObj->setTab(1);
 				cout << "TicketId: " << Ticket.getItem(i).getTicket().TicketID << endl << endl;
 				tempMenuObj->setTab(1);
@@ -460,8 +473,8 @@ public:
 				cout << endl;
 
 				string option;
-				cout << "1- Source Staion \n2- Destination Station\n3- Ticket Amount" << endl;
-				option = getInput("Enter the number thing that you want to edit");
+				cout << "1- Source Staion \n2- Destination Station\n3- Ticket Amount\n" << endl;
+				option = getInput("Enter the number");
 				cout << endl;
 				string input;
 				for (char ch : option) {
@@ -515,7 +528,7 @@ public:
 					}
 					break;
 				case 3:
-					input = getInput("Enter the new ticket amount: ");
+					input = getInput("Enter the new ticket amount");
 					for (char ch : input) {
 						if (!isdigit(ch)) {
 							printError(Error().WRONG_INPUT);

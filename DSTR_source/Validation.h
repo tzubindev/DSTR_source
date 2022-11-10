@@ -54,6 +54,7 @@ public:
 			break;
 		case SSPOT:
 			if (str.length() == 0) return false;
+			if (str[str.length() - 1] != ';') return false;
 			for (char ch : str) if (!isalnum(ch) && ch != '_' && ch != ';') return false;
 			break;
 		}
