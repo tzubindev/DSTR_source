@@ -43,17 +43,17 @@ private:
 		}
 		datetime[curPos] = finalresult;
 
-		// index			:  0    1   2    3     4       5
-		// Current format	: dow  MM  NULL  dd  hh:mm:ss  yyyy\n
+		// index			:  0    1   2    3		   4       5
+		// Current format	: dow  MM  dd  hh:mm:ss  yyyy\n    NULL?
 		// dow -> day of week : Mon, Tue ...
 		// MM  -> Month : Jan, Feb ... 
 		// Transform it to dd/mm/yyyy|hh:mm
 		
 		string month = switchMonth(datetime[1]);
-		string day = datetime[3].length() == 1 ? ("0" + datetime[3]) : datetime[3];
-		string year = datetime[5].substr(0,4); // remove \n at the end
-		string time = trimTime(datetime[4]);
-		currentDateTime = day + '/' + month + '/' + year + '|' + time;
+		string day = datetime[2].length() == 1 ? ("0" + datetime[2]) : datetime[2];
+		string year = datetime[4].substr(0,4); // remove \n at the end
+		string time = trimTime(datetime[3]);
+		currentDateTime = day + '/' + month + '/' + year + " | " + time;
 
 	}
 

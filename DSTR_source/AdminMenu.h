@@ -610,7 +610,7 @@ public:
 			tempMenuObj->setTab(2);
 			cout << "Customer ID : " << Transactions.getItem(i).getTicket().getCustomer().getCustomerID() << endl;
 			tempMenuObj->setTab(2);
-			cout << "Ticket Date and Time :" << Transactions.getItem(i).getTicket().getTicketDateTime() << endl;
+			cout << "Ticket Date and Time : " << Transactions.getItem(i).getTicket().getTicketDateTime() << endl;
 		}
 
 		cout << endl;
